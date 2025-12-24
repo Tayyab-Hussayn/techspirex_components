@@ -1,4 +1,4 @@
-<!-- Testimonials Section Component -->
+<!-- Testimonials Section: Infinite Interactive Marquee -->
 <style>
     /* Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
@@ -7,7 +7,6 @@
     .tsp-testimonials-section {
         --tsp-bg-dark: #0b0b0f;
         --tsp-primary: #453478;
-        --tsp-primary-glow: rgba(69, 52, 120, 0.4);
         --tsp-accent: #00d2ff;
         --tsp-text-main: #ffffff;
         --tsp-text-muted: #a0a0a0;
@@ -17,7 +16,8 @@
         font-family: 'Inter', sans-serif;
         background-color: var(--tsp-bg-dark);
         position: relative;
-        padding: 120px 20px;
+        padding: 120px 0;
+        /* Full width flow */
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -28,27 +28,41 @@
     .tsp-glow-orb {
         position: absolute;
         border-radius: 50%;
-        filter: blur(100px);
-        opacity: 0.3;
+        filter: blur(120px);
+        opacity: 0.25;
         z-index: 0;
         pointer-events: none;
     }
 
     .tsp-orb-1 {
-        width: 600px;
-        height: 600px;
-        background: var(--tsp-primary);
-        top: -200px;
-        left: -100px;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, var(--tsp-primary) 0%, transparent 70%);
+        top: -300px;
+        left: -200px;
+        animation: pulseGlow 10s infinite alternate;
     }
 
     .tsp-orb-2 {
-        width: 500px;
-        height: 500px;
+        width: 600px;
+        height: 600px;
         background: radial-gradient(circle, var(--tsp-accent) 0%, transparent 70%);
-        bottom: -150px;
+        bottom: -200px;
         right: -100px;
         opacity: 0.15;
+        animation: pulseGlow 8s infinite alternate-reverse;
+    }
+
+    @keyframes pulseGlow {
+        0% {
+            opacity: 0.2;
+            transform: scale(1);
+        }
+
+        100% {
+            opacity: 0.35;
+            transform: scale(1.1);
+        }
     }
 
     /* Header */
@@ -58,6 +72,7 @@
         text-align: center;
         max-width: 800px;
         margin-bottom: 80px;
+        padding: 0 20px;
     }
 
     .tsp-badge {
@@ -67,158 +82,215 @@
         letter-spacing: 2px;
         text-transform: uppercase;
         color: var(--tsp-accent);
-        margin-bottom: 16px;
-        padding: 6px 16px;
-        background: rgba(0, 210, 255, 0.1);
+        margin-bottom: 20px;
+        padding: 8px 18px;
+        background: rgba(0, 210, 255, 0.08);
         border-radius: 100px;
-        border: 1px solid rgba(0, 210, 255, 0.2);
+        border: 1px solid rgba(0, 210, 255, 0.15);
+        backdrop-filter: blur(10px);
     }
 
     .tsp-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 48px;
+        font-size: 56px;
         font-weight: 800;
         color: var(--tsp-text-main);
         margin: 0 0 24px 0;
         line-height: 1.1;
+        letter-spacing: -0.02em;
     }
 
     .tsp-title span {
-        color: transparent;
+        background: linear-gradient(135deg, #fff 30%, #a5a5a5 100%);
         -webkit-background-clip: text;
         background-clip: text;
-        background-image: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
+        -webkit-text-fill-color: transparent;
     }
 
     .tsp-subtitle {
         font-size: 18px;
         color: var(--tsp-text-muted);
         line-height: 1.6;
-        max-width: 600px;
+        max-width: 500px;
         margin: 0 auto;
     }
 
-    /* Testimonials Grid */
-    .tsp-testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
-        max-width: 1280px;
+    /* Marquee Container */
+    .tsp-marquee-wrapper {
         width: 100%;
         position: relative;
         z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
     }
 
-    /* Card Component */
-    .tsp-testimonial-card {
+    /* Gradient Masks for Fade Structure */
+    .tsp-marquee-wrapper::before,
+    .tsp-marquee-wrapper::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 150px;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .tsp-marquee-wrapper::before {
+        left: 0;
+        background: linear-gradient(to right, var(--tsp-bg-dark), transparent);
+    }
+
+    .tsp-marquee-wrapper::after {
+        right: 0;
+        background: linear-gradient(to left, var(--tsp-bg-dark), transparent);
+    }
+
+    /* Marquee Track */
+    .tsp-marquee-track {
+        display: flex;
+        gap: 32px;
+        width: max-content;
+        /* Pause on hover over the track */
+    }
+
+    .tsp-marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    /* Animations */
+    .tsp-marquee-left {
+        animation: scrollLeft 40s linear infinite;
+    }
+
+    .tsp-marquee-right {
+        animation: scrollRight 45s linear infinite;
+    }
+
+    @keyframes scrollLeft {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(calc(-50% - 16px));
+        }
+
+        /* -50% of content + half gap */
+    }
+
+    @keyframes scrollRight {
+        0% {
+            transform: translateX(calc(-50% - 16px));
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    /* Testimonial Card */
+    .tsp-card {
+        width: 500px;
+        /* Fixed width for consistent flow */
         background: var(--tsp-card-bg);
         border: 1px solid var(--tsp-card-border);
-        border-radius: 24px;
-        padding: 40px;
+        border-radius: 20px;
+        padding: 36px;
         position: relative;
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        backdrop-filter: blur(20px);
+        flex-shrink: 0;
+        backdrop-filter: blur(15px);
+        transition: all 0.3s ease;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        user-select: none;
     }
 
-    .tsp-testimonial-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    .tsp-card:hover {
         background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        transform: scale(1.02);
     }
 
     .tsp-quote-icon {
         position: absolute;
-        top: 32px;
-        right: 32px;
-        width: 48px;
-        height: 48px;
-        opacity: 0.1;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 7.55228 14.017 7V3C14.017 2.44772 14.4647 2 15.017 2H19.017C21.7784 2 24.017 4.23858 24.017 7V15C24.017 18.3137 21.3307 21 18.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 7.55228 5.0166 7V3C5.0166 2.44772 5.46432 2 6.0166 2H10.0166C12.778 2 15.0166 4.23858 15.0166 7V15C15.0166 18.3137 12.3303 21 9.0166 21H5.0166Z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: center;
-        transition: all 0.4s ease;
+        top: 24px;
+        right: 24px;
+        font-size: 60px;
+        line-height: 1;
+        font-family: serif;
+        color: var(--tsp-primary);
+        opacity: 0.2;
+        pointer-events: none;
     }
 
-    .tsp-testimonial-card:hover .tsp-quote-icon {
-        opacity: 0.3;
-        transform: scale(1.1);
-    }
-
-    .tsp-content {
-        margin-bottom: 32px;
+    .tsp-card-text {
+        font-size: 17px;
+        line-height: 1.7;
+        color: #d1d1d1;
+        font-weight: 300;
+        margin-bottom: 24px;
         position: relative;
         z-index: 1;
     }
 
-    .tsp-text {
-        font-family: 'Inter', sans-serif;
-        font-size: 18px;
-        line-height: 1.7;
-        color: var(--tsp-text-dim);
-        font-weight: 300;
-        font-style: italic;
-    }
-
-    .tsp-author {
+    .tsp-author-block {
         display: flex;
         align-items: center;
         gap: 16px;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
-        padding-top: 24px;
+        padding-top: 20px;
     }
 
     .tsp-avatar {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--tsp-primary) 0%, var(--tsp-accent) 100%);
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--tsp-primary), #6a4bc4);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 700;
         color: white;
-        font-family: 'Outfit', sans-serif;
-        font-size: 20px;
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        overflow: hidden;
+        font-weight: 700;
+        font-size: 18px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .tsp-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .tsp-author-info {
+    .tsp-meta {
         display: flex;
         flex-direction: column;
     }
 
     .tsp-name {
         font-family: 'Outfit', sans-serif;
-        font-size: 18px;
         font-weight: 600;
-        color: var(--tsp-text-main);
+        font-size: 16px;
+        color: white;
     }
 
     .tsp-role {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--tsp-accent);
-        margin-top: 4px;
+        margin-top: 2px;
     }
 
     /* Responsive */
-    @media (max-width: 900px) {
-        .tsp-testimonials-grid {
-            grid-template-columns: 1fr;
-        }
-
+    @media (max-width: 768px) {
         .tsp-title {
             font-size: 36px;
+        }
+
+        .tsp-card {
+            width: 350px;
+            padding: 24px;
+        }
+
+        .tsp-marquee-wrapper::before,
+        .tsp-marquee-wrapper::after {
+            width: 50px;
         }
     }
 </style>
@@ -228,88 +300,246 @@
     <div class="tsp-glow-orb tsp-orb-2"></div>
 
     <div class="tsp-section-header">
-        <span class="tsp-badge">Success Stories</span>
+        <span class="tsp-badge">What Clients Say</span>
         <h2 class="tsp-title">
-            <span>Trusted by Visionaries</span>
+            <span>Stories of Success</span>
         </h2>
         <p class="tsp-subtitle">
-            See how we help businesses transform, scale, and succeed in the digital age.
+            Innovators, visionaries, and market leaders trust Techspirex to engineer their digital future.
         </p>
     </div>
 
-    <div class="tsp-testimonials-grid">
-        <!-- Testimonial 1 -->
-        <div class="tsp-testimonial-card">
-            <div class="tsp-quote-icon"></div>
-            <div class="tsp-content">
-                <p class="tsp-text">
-                    "Techspirex's mastery of DevOps and Blockchain was the cornerstone of our secure platform launch.
-                    Their proactive strategy and deep technical acumen delivered a system that isn't just reliable—it's
-                    future-proof. Truly exceptional service."
-                </p>
+    <div class="tsp-marquee-wrapper">
+        <!-- Row 1: Left Scroll -->
+        <div class="tsp-marquee-track tsp-marquee-left">
+            <!-- ORIGINAL SET (1 & 2) -->
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"Techspirex's mastery of DevOps and Blockchain was the cornerstone of our
+                    secure platform launch. Their proactive strategy and deep technical acumen delivered a system that
+                    isn't just reliable—it's future-proof. Truly exceptional service."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">JD</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">James Dalton</span>
+                        <span class="tsp-role">CTO, FinSafe Global</span>
+                    </div>
+                </div>
             </div>
-            <div class="tsp-author">
-                <div class="tsp-avatar">JD</div>
-                <div class="tsp-author-info">
-                    <span class="tsp-name">James Dalton</span>
-                    <span class="tsp-role">CTO, FinSafe Global</span>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"A total game-changer for our enterprise. Techspirex didn't just build an app;
+                    they engineered a strategic asset that revolutionized our operations. Their blend of technical
+                    precision and collaborative spirit made the journey seamless."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">SL</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Sarah Lin</span>
+                        <span class="tsp-role">Director of Ops, Nexus Corp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"Techspirex's mastery of DevOps and Blockchain was the cornerstone of our
+                    secure platform launch. Their proactive strategy and deep technical acumen delivered a system that
+                    isn't just reliable—it's future-proof. Truly exceptional service."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">JD</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">James Dalton</span>
+                        <span class="tsp-role">CTO, FinSafe Global</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"A total game-changer for our enterprise. Techspirex didn't just build an app;
+                    they engineered a strategic asset that revolutionized our operations. Their blend of technical
+                    precision and collaborative spirit made the journey seamless."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">SL</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Sarah Lin</span>
+                        <span class="tsp-role">Director of Ops, Nexus Corp</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DUPLICATE SET FOR LOOPING (Seamlessness) -->
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"Techspirex's mastery of DevOps and Blockchain was the cornerstone of our
+                    secure platform launch. Their proactive strategy and deep technical acumen delivered a system that
+                    isn't just reliable—it's future-proof. Truly exceptional service."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">JD</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">James Dalton</span>
+                        <span class="tsp-role">CTO, FinSafe Global</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"A total game-changer for our enterprise. Techspirex didn't just build an app;
+                    they engineered a strategic asset that revolutionized our operations. Their blend of technical
+                    precision and collaborative spirit made the journey seamless."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">SL</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Sarah Lin</span>
+                        <span class="tsp-role">Director of Ops, Nexus Corp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"Techspirex's mastery of DevOps and Blockchain was the cornerstone of our
+                    secure platform launch. Their proactive strategy and deep technical acumen delivered a system that
+                    isn't just reliable—it's future-proof. Truly exceptional service."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">JD</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">James Dalton</span>
+                        <span class="tsp-role">CTO, FinSafe Global</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"A total game-changer for our enterprise. Techspirex didn't just build an app;
+                    they engineered a strategic asset that revolutionized our operations. Their blend of technical
+                    precision and collaborative spirit made the journey seamless."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">SL</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Sarah Lin</span>
+                        <span class="tsp-role">Director of Ops, Nexus Corp</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Testimonial 2 -->
-        <div class="tsp-testimonial-card">
-            <div class="tsp-quote-icon"></div>
-            <div class="tsp-content">
-                <p class="tsp-text">
-                    "A total game-changer for our enterprise. Techspirex didn't just build an app; they engineered a
-                    strategic asset that revolutionized our operations. Their blend of technical precision and
-                    collaborative spirit made the journey seamless."
-                </p>
-            </div>
-            <div class="tsp-author">
-                <div class="tsp-avatar">SL</div>
-                <div class="tsp-author-info">
-                    <span class="tsp-name">Sarah Lin</span>
-                    <span class="tsp-role">Director of Operations, Nexus Corp</span>
+        <!-- Row 2: Right Scroll -->
+        <div class="tsp-marquee-track tsp-marquee-right">
+            <!-- ORIGINAL SET (3 & 4) -->
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"Since launching our new e-commerce platform, sales have surged by over 60%.
+                    Their dual expertise in high-performance development and digital growth strategies created a
+                    powerhouse solution that delivered immediate, measurable ROI."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">MR</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Michael Ross</span>
+                        <span class="tsp-role">Founder, UrbanEdge Retail</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Testimonial 3 -->
-        <div class="tsp-testimonial-card">
-            <div class="tsp-quote-icon"></div>
-            <div class="tsp-content">
-                <p class="tsp-text">
-                    "Since launching our new e-commerce platform, sales have surged by over 60%. Their dual expertise in
-                    high-performance development and digital growth strategies created a powerhouse solution that
-                    delivered immediate, measurable ROI."
-                </p>
-            </div>
-            <div class="tsp-author">
-                <div class="tsp-avatar">MR</div>
-                <div class="tsp-author-info">
-                    <span class="tsp-name">Michael Ross</span>
-                    <span class="tsp-role">Founder, UrbanEdge Retail</span>
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"The new brand identity and website design have garnered incredible market
+                    feedback. The team possesses a rare talent for translating complex visions into beautiful, intuitive
+                    digital experiences. Their creative direction is simply unmatched."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">AK</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Elena Kova</span>
+                        <span class="tsp-role">CMO, Lumina Tech</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Testimonial 4 -->
-        <div class="tsp-testimonial-card">
-            <div class="tsp-quote-icon"></div>
-            <div class="tsp-content">
-                <p class="tsp-text">
-                    "The new brand identity and website design have garnered incredible market feedback. The team
-                    possesses a rare talent for translating complex visions into beautiful, intuitive digital
-                    experiences. Their creative direction is simply unmatched."
-                </p>
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"Since launching our new e-commerce platform, sales have surged by over 60%.
+                    Their dual expertise in high-performance development and digital growth strategies created a
+                    powerhouse solution that delivered immediate, measurable ROI."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">MR</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Michael Ross</span>
+                        <span class="tsp-role">Founder, UrbanEdge Retail</span>
+                    </div>
+                </div>
             </div>
-            <div class="tsp-author">
-                <div class="tsp-avatar">AK</div>
-                <div class="tsp-author-info">
-                    <span class="tsp-name">Elena Kova</span>
-                    <span class="tsp-role">CMO, Lumina Tech</span>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"The new brand identity and website design have garnered incredible market
+                    feedback. The team possesses a rare talent for translating complex visions into beautiful, intuitive
+                    digital experiences. Their creative direction is simply unmatched."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">AK</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Elena Kova</span>
+                        <span class="tsp-role">CMO, Lumina Tech</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DUPLICATE SET FOR LOOPING -->
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"Since launching our new e-commerce platform, sales have surged by over 60%.
+                    Their dual expertise in high-performance development and digital growth strategies created a
+                    powerhouse solution that delivered immediate, measurable ROI."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">MR</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Michael Ross</span>
+                        <span class="tsp-role">Founder, UrbanEdge Retail</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"The new brand identity and website design have garnered incredible market
+                    feedback. The team possesses a rare talent for translating complex visions into beautiful, intuitive
+                    digital experiences. Their creative direction is simply unmatched."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">AK</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Elena Kova</span>
+                        <span class="tsp-role">CMO, Lumina Tech</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"Since launching our new e-commerce platform, sales have surged by over 60%.
+                    Their dual expertise in high-performance development and digital growth strategies created a
+                    powerhouse solution that delivered immediate, measurable ROI."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">MR</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Michael Ross</span>
+                        <span class="tsp-role">Founder, UrbanEdge Retail</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-card">
+                <div class="tsp-quote-icon">❝</div>
+                <p class="tsp-card-text">"The new brand identity and website design have garnered incredible market
+                    feedback. The team possesses a rare talent for translating complex visions into beautiful, intuitive
+                    digital experiences. Their creative direction is simply unmatched."</p>
+                <div class="tsp-author-block">
+                    <div class="tsp-avatar">AK</div>
+                    <div class="tsp-meta">
+                        <span class="tsp-name">Elena Kova</span>
+                        <span class="tsp-role">CMO, Lumina Tech</span>
+                    </div>
                 </div>
             </div>
         </div>
