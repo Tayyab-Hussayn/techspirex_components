@@ -251,7 +251,12 @@
         font-size: clamp(2rem, 4vw, 3rem);
         font-weight: 700;
         color: #ffffff;
-        display: block;
+        display: inline-block;
+        /* Fixed: inline-block prevents full-width box clipping */
+        padding-top: 15px;
+        /* Fixed: padding allows gradient to render fully */
+        margin-top: -15px;
+        /* Layout balance */
         margin-bottom: 8px;
         background: linear-gradient(135deg, #ffffff 0%, #b8a9d9 100%);
         -webkit-background-clip: text;
@@ -265,6 +270,8 @@
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 1px;
+        display: block;
+        /* Ensures label stays below the number */
     }
 
     .tsp-ph-cta-buttons {
