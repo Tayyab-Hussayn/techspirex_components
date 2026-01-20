@@ -1,0 +1,294 @@
+<!-- Techspirex Identity Section: Bento Grid Layout -->
+<style>
+    /* =========================================
+       VARIABLES & CORE (Inherits Global Theme)
+       ========================================= */
+    :root {
+        --tsp-bento-bg: #13131f;
+        --tsp-card-bg: rgba(30, 30, 45, 0.6);
+        --tsp-border: rgba(255, 255, 255, 0.08);
+        --tsp-hover-border: rgba(255, 255, 255, 0.2);
+        --tsp-accent: #00d2ff;
+        --tsp-primary-light: #6a4bc4;
+    }
+
+    /* =========================================
+       SECTION STRUCTURE
+       ========================================= */
+    .tsp-dna-section {
+        background-color: #0f0f12; /* Dark Match to Hero */
+        padding: 100px 20px;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+    }
+
+    .tsp-dna-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Section Header */
+    .tsp-section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    .tsp-label {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--tsp-accent);
+        margin-bottom: 16px;
+        display: inline-block;
+        padding: 6px 16px;
+        background: rgba(0, 210, 255, 0.1);
+        border-radius: 50px;
+        border: 1px solid rgba(0, 210, 255, 0.2);
+    }
+    .tsp-section-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 42px;
+        font-weight: 700;
+        color: white;
+        margin: 0;
+    }
+    .tsp-section-desc {
+        color: #94a3b8;
+        max-width: 600px;
+        margin: 16px auto 0;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    /* =========================================
+       THE BENTO GRID
+       ========================================= */
+    .tsp-bento-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 300px);
+        gap: 24px;
+    }
+
+    /* Base Card Style */
+    .tsp-bento-card {
+        background: var(--tsp-card-bg);
+        border: 1px solid var(--tsp-border);
+        border-radius: 24px;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .tsp-bento-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--tsp-hover-border);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    /* --- CARD 1: THE MISSION (Large, spans 2 cols) --- */
+    .tsp-card-mission {
+        grid-column: span 2;
+        background: linear-gradient(145deg, rgba(30, 30, 45, 0.8) 0%, rgba(69, 52, 120, 0.2) 100%);
+    }
+    
+    .tsp-mission-icon {
+        width: 60px; height: 60px;
+        background: linear-gradient(135deg, var(--tsp-primary-light), var(--tsp-accent));
+        border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .tsp-bento-h3 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: white;
+        line-height: 1.2;
+        margin-bottom: 16px;
+    }
+    
+    .tsp-bento-p {
+        color: #94a3b8;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 90%;
+    }
+
+    /* --- CARD 2: THE VISION (Visual Focus) --- */
+    .tsp-card-vision {
+        grid-column: span 1;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        background: radial-gradient(circle at center, rgba(69, 52, 120, 0.2) 0%, rgba(30,30,45,0) 70%);
+    }
+    
+    /* Radar Animation */
+    .tsp-radar {
+        width: 150px; height: 150px;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 50%;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    .tsp-radar::before {
+        content: ''; position: absolute; top: 50%; left: 50%;
+        width: 10px; height: 10px; background: var(--tsp-accent);
+        border-radius: 50%; transform: translate(-50%, -50%);
+        box-shadow: 0 0 15px var(--tsp-accent);
+    }
+    .tsp-radar::after {
+        content: ''; position: absolute; top: 50%; left: 50%;
+        width: 100%; height: 100%; border-radius: 50%;
+        background: conic-gradient(from 0deg, transparent 0%, rgba(0, 210, 255, 0.1) 100%);
+        transform: translate(-50%, -50%);
+        animation: radarSpin 4s linear infinite;
+    }
+    @keyframes radarSpin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    /* --- CARD 3: METHODOLOGY (Code snippet style) --- */
+    .tsp-card-method {
+        grid-column: span 1;
+    }
+    .tsp-code-block {
+        font-family: 'Fira Code', monospace;
+        font-size: 13px;
+        color: #a9b7c6;
+        background: rgba(0,0,0,0.3);
+        padding: 15px;
+        border-radius: 8px;
+        width: 100%;
+        margin-bottom: 20px;
+        border-left: 2px solid var(--tsp-accent);
+    }
+
+    /* --- CARD 4: GLOBAL IMPACT (Map style) --- */
+    .tsp-card-global {
+        grid-column: span 2;
+        flex-direction: row;
+        align-items: center;
+        padding: 0;
+    }
+    .tsp-global-content {
+        padding: 40px;
+        flex: 1;
+        z-index: 2;
+    }
+    .tsp-map-visual {
+        flex: 1.5;
+        height: 100%;
+        background-image: radial-gradient(#453478 1px, transparent 1px);
+        background-size: 20px 20px;
+        opacity: 0.3;
+        position: relative;
+        mask-image: linear-gradient(to right, transparent, black 20%);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+    }
+
+    /* Hover Glow Effect */
+    .tsp-glow-orb {
+        position: absolute;
+        width: 300px; height: 300px;
+        background: var(--tsp-primary-light);
+        filter: blur(80px);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        z-index: 0;
+    }
+    .tsp-bento-card:hover .tsp-glow-orb { opacity: 0.15; }
+
+    /* Typography Utilities */
+    .tsp-card-title-sm {
+        font-family: 'Outfit', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 10px;
+    }
+    .tsp-text-muted { color: #94a3b8; font-size: 14px; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .tsp-bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+        .tsp-card-mission, .tsp-card-vision, .tsp-card-method, .tsp-card-global { grid-column: span 1; }
+        .tsp-card-global { flex-direction: column; }
+        .tsp-map-visual { width: 100%; height: 150px; mask-image: linear-gradient(to bottom, transparent, black 20%); }
+    }
+</style>
+
+<section class="tsp-dna-section">
+    <div class="tsp-dna-container">
+        
+        <!-- Header -->
+        <div class="tsp-section-header">
+            <span class="tsp-label">Our Core DNA</span>
+            <h2 class="tsp-section-title">Driven by Purpose, <br>Defined by Code.</h2>
+            <p class="tsp-section-desc">We don't just write software; we engineer ecosystems. Our philosophy blends creative ambition with rigorous technical precision.</p>
+        </div>
+
+        <!-- The Bento Grid -->
+        <div class="tsp-bento-grid">
+            
+            <!-- 1. The Mission (Large) -->
+            <div class="tsp-bento-card tsp-card-mission">
+                <div class="tsp-glow-orb" style="top: -50px; left: -50px;"></div>
+                <div>
+                    <div class="tsp-mission-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                            <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="tsp-bento-h3">To democratize enterprise-grade technology for ambitious brands.</h3>
+                </div>
+                <p class="tsp-bento-p">
+                    We believe that "State of the Art" shouldn't be reserved for the Fortune 500. We bring scalable, secure, and cutting-edge digital infrastructure to businesses ready to dominate their market.
+                </p>
+            </div>
+
+            <!-- 2. The Vision (Visual) -->
+            <div class="tsp-bento-card tsp-card-vision">
+                <div class="tsp-radar"></div>
+                <h4 class="tsp-card-title-sm">Future Focused</h4>
+                <p class="tsp-text-muted">Always 3 steps ahead of the market trend.</p>
+            </div>
+
+            <!-- 3. The Methodology -->
+            <div class="tsp-bento-card tsp-card-method">
+                <div>
+                    <div class="tsp-code-block">
+                        <span style="color:#cc7832">while</span>(innovating) {<br>
+                        &nbsp;&nbsp;scale++;<br>
+                        &nbsp;&nbsp;complexity = <span style="color:#9876aa">null</span>;<br>
+                        }
+                    </div>
+                    <h4 class="tsp-card-title-sm">Agile Engineering</h4>
+                    <p class="tsp-text-muted">We iterate fast, break nothing, and deploy with confidence.</p>
+                </div>
+            </div>
+
+            <!-- 4. Global Impact -->
+            <div class="tsp-bento-card tsp-card-global">
+                <div class="tsp-global-content">
+                    <h3 class="tsp-bento-h3" style="font-size:28px;">Operating Globally</h3>
+                    <p class="tsp-bento-p">From Silicon Valley logic to European design aesthetics, our team spans continents to deliver 24/7 excellence.</p>
+                </div>
+                <div class="tsp-map-visual">
+                    <!-- Abstract Dots representing map -->
+                    <div style="position:absolute; top:30%; left:20%; width:6px; height:6px; background:#fff; border-radius:50%; box-shadow:0 0 10px white;"></div>
+                    <div style="position:absolute; top:50%; left:50%; width:4px; height:4px; background:#fff; border-radius:50%; opacity:0.5;"></div>
+                    <div style="position:absolute; top:40%; left:70%; width:5px; height:5px; background:#fff; border-radius:50%; opacity:0.7;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
