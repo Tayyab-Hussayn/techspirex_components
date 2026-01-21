@@ -1,0 +1,248 @@
+<!-- Techspirex Header: The Floating Glass Command Bar -->
+<style>
+    /* =========================================
+       VARIABLES
+       ========================================= */
+    :root {
+        --tsp-primary: #453478;       /* Brand Purple */
+        --tsp-primary-light: #6a4bc4; /* Lighter Purple for hovers */
+        --tsp-nav-glass: rgba(15, 15, 20, 0.7);
+        --tsp-nav-border: rgba(255, 255, 255, 0.08);
+    }
+
+    /* =========================================
+       HEADER CONTAINER
+       ========================================= */
+    .tsp-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px 40px;
+        transition: all 0.4s ease;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* The Glass Bar */
+    .tsp-nav-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        background: var(--tsp-nav-glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px); /* Safari support */
+        border: 1px solid var(--tsp-nav-border);
+        border-radius: 100px; /* Pill Shape */
+        padding: 12px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* =========================================
+       LOGO
+       ========================================= */
+    .tsp-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+
+    .tsp-logo-text {
+        font-family: 'Outfit', sans-serif;
+        font-size: 22px;
+        font-weight: 800;
+        color: white;
+        letter-spacing: -0.5px;
+    }
+    
+    .tsp-logo-dot {
+        width: 8px; height: 8px;
+        background: var(--tsp-primary-light);
+        border-radius: 50%;
+    }
+
+    /* =========================================
+       NAVIGATION LINKS
+       ========================================= */
+    .tsp-nav-menu {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+        margin: 0; padding: 0;
+    }
+
+    .tsp-nav-item { position: relative; }
+
+    .tsp-nav-link {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        display: flex; align-items: center; gap: 4px;
+    }
+
+    .tsp-nav-link:hover {
+        color: white;
+    }
+
+    /* Dropdown Indicator Icon */
+    .tsp-chevron {
+        width: 10px; height: 10px;
+        transition: transform 0.3s ease;
+        opacity: 0.5;
+    }
+    .tsp-nav-item:hover .tsp-chevron { transform: rotate(180deg); opacity: 1; }
+
+    /* =========================================
+       DROPDOWN MENU (Modern & Glass)
+       ========================================= */
+    .tsp-dropdown {
+        position: absolute;
+        top: 150%;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        width: 240px;
+        background: #1a1a2e;
+        border: 1px solid var(--tsp-nav-border);
+        border-radius: 16px;
+        padding: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    /* Show on Hover */
+    .tsp-nav-item:hover .tsp-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .tsp-dropdown-link {
+        display: block;
+        padding: 12px 16px;
+        color: rgba(255,255,255,0.7);
+        text-decoration: none;
+        font-size: 14px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .tsp-dropdown-link:hover {
+        background: rgba(69, 52, 120, 0.2); /* Low opacity purple */
+        color: white;
+        padding-left: 20px; /* Slide effect */
+    }
+
+    /* =========================================
+       CTA BUTTON
+       ========================================= */
+    .tsp-header-btn {
+        background: var(--tsp-primary);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.1);
+        display: flex; align-items: center; gap: 8px;
+    }
+
+    .tsp-header-btn:hover {
+        background: var(--tsp-primary-light);
+        box-shadow: 0 0 20px rgba(106, 75, 196, 0.4);
+        transform: translateY(-2px);
+    }
+
+    /* =========================================
+       MOBILE MENU TOGGLE
+       ========================================= */
+    .tsp-mobile-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+    }
+    .tsp-bar {
+        width: 24px; height: 2px; background: white; border-radius: 2px;
+    }
+
+    /* =========================================
+       RESPONSIVE
+       ========================================= */
+    @media (max-width: 900px) {
+        .tsp-nav-menu { display: none; } /* Hide links on mobile */
+        .tsp-mobile-toggle { display: flex; }
+        .tsp-header { padding: 15px 20px; }
+        .tsp-nav-container { padding: 12px 20px; }
+    }
+</style>
+
+<header class="tsp-header">
+    <div class="tsp-nav-container">
+        
+        <!-- 1. Logo -->
+        <a href="/" class="tsp-logo">
+            <!-- Icon Symbol -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#453478" stroke="white" stroke-width="2"/>
+                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2"/>
+                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2"/>
+            </svg>
+            <span class="tsp-logo-text">Techspirex<span class="tsp-logo-dot"></span></span>
+        </a>
+
+        <!-- 2. Navigation -->
+        <ul class="tsp-nav-menu">
+            <li class="tsp-nav-item">
+                <a href="/" class="tsp-nav-link">Home</a>
+            </li>
+            
+            <li class="tsp-nav-item">
+                <a href="/services" class="tsp-nav-link">
+                    Services 
+                    <svg class="tsp-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor">
+                        <path d="M1 1L5 5L9 1" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <!-- Dropdown -->
+                <div class="tsp-dropdown">
+                    <a href="#" class="tsp-dropdown-link">Web Development</a>
+                    <a href="#" class="tsp-dropdown-link">Digital Marketing</a>
+                    <a href="#" class="tsp-dropdown-link">App Design</a>
+                    <a href="#" class="tsp-dropdown-link">AI Solutions</a>
+                </div>
+            </li>
+
+            <li class="tsp-nav-item">
+                <a href="/about" class="tsp-nav-link">About Us</a>
+            </li>
+            <li class="tsp-nav-item">
+                <a href="/blog" class="tsp-nav-link">Insights</a>
+            </li>
+        </ul>
+
+        <!-- 3. CTA & Mobile Toggle -->
+        <div style="display:flex; align-items:center; gap:20px;">
+            <a href="/contact" class="tsp-header-btn">
+                Let's Talk
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+
+            <div class="tsp-mobile-toggle">
+                <span class="tsp-bar"></span>
+                <span class="tsp-bar"></span>
+            </div>
+        </div>
+
+    </div>
+</header>
