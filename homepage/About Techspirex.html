@@ -15,7 +15,7 @@
         }
 
         .about-values-section {
-            background-color: #FFFFFF;
+            background-color: #0f0f12;
             padding: 80px 20px;
             font-family: 'Inter', sans-serif;
         }
@@ -42,31 +42,32 @@
             font-family: 'Inter', sans-serif;
             font-size: 14px;
             font-weight: 500;
-            color: #453478;
-            background-color: #F1F2F6;
+            color: #00d2ff;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50px;
             padding: 8px 16px;
             margin-bottom: 24px;
         }
 
         .main-heading {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 48px;
             font-weight: 700;
-            color: #1A1A2E;
+            color: #FFFFFF;
             line-height: 1.2;
             margin-bottom: 24px;
         }
 
         .main-heading .highlight {
-            color: #453478;
+            color: #00d2ff;
         }
 
         .description {
             font-family: 'Inter', sans-serif;
             font-size: 16px;
             line-height: 1.7;
-            color: #4A4A4A;
+            color: #94a3b8;
             margin-bottom: 16px;
         }
 
@@ -78,8 +79,8 @@
             font-weight: 600;
             font-size: 16px;
             color: #FFFFFF;
-            background: #453478;
-            border: none;
+            background: linear-gradient(135deg, #453478, #6C5CE7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50px;
             padding: 14px 32px;
             text-decoration: none;
@@ -91,8 +92,8 @@
         .cta-button:hover {
             transform: translateY(-2px);
             color: #FFFFFF;
-            background: rgb(0, 0, 0);
-            box-shadow: 0 8px 20px rgba(69, 52, 120, 0.3);
+            background: linear-gradient(135deg, #6C5CE7, #453478);
+            box-shadow: 0 8px 20px rgba(69, 52, 120, 0.4), 0 0 15px rgba(0, 210, 255, 0.3);
         }
 
         .cta-button svg {
@@ -123,9 +124,11 @@
             font-family: 'Inter', sans-serif;
             font-size: 14px;
             font-weight: 500;
-            color: #453478;
-            background-color: #F8F9FA;
-            border: 1px solid rgba(69, 52, 120, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #00d2ff;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid #453478;
             border-radius: 50px;
             padding: 10px 15px;
             cursor: pointer;
@@ -134,28 +137,29 @@
         }
 
         .value-chip:hover {
-            background-color: #453478;
-            color: #FFFFFF;
-            border-color: #453478;
+            background-color: rgba(69, 52, 120, 0.2);
+            color: #00d2ff;
+            border-color: #00d2ff;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(69, 52, 120, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 210, 255, 0.2);
         }
 
         .value-chip.active {
-            background-color: #453478;
-            color: #FFFFFF;
-            border-color: #453478;
-            box-shadow: 0 4px 12px rgba(69, 52, 120, 0.2);
+            background-color: rgba(69, 52, 120, 0.3);
+            color: #00d2ff;
+            border-color: #00d2ff;
+            box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
         }
 
         .display-card {
-            background: #FFFFFF;
-            border: 1px solid rgba(69, 52, 120, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 30px;
             padding: 40px;
             min-height: 280px;
             transition: all 0.4s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .card-content {
@@ -182,10 +186,10 @@
         }
 
         .card-title {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Outfit', sans-serif;
             font-size: 28px;
             font-weight: 600;
-            color: #1A1A2E;
+            color: #FFFFFF;
             margin-bottom: 16px;
         }
 
@@ -193,12 +197,13 @@
             font-family: 'Inter', sans-serif;
             font-size: 16px;
             line-height: 1.7;
-            color: #4A4A4A;
+            color: #94a3b8;
         }
 
         /* Responsive Design */
         @media screen and (max-width: 1199px) {
             .main-heading {
+                font-family: 'Outfit', sans-serif;
                 font-size: 40px;
             }
 
@@ -223,6 +228,7 @@
             }
 
             .main-heading {
+                font-family: 'Outfit', sans-serif;
                 font-size: 32px;
             }
 
@@ -249,6 +255,7 @@
             }
 
             .card-title {
+                font-family: 'Outfit', sans-serif;
                 font-size: 24px;
             }
 

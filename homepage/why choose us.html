@@ -11,7 +11,7 @@
                     <defs>
                         <path id="animationPath" d="M2 138.5C2 138.5 130.5 -70 334 81C537.5 232 748.5 228.5 904 138.5C1059.5 48.5 1118 25.5 1118 25.5"/>
                     </defs>
-                    <path d="M2 138.5C2 138.5 130.5 -70 334 81C537.5 232 748.5 228.5 904 138.5C1059.5 48.5 1118 25.5 1118 25.5" stroke="var(--color-primary )" stroke-width="3" stroke-linecap="round" stroke-dasharray="12 12"/>
+                    <path d="M2 138.5C2 138.5 130.5 -70 334 81C537.5 232 748.5 228.5 904 138.5C1059.5 48.5 1118 25.5 1118 25.5" stroke="rgba(255,255,255,0.1)" stroke-width="3" stroke-linecap="round" stroke-dasharray="12 12"/>
                     <!-- Animated Dots moving along path -->
                     <circle class="techspirex-timeline__dot" r="8" fill="var(--color-highlight-cta)">
                         <animateMotion dur="6s" repeatCount="indefinite">
@@ -42,7 +42,7 @@
                     <defs>
                         <path id="animationPathVertical" d="M50 10C50 10 5 180 50 350C95 520 95 680 50 850C5 1000 50 1150 50 1190"/>
                     </defs>
-                    <path d="M50 10C50 10 5 180 50 350C95 520 95 680 50 850C5 1000 50 1150 50 1190" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 8"/>
+                    <path d="M50 10C50 10 5 180 50 350C95 520 95 680 50 850C5 1000 50 1150 50 1190" stroke="rgba(255,255,255,0.1)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="8 8"/>
                     <!-- Animated Dots moving along vertical path -->
                     <circle class="techspirex-timeline__dot" r="6" fill="var(--color-highlight-cta)">
                         <animateMotion dur="6s" repeatCount="indefinite">
@@ -104,19 +104,19 @@
 
 <style>
     /* Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap' );
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500&display=swap' );
 
     /* CSS Custom Properties for Techspirex Palette */
     :root {
         --color-primary: #453478;
         --color-accent-secondary: #6C5CE7;
         --color-accent-tertiary: #A29BFE;
-        --color-bg-dark: #;
-        --color-bg-secondary: #16213E;
-        --color-text-primary: #000000;
-        --color-text-secondary: #4A4A4A;
-        --color-highlight-cta: #453478;
-        --color-accent-cyan: #00D9FF;
+        --color-bg-dark: #0f0f12;
+        --color-bg-secondary: #151520;
+        --color-text-primary: #FFFFFF;
+        --color-text-secondary: #94a3b8;
+        --color-highlight-cta: #00d2ff;
+        --color-accent-cyan: #00D2FF;
     }
 
     /* Base Section Styles */
@@ -140,9 +140,9 @@
     }
 
     .techspirex-section-header h2 {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Outfit', sans-serif;
         font-size: 48px;
-        font-weight: 700;
+        font-weight: 800;
         color: var(--color-text-primary);
         margin: 0;
     }
@@ -231,7 +231,7 @@
         color: var(--color-accent-cyan);
         transition: all 0.3s ease;
     }
-    
+
     .techspirex-timeline__icon img {
         width: 40px;
         height: 40px;
@@ -240,7 +240,7 @@
     }
 
     .techspirex-timeline__title {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Outfit', sans-serif;
         font-size: 22px;
         font-weight: 600;
         color: var(--color-text-primary);
@@ -332,45 +332,47 @@
     }
 
     @media (max-width: 767px) {
-        .techspirex-why-choose-us { 
-            padding: 60px 0; 
+        .techspirex-why-choose-us {
+            padding: 60px 0;
         }
-        
-        .techspirex-section-header h2 { 
-            font-size: 36px; 
+
+        .techspirex-section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 36px;
         }
-        
-        .techspirex-timeline { 
+
+        .techspirex-timeline {
             min-height: 1250px;
             padding: 0 16px;
         }
-        
+
         .techspirex-timeline__path-wrapper--vertical {
             height: 1200px;
         }
-        
+
         .techspirex-timeline__item {
             max-width: 280px !important;
         }
-        
-        .techspirex-timeline__item--1 { 
+
+        .techspirex-timeline__item--1 {
             margin-top: 30px !important;
         }
-        .techspirex-timeline__item--2 { 
+        .techspirex-timeline__item--2 {
             margin-top: 180px !important;
         }
-        .techspirex-timeline__item--3 { 
+        .techspirex-timeline__item--3 {
             margin-top: 180px !important;
         }
-        .techspirex-timeline__item--4 { 
+        .techspirex-timeline__item--4 {
             margin-top: 180px !important;
             margin-bottom: 30px !important;
         }
-        
+
         .techspirex-timeline__title {
+            font-family: 'Outfit', sans-serif;
             font-size: 18px;
         }
-        
+
         .techspirex-timeline__desc {
             font-size: 14px;
         }
