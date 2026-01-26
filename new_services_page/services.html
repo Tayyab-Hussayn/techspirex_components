@@ -1,0 +1,448 @@
+<style>
+    /* =========================================
+       VARIABLES (Clean Corporate Theme)
+       ========================================= */
+    :root {
+        --tsp-bg-dark: #0f0f12;
+        --tsp-card-glass: rgba(255, 255, 255, 0.02); /* Very subtle glass */
+        --tsp-primary: #453478;
+        --tsp-border-subtle: rgba(255, 255, 255, 0.08);
+        --tsp-border-white: rgba(255, 255, 255, 0.3);
+        --tsp-text-main: #ffffff;
+        --tsp-text-muted: #94a3b8;
+    }
+
+    /* =========================================
+       LAYOUT SHELL
+       ========================================= */
+    .tsp-services-section {
+        background-color: var(--tsp-bg-dark);
+        padding: 100px 20px;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+    }
+
+    .tsp-layout-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 280px 1fr; /* Sidebar | Content */
+        gap: 80px;
+        position: relative;
+    }
+
+    /* --- LEFT: STICKY NAVIGATION --- */
+    .tsp-sticky-sidebar {
+        position: -webkit-sticky; /* Safari support */
+        position: sticky;
+        top: 120px; /* Adjust based on your main header height */
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 10;
+    }
+
+    .tsp-nav-link {
+        font-family: 'Outfit', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--tsp-text-muted);
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: 50px; /* Pill shape */
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+        display: block;
+    }
+
+    .tsp-nav-link:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Active State styling (Simulated) */
+    .tsp-nav-link.active {
+        color: white;
+        background: rgba(69, 52, 120, 0.2); /* Very subtle purple tint */
+        border-color: rgba(69, 52, 120, 0.5);
+    }
+
+    /* =========================================
+       RIGHT: SERVICE MODULES
+       ========================================= */
+    .tsp-service-feed {
+        display: flex;
+        flex-direction: column;
+        gap: 120px; /* Space between sections */
+    }
+
+    /* Anchor Offset for Smooth Scrolling */
+    .tsp-module {
+        scroll-margin-top: 140px; /* Prevents header from covering title */
+    }
+
+    /* CLEAN GLASS CARD */
+    .tsp-service-card {
+        background: var(--tsp-card-glass);
+        border: 1px solid var(--tsp-border-subtle);
+        border-radius: 24px;
+        padding: 50px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .tsp-service-card:hover {
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Typography */
+    .tsp-module-header { margin-bottom: 40px; }
+    
+    .tsp-module-num {
+        font-family: 'Fira Code', monospace;
+        color: var(--tsp-primary); 
+        font-size: 13px; margin-bottom: 16px; display: block;
+        font-weight: 600; letter-spacing: 1px;
+    }
+    
+    .tsp-module-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 42px; font-weight: 700; color: white; margin: 0 0 20px 0;
+        line-height: 1.1;
+    }
+    
+    .tsp-module-desc {
+        font-size: 16px; line-height: 1.7; color: var(--tsp-text-muted);
+        max-width: 650px;
+    }
+
+    /* --- FEATURE GRID (Clean Icons) --- */
+    .tsp-feature-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .tsp-feature {
+        display: flex; gap: 16px; align-items: flex-start;
+    }
+    
+    .tsp-feat-icon {
+        width: 40px; height: 40px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: white; flex-shrink: 0;
+    }
+    
+    .tsp-feat-text h4 { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; color: white; margin: 0 0 6px 0; }
+    .tsp-feat-text p { font-size: 14px; color: var(--tsp-text-muted); line-height: 1.5; margin: 0; }
+
+    /* --- TECH PILLS (Minimalist) --- */
+    .tsp-tech-row {
+        display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px;
+        padding-top: 30px; border-top: 1px solid var(--tsp-border-subtle);
+    }
+    
+    .tsp-tech-pill {
+        padding: 6px 16px;
+        border-radius: 50px;
+        background: transparent;
+        border: 1px solid var(--tsp-border-subtle);
+        color: var(--tsp-text-muted);
+        font-size: 12px; font-weight: 500;
+        font-family: 'Fira Code', monospace;
+        transition: all 0.3s ease;
+        cursor: default;
+    }
+    
+    .tsp-tech-pill:hover {
+        border-color: rgba(255,255,255,0.4);
+        color: white;
+        background: rgba(255,255,255,0.05);
+    }
+
+    /* --- BUTTON STYLE (Rounded, Transparent, White Border) --- */
+    .tsp-module-btn {
+        display: inline-flex; align-items: center; gap: 10px;
+        padding: 14px 32px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50px;
+        color: white;
+        font-family: 'Outfit', sans-serif;
+        font-size: 14px; font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 30px;
+        width: fit-content;
+    }
+
+    .tsp-module-btn:hover {
+        background: white;
+        color: black;
+        border-color: white;
+        transform: translateY(-2px);
+    }
+
+    /* =========================================
+       RESPONSIVE
+       ========================================= */
+    @media (max-width: 900px) {
+        .tsp-layout-grid { grid-template-columns: 1fr; gap: 40px; }
+        
+        .tsp-sticky-sidebar { 
+            position: relative; top: 0; 
+            flex-direction: row; overflow-x: auto; 
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--tsp-border-subtle);
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        
+        /* Hide scrollbar for cleaner look on mobile */
+        .tsp-sticky-sidebar::-webkit-scrollbar { display: none; }
+        
+        .tsp-nav-link { 
+            white-space: nowrap; 
+            font-size: 14px; 
+            border: 1px solid var(--tsp-border-subtle);
+            flex-shrink: 0;
+        }
+        
+        .tsp-nav-link.active {
+            background: white; color: black; border-color: white;
+        }
+
+        .tsp-service-card { padding: 30px 24px; }
+        .tsp-feature-row { grid-template-columns: 1fr; }
+        .tsp-module-title { font-size: 32px; }
+        
+        /* Ensure tech pills wrap nicely */
+        .tsp-tech-row { gap: 8px; }
+    }
+</style>
+
+<section class="tsp-services-section">
+    <div class="tsp-layout-grid">
+        
+        <!-- LEFT: STICKY NAVIGATION -->
+        <aside class="tsp-sticky-sidebar">
+            <a href="#web-app" class="tsp-nav-link active">Web & App Dev</a>
+            <a href="#ui-ux" class="tsp-nav-link">UI/UX Design</a>
+            <a href="#devops" class="tsp-nav-link">DevOps & Cloud</a>
+            <a href="#marketing" class="tsp-nav-link">Digital Marketing</a>
+        </aside>
+
+        <!-- RIGHT: SERVICE MODULE FEED -->
+        <div class="tsp-service-feed">
+            
+            <!-- 1. WEB & APP DEVELOPMENT -->
+            <div id="web-app" class="tsp-module">
+                <div class="tsp-service-card">
+                    <div class="tsp-module-header">
+                        <span class="tsp-module-num">01</span>
+                        <h2 class="tsp-module-title">Web & Mobile Application Development</h2>
+                        <p class="tsp-module-desc">
+                            We engineer high-performance digital products using modern architectures. Whether it's a complex SaaS platform or a native mobile app, we write scalable, clean code that drives business logic.
+                        </p>
+                    </div>
+
+                    <div class="tsp-feature-row">
+                        <div class="tsp-feature">
+                            <div class="tsp-feat-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </div>
+                            <div class="tsp-feat-text">
+                                <h4>Custom Software</h4>
+                                <p>Tailored enterprise solutions and SaaS platforms built with Next.js and Node.</p>
+                            </div>
+                        </div>
+                        <div class="tsp-feature">
+                            <div class="tsp-feat-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                            </div>
+                            <div class="tsp-feat-text">
+                                <h4>Mobile Apps</h4>
+                                <p>Native iOS/Android and Cross-platform (Flutter/React Native) development.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tsp-tech-row">
+                        <span class="tsp-tech-pill">React.js</span>
+                        <span class="tsp-tech-pill">Next.js</span>
+                        <span class="tsp-tech-pill">TypeScript</span>
+                        <span class="tsp-tech-pill">Node.js</span>
+                        <span class="tsp-tech-pill">Flutter</span>
+                        <span class="tsp-tech-pill">PostgreSQL</span>
+                    </div>
+
+                    <a href="#contact" class="tsp-module-btn">Start Development</a>
+                </div>
+            </div>
+
+            <!-- 2. UI/UX DESIGN -->
+            <div id="ui-ux" class="tsp-module">
+                <div class="tsp-service-card">
+                    <div class="tsp-module-header">
+                        <span class="tsp-module-num">02</span>
+                        <h2 class="tsp-module-title">UI/UX & Product Design</h2>
+                        <p class="tsp-module-desc">
+                            We transform complex requirements into intuitive, beautiful interfaces. Our design process focuses on user retention, accessibility, and visual storytelling.
+                        </p>
+                    </div>
+
+                    <div class="tsp-feature-row">
+                        <div class="tsp-feature">
+                            <div class="tsp-feat-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                            </div>
+                            <div class="tsp-feat-text">
+                                <h4>Interface Design</h4>
+                                <p>Pixel-perfect UI systems that ensure brand consistency across all devices.</p>
+                            </div>
+                        </div>
+                        <div class="tsp-feature">
+                            <div class="tsp-feat-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M15 16h6"/><path d="M3 16h6"/><path d="M12 2v10"/><path d="M12 12l4-4"/><path d="M12 12L8 8"/></svg>
+                            </div>
+                            <div class="tsp-feat-text">
+                                <h4>Prototyping</h4>
+                                <p>Interactive wireframes and user flows to validate concepts before coding.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tsp-tech-row">
+                        <span class="tsp-tech-pill">Figma</span>
+                        <span class="tsp-tech-pill">Adobe XD</span>
+                        <span class="tsp-tech-pill">Interaction Design</span>
+                        <span class="tsp-tech-pill">Design Systems</span>
+                    </div>
+
+                    <a href="#contact" class="tsp-module-btn">Discuss Design</a>
+                </div>
+            </div>
+
+            <!-- 3. DEVOPS & CLOUD -->
+            <div id="devops" class="tsp-module">
+                <div class="tsp-service-card">
+                    <div class="tsp-module-header">
+                        <span class="tsp-module-num">03</span>
+                        <h2 class="tsp-module-title">DevOps & Cloud Infrastructure</h2>
+                        <p class="tsp-module-desc">
+                            We build the backbone of your software. Secure, scalable, and automated cloud environments that ensure 99.9% uptime and rapid deployment cycles.
+                        </p>
+                    </div>
+
+                    <div class="tsp-feature-row">
+                        <div class="tsp-feature">
+                            <div class="tsp-feat-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                            </div>
+                            <div class="tsp-feat-text">
+                                <h4>Cloud Architecture</h4>
+                                <p>Serverless and microservices setup on AWS, Azure, or Google Cloud.</p>
+                            </div>
+                        </div>
+                        <div class="tsp-feature">
+                            <div class="tsp-feat-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            </div>
+                            <div class="tsp-feat-text">
+                                <h4>CI/CD Pipelines</h4>
+                                <p>Automated testing and deployment workflows for faster release cycles.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tsp-tech-row">
+                        <span class="tsp-tech-pill">AWS</span>
+                        <span class="tsp-tech-pill">Docker</span>
+                        <span class="tsp-tech-pill">Kubernetes</span>
+                        <span class="tsp-tech-pill">Terraform</span>
+                        <span class="tsp-tech-pill">GitHub Actions</span>
+                    </div>
+
+                    <a href="#contact" class="tsp-module-btn">Optimize Infra</a>
+                </div>
+            </div>
+
+            <!-- 4. DIGITAL MARKETING -->
+            <div id="marketing" class="tsp-module">
+                <div class="tsp-service-card">
+                    <div class="tsp-module-header">
+                        <span class="tsp-module-num">04</span>
+                        <h2 class="tsp-module-title">Digital Marketing & Ecommerce</h2>
+                        <p class="tsp-module-desc">
+                            Great code needs traffic. We integrate data-driven marketing strategies to scale your brand, optimize conversions, and dominate search results.
+                        </p>
+                    </div>
+
+                    <div class="tsp-feature-row">
+                        <div class="tsp-feature">
+                            <div class="tsp-feat-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+                            </div>
+                            <div class="tsp-feat-text">
+                                <h4>SEO & Performance</h4>
+                                <p>Technical SEO audits, speed optimization, and organic ranking strategies.</p>
+                            </div>
+                        </div>
+                        <div class="tsp-feature">
+                            <div class="tsp-feat-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                            </div>
+                            <div class="tsp-feat-text">
+                                <h4>Ecommerce Scale</h4>
+                                <p>Shopify and WooCommerce scaling, CRO, and paid acquisition campaigns.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tsp-tech-row">
+                        <span class="tsp-tech-pill">Google Analytics 4</span>
+                        <span class="tsp-tech-pill">Technical SEO</span>
+                        <span class="tsp-tech-pill">Shopify</span>
+                        <span class="tsp-tech-pill">Meta Ads</span>
+                        <span class="tsp-tech-pill">Content Strategy</span>
+                    </div>
+
+                    <a href="#contact" class="tsp-module-btn">Grow Traffic</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.tsp-nav-link');
+    const sections = document.querySelectorAll('.tsp-module');
+    
+    function updateActiveNav() {
+        let current = sections[0].getAttribute('id'); // Default to first section
+        
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+});
+</script>
