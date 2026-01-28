@@ -1,0 +1,304 @@
+<!-- Techspirex UI/UX Hero: The Design Stack -->
+<style>
+    /* =========================================
+       VARIABLES
+       ========================================= */
+    :root {
+        --tsp-bg-dark: #0f0f12;
+        --tsp-primary: #6a4bc4;
+        --tsp-primary-dark: #453478;
+        --tsp-accent: #00d2ff;
+        --tsp-text-muted: #b0b0b0;
+    }
+
+    /* =========================================
+       SECTION LAYOUT
+       ========================================= */
+    .tsp-ui-hero {
+        background-color: var(--tsp-bg-dark);
+        min-height: 90vh;
+        padding: 140px 40px 80px;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Background Glow (Soft Purple for Creativity) */
+    .tsp-bg-glow-ui {
+        position: absolute;
+        width: 800px; height: 800px;
+        background: radial-gradient(circle, rgba(106, 75, 196, 0.2) 0%, transparent 65%);
+        top: -15%; right: -5%;
+        filter: blur(100px);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .tsp-hero-container {
+        max-width: 1180px;
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* =========================================
+       LEFT: CONTENT
+       ========================================= */
+    .tsp-hero-content { 
+        max-width: 580px; 
+        padding-right: 20px; 
+    }
+
+    .tsp-eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 6px 14px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #453478;
+        border-radius: 50px;
+        margin-bottom: 24px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 11px; font-weight: 700; color: #ffffff;
+        text-transform: uppercase; letter-spacing: 1px;
+    }
+    .tsp-dot-pink {
+        width: 6px; height: 6px; background: #453478; /* Pink dot for Design vibe */
+        border-radius: 50%; box-shadow: 0 0 8px #453478;
+        animation: blink 2s infinite;
+    }
+
+    .tsp-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(42px, 4.5vw, 64px);
+        font-weight: 800; color: white;
+        line-height: 1.1; margin: 0 0 24px 0;
+        letter-spacing: -1px;
+    }
+    
+    .tsp-highlight {
+        background: linear-gradient(90deg, #fff 30%, #a5a5a5 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+    }
+    
+    .tsp-desc {
+        font-size: 16px;
+        line-height: 1.6; 
+        color: var(--tsp-text-muted);
+        margin-bottom: 40px; 
+        max-width: 500px;
+    }
+
+    /* Buttons */
+    .tsp-btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .tsp-btn-primary {
+        padding: 14px 32px;
+        background: #453478; color: #ffffff;
+        border-radius: 50px;
+        font-family: 'Outfit', sans-serif; font-weight: 700; 
+        font-size: 14px;
+        text-decoration: none; transition: transform 0.2s ease;
+        display: flex; align-items: center; gap: 8px;
+        box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+    .tsp-btn-primary:hover { transform: translateY(-2px); 
+        background:#ffffff;
+        color:#000000;
+        
+    }
+
+    .tsp-btn-outline {
+        padding: 14px 32px;
+        background: transparent; color: white;
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 50px;
+        font-family: 'Outfit', sans-serif; font-weight: 600; 
+        font-size: 14px;
+        text-decoration: none; transition: all 0.3s ease;
+    }
+    .tsp-btn-outline:hover {
+        background: rgba(255,255,255,0.08); border-color: white;
+        color:#ffffff;
+    }
+
+    /* =========================================
+       RIGHT: VISUAL STACK (Design Edition)
+       ========================================= */
+    .tsp-iso-wrapper {
+        position: relative;
+        height: 500px;
+        display: flex; align-items: center; justify-content: center;
+        perspective: 1200px;
+        transform: scale(0.85); 
+        margin-right: -20px;
+    }
+
+    .tsp-iso-stack {
+        position: relative;
+        width: 360px; height: 240px;
+        transform: rotateX(55deg) rotateZ(-45deg);
+        transform-style: preserve-3d;
+        animation: floatStack 6s infinite ease-in-out;
+    }
+
+    /* Layers */
+    .tsp-layer {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        border-radius: 20px;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    }
+
+    /* Layer 1: Structure (Bottom) */
+    .tsp-l1 {
+        transform: translateZ(0px);
+        background: #151520;
+        border-color: rgba(69, 52, 120, 0.4);
+    }
+    
+    /* Layer 2: Visuals (Middle) */
+    .tsp-l2 {
+        transform: translateZ(90px);
+        background: rgba(40, 40, 50, 0.7);
+        backdrop-filter: blur(8px);
+    }
+
+    /* Layer 3: Interaction (Top) */
+    .tsp-l3 {
+        transform: translateZ(180px);
+        /* Slight Pinkish tint for Design */
+        background: linear-gradient(135deg,#453478 0%, rgba(20, 20, 30, 0.4) 100%);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .tsp-iso-wrapper:hover .tsp-l2 { transform: translateZ(120px); }
+    .tsp-iso-wrapper:hover .tsp-l3 { transform: translateZ(240px); }
+
+    /* Content Styling */
+    .tsp-layer-content {
+        transform: rotateZ(45deg) rotateX(-55deg);
+        text-align: center; pointer-events: none;
+    }
+    
+    .tsp-icon-bg {
+        width: 50px; height: 50px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 10px; color: white;
+    }
+    
+    .tsp-layer-title {
+        font-family: 'Outfit', sans-serif; font-weight: 700; 
+        color: white; font-size: 16px; letter-spacing: 0.5px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+    .tsp-layer-sub { font-size: 12px; color: rgba(255,255,255,0.8); margin-top: 4px; }
+
+    @keyframes floatStack {
+        0%, 100% { transform: rotateX(55deg) rotateZ(-45deg) translateZ(0); }
+        50% { transform: rotateX(55deg) rotateZ(-45deg) translateZ(20px); }
+    }
+    
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .tsp-ui-hero { padding: 120px 20px 60px; }
+        .tsp-hero-container { grid-template-columns: 1fr; text-align: center; }
+        .tsp-hero-content { margin: 0 auto; padding-right: 0; }
+        .tsp-btn-row { justify-content: center; }
+        .tsp-iso-wrapper { transform: scale(0.7); margin-top: -60px; }
+    }
+</style>
+
+<section class="tsp-ui-hero">
+    <div class="tsp-bg-glow-ui"></div>
+
+    <div class="tsp-hero-container">
+        
+        <!-- LEFT: Content -->
+        <div class="tsp-hero-content">
+            <div class="tsp-eyebrow">
+                <span class="tsp-dot-pink"></span>
+                User-Centric Design
+            </div>
+            
+            <h1 class="tsp-title">
+                Designing Intuitive<br>
+                <span class="tsp-highlight">Digital Experiences.</span>
+            </h1>
+            
+            <p class="tsp-desc">
+                We transform complex requirements into elegant, intuitive interfaces. 
+                Our pixel-perfect design systems ensure your brand looks stunning on every device.
+            </p>
+
+            <div class="tsp-btn-row">
+                <a href="#contact" class="tsp-btn-primary">
+                    Start Designing
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#portfolio" class="tsp-btn-outline">View Portfolio</a>
+            </div>
+        </div>
+
+        <!-- RIGHT: UI/UX Stack Visual -->
+        <div class="tsp-iso-wrapper">
+            <div class="tsp-iso-stack">
+                
+                <!-- Layer 1: UX Strategy (Bottom) -->
+                <div class="tsp-layer tsp-l1">
+                    <div class="tsp-layer-content">
+                        <div class="tsp-icon-bg">
+                            <!-- Wireframe Icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                        </div>
+                        <div class="tsp-layer-title">UX Strategy</div>
+                        <div class="tsp-layer-sub">Research / Wireframes</div>
+                    </div>
+                </div>
+
+                <!-- Layer 2: Visual Design (Middle) -->
+                <div class="tsp-layer tsp-l2">
+                    <div class="tsp-layer-content">
+                        <div class="tsp-icon-bg" style="background: rgba(106, 75, 196, 0.3);">
+                            <!-- Pen Tool Icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                        </div>
+                        <div class="tsp-layer-title">Interface</div>
+                        <div class="tsp-layer-sub">UI / Branding / Systems</div>
+                    </div>
+                </div>
+
+                <!-- Layer 3: Interaction (Top) -->
+                <div class="tsp-layer tsp-l3">
+                    <div class="tsp-layer-content">
+                        <div class="tsp-icon-bg" style="background: white; color: black;">
+                            <!-- Cursor Icon -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg>
+                        </div>
+                        <div class="tsp-layer-title">Interaction</div>
+                        <div class="tsp-layer-sub">Prototypes / Motion</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
