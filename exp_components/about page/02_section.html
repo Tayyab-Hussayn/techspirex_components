@@ -1,327 +1,426 @@
-<!-- Techspirex Contact: The Command Center Interface -->
-<style>
-    /* =========================================
-       VARIABLES
-       ========================================= */
-    :root {
-        --tsp-bg-body: #050507; /* Ultra Dark */
-        --tsp-glass-border: rgba(255, 255, 255, 0.08);
-        --tsp-primary: #453478;
-        --tsp-primary-glow: #6a4bc4;
-        --tsp-accent: #00d2ff;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techspirex - Mission & Vision</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* =========================================
-       SECTION BACKGROUND (The Void)
-       ========================================= */
-    .tsp-contact-wrapper {
-        min-height: 100vh;
-        background-color: var(--tsp-bg-body);
-        font-family: 'Inter', sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        padding: 120px 20px;
-        overflow: hidden;
-    }
+        .mission-vision-section {
+            /*background: linear-gradient(135deg, #F8F7FC 0%, #EDE9F5 100%);*/
+            background-color: #FFFFFF;
+            padding: 80px 40px 80px 80px;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+        }
 
-    /* Cinematic Background Glows */
-    .tsp-glow-orb-1 {
-        position: absolute;
-        top: -10%; left: 20%;
-        width: 600px; height: 600px;
-        background: radial-gradient(circle, var(--tsp-primary) 0%, transparent 70%);
-        opacity: 0.2; filter: blur(100px);
-        animation: floatOrb 10s infinite alternate;
-    }
-    .tsp-glow-orb-2 {
-        position: absolute;
-        bottom: -10%; right: 10%;
-        width: 500px; height: 500px;
-        background: radial-gradient(circle, var(--tsp-primary-glow) 0%, transparent 70%);
-        opacity: 0.15; filter: blur(80px);
-        animation: floatOrb 15s infinite alternate-reverse;
-    }
+        .section-container {
+            max-width: 1320px;
+            margin: 0 auto;
+        }
 
-    @keyframes floatOrb {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(30px, -30px); }
-    }
+        .pre-heading {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #453478;
+            background-color: #FFFFFF;
+            border-radius: 50px;
+            padding: 8px 16px;
+            margin-bottom: 24px;
+        }
 
-    /* =========================================
-       THE COMMAND CENTER (Main Card)
-       ========================================= */
-    .tsp-interface-card {
-        width: 100%;
-        max-width: 1100px;
-        background: rgba(20, 20, 25, 0.6);
-        backdrop-filter: blur(40px);
-        -webkit-backdrop-filter: blur(40px);
-        border: 1px solid var(--tsp-glass-border);
-        border-radius: 24px;
-        display: grid;
-        grid-template-columns: 0.7fr 1.3fr; /* Sidebar vs Form */
-        overflow: hidden;
-        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-        position: relative;
-        z-index: 10;
-    }
+        .pre-heading svg {
+            width: 16px;
+            height: 16px;
+            stroke: #453478;
+        }
 
-    /* --- LEFT SIDEBAR (The Dark Context) --- */
-    .tsp-sidebar {
-        background: linear-gradient(135deg, rgba(20, 20, 30, 0.95) 0%, rgba(15, 15, 20, 0.98) 100%);
-        padding: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        position: relative;
-        border-right: 1px solid var(--tsp-glass-border);
-    }
+        .main-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.3;
+            margin-bottom: 60px;
+            text-align: center;
+        }
 
-    /* Decorative Noise Texture */
-    .tsp-sidebar::before {
-        content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-        opacity: 0.3; pointer-events: none;
-    }
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
 
-    .tsp-sidebar-header h2 {
-        font-family: 'Outfit', sans-serif;
-        font-size: 36px; font-weight: 700; color: white; margin: 0 0 16px 0;
-        line-height: 1.1;
-    }
-    .tsp-sidebar-header p {
-        font-size: 15px; line-height: 1.6; color: #94a3b8; margin-bottom: 40px;
-    }
+        .divider {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(69, 52, 120, 0.2) 50%, transparent 100%);
+        }
 
-    /* Contact Details List */
-    .tsp-contact-list {
-        display: flex; flex-direction: column; gap: 24px;
-    }
-    
-    .tsp-contact-item {
-        display: flex; align-items: center; gap: 16px;
-        color: white; font-size: 14px; font-weight: 500;
-        padding: 12px;
-        border-radius: 12px;
-        transition: background 0.3s ease;
-    }
-    .tsp-contact-item:hover { background: rgba(255,255,255,0.05);
-    color: white;
-        
-    }
+        /* Left Column - Core Values */
+        .left-column {
+            padding-right: 20px;
+            color: #FFFFFF;
+        }
 
-    .tsp-icon-box {
-        width: 36px; height: 36px;
-        background: rgba(69, 52, 120, 0.2);
-        border: 1px solid #00d2ff;
-        border-radius:30px;
-        display: flex; align-items: center; justify-content: center;
-        overflow: hidden;
-    }
+        .section-heading {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 40px;
+        }
 
-    /* --- NEW ICON STYLES --- */
-    .tsp-icon-box img {
-        width:20px;
-        height:20px;
-        object-fit: contain;
-        filter: brightness(0) invert(1); /* Pure White */
-    }
+        .values-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
 
-    /* Bottom: Live Status */
-    .tsp-live-status {
-        margin-top: 40px;
-        padding-top: 24px;
-        border-top: 1px solid rgba(255,255,255,0.05);
-        display: flex; align-items: center; gap: 10px;
-    }
-    .tsp-status-dot {
-        width: 8px; height: 8px; background: #00d2ff; border-radius: 50%;
-        box-shadow: 0 0 10px #00d2ff; animation: blink 2s infinite;
-    }
-    .tsp-status-text {
-        font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;
-    }
+        .value-item {
+            display: flex;
+            gap: 20px;
+            align-items: start;
+        }
 
-    /* --- RIGHT PANEL (The Form) --- */
-    .tsp-form-area {
-        padding: 50px 60px;
-        display: flex; flex-direction: column;
-        justify-content: center;
-    }
+        .value-icon {
+            width: 66px;
+            height: 66px;
+            min-width: 66px;
+            background: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(69, 52, 120, 0.1);
+            transition: all 0.3s ease;
+        }
 
-    .tsp-form-grid {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
-        margin-bottom: 30px;
-    }
-    .tsp-full-col { grid-column: span 2;
-        border:1px soli;
-        
-    }
+        .value-item:hover .value-icon {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(69, 52, 120, 0.2);
+        }
 
-    /* The "Line" Input Style (Ultra Modern) */
-    .tsp-input-wrapper { position: relative; }
+        .value-icon img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
 
-    .tsp-input-line {
-        width: 100%;
-        background: transparent;
-        border:none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 12px 0;
-        font-family: 'Inter', sans-serif;
-        font-size: 16px; color: white;
-        border-radius: 0px;
-        transition: all 0.3s ease;
-        outline: none;
-    }
-    
-    .tsp-input-line:focus {
-        border:1px solid #00d2ff;
-        padding-left: 10px; /* Subtle slide */
-    }
+        .value-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
 
-    .tsp-label-line {
-        font-size: 13px; color: #ffffff; font-weight: 500;
-        display: block; margin-bottom: 4px;
-    }
+        .value-content p {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #FFFFFF;
+        }
 
-    /* Gradient Focus Line Animation */
-    .tsp-focus-border {
-        position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-        background: linear-gradient(90deg, var(--tsp-accent), var(--tsp-primary-glow));
-        transition: width 0.4s ease;border:1px solid #00d2ff;
-    }
-    .tsp-input-line:focus ~ .tsp-focus-border { width: 100%;border:1px solid #00d2ff; }
+        /* Right Column - Mission & Vision */
+        .right-column {
+            padding-left: 20px;
+        }
 
-    /* Project Type Selector */
-    .tsp-project-types {
-        display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px;
-    }
-    .tsp-type-btn {
-        padding: 8px 16px;
-        font-size: 13px; color:#94a3b8;
-        border: 1px solid #00d2ff;
-        border-radius: 50px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .tsp-type-btn:hover, .tsp-type-btn.active {
-        background: white; color:black; border-color: white;
-    }
+        .mission-vision-block {
+            margin-bottom: 48px;
+        }
 
-    /* Send Button */
-    .tsp-send-btn {
-        align-self: flex-start;
-        padding: 16px 48px;
-        background: white; color: black;
-        border: none; border-radius: 50px;
-        font-family: 'Outfit', sans-serif;
-        font-weight: 700; font-size: 16px;
-        cursor: pointer;
-        display: flex; align-items: center; gap: 10px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .tsp-send-btn:hover {
-        transform: translateY(-2px);
-        background:#453478;
-    }
+        .mission-vision-block:last-of-type {
+            margin-bottom: 0;
+        }
 
-    /* Responsive */
-    @media (max-width: 900px) {
-        .tsp-interface-card { grid-template-columns: 1fr; }
-        .tsp-sidebar { padding: 40px; border-right: none; border-bottom: 1px solid var(--tsp-glass-border); }
-        .tsp-form-area { padding: 40px 30px; }
-        .tsp-form-grid { grid-template-columns: 1fr; }
-        .tsp-full-col { grid-column: span 1; }
-    }
-</style>
+        .block-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+        }
 
-<section class="tsp-contact-wrapper">
-    <!-- Cinematic Background -->
-    <div class="tsp-glow-orb-1"></div>
-    <div class="tsp-glow-orb-2"></div>
+        .block-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #4A4A4A;
+            margin-bottom: 0;
+        }
 
-    <!-- The Interface Card -->
-    <div class="tsp-interface-card">
-        
-        <!-- LEFT PANEL: Dark Context -->
-        <div class="tsp-sidebar">
-            <div class="tsp-content-top">
-                <div class="tsp-sidebar-header">
-                    <h2>Initiate<br>Partnership</h2>
-                    <p>Tell us about your vision. Our engineering team reviews inquiries within 2 hours.</p>
+        /* CTA Button */
+        .cta-wrapper {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: #FFFFFF;
+            background: #453478;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 40px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(69, 52, 120, 0.2);
+        }
+
+        .cta-button:hover {
+            background: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(69, 52, 120, 0.3);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            .main-title {
+                font-size: 36px;
+            }
+
+            .section-heading {
+                font-size: 28px;
+            }
+
+            .block-title {
+                font-size: 24px;
+            }
+
+            .content-wrapper {
+                gap: 40px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .mission-vision-section {
+                padding: 60px 20px;
+            }
+
+            .main-title {
+                font-size: 32px;
+                margin-bottom: 48px;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .divider {
+                display: none;
+            }
+
+            .left-column,
+            .right-column {
+                padding: 0;
+            }
+
+            .section-heading {
+                font-size: 26px;
+                margin-bottom: 32px;
+            }
+
+            .values-list {
+                gap: 28px;
+            }
+
+            .value-icon {
+                width: 52px;
+                height: 52px;
+                min-width: 52px;
+            }
+
+            .value-icon img {
+                width: 26px;
+                height: 26px;
+            }
+
+            .block-title {
+                font-size: 22px;
+            }
+
+            .block-description {
+                font-size: 15px;
+            }
+
+            .mission-vision-block {
+                margin-bottom: 40px;
+            }
+
+            .cta-wrapper {
+                margin-top: 48px;
+            }
+
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+                max-width: 400px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .mission-vision-section {
+                padding: 50px 16px;
+            }
+
+            .main-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+            }
+
+            .section-heading {
+                font-size: 24px;
+                margin-bottom: 28px;
+            }
+
+            .value-item {
+                gap: 16px;
+            }
+
+            .value-icon {
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+            }
+
+            .value-icon img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .value-content h4 {
+                font-size: 17px;
+            }
+
+            .value-content p {
+                font-size: 14px;
+            }
+
+            .block-title {
+                font-size: 20px;
+            }
+
+            .block-description {
+                font-size: 14px;
+            }
+
+            .cta-button {
+                font-size: 15px;
+                padding: 14px 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="mission-vision-section">
+        <div class="section-container">
+            <!-- Pre-heading -->
+            <div style="text-align: center;">
+                <span class="pre-heading">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    We are techspirex
+                </span>
+            </div>
+
+            <!-- Main Title -->
+            <h2 class="main-title">Powering Your Digital Transformation</h2>
+
+            <!-- Content Wrapper -->
+            <div class="content-wrapper">
+                <!-- Left Column: Core Values -->
+                <div class="left-column">
+                    <h3 class="section-heading">Core values</h3>
+                    
+                    <div class="values-list">
+                        <!-- Value 1: Innovation -->
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4657/4657328.png" alt="Innovation">
+                            </div>
+                            <div class="value-content">
+                                <h4>Innovation:</h4>
+                                <p>We create intelligent, future-ready digital solutions through creative thinking.</p>
+                            </div>
+                        </div>
+
+                        <!-- Value 2: Client Focus -->
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/18331/18331709.png" alt="Client Focus">
+                            </div>
+                            <div class="value-content">
+                                <h4>Client Focus:</h4>
+                                <p>Your success defines our path and drives every decision forward.</p>
+                            </div>
+                        </div>
+
+                        <!-- Value 3: Transparency -->
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/11125/11125932.png" alt="Transparency">
+                            </div>
+                            <div class="value-content">
+                                <h4>Transparency:</h4>
+                                <p>We communicate clearly and deliver honest updates at every milestone.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="tsp-contact-list">
-                    <a href="mailto:hello@techspirex.com" class="tsp-contact-item" style="text-decoration:none;">
-                        <div class="tsp-icon-box">
-                            <img src="https://cdn-icons-png.flaticon.com/128/542/542638.png">
-                        </div>
-                        hello@techspirex.com
-                    </a>
-                    <div class="tsp-contact-item">
-                        <div class="tsp-icon-box">
-                            <img src="https://cdn-icons-png.flaticon.com/128/11538/11538471.png">
-                        </div>
-                        +91 9876543210
-                    </div>
-                    <div class="tsp-contact-item">
-                        <div class="tsp-icon-box">
-                            <img src="https://cdn-icons-png.flaticon.com/128/11538/11538471.png">
-                        </div>
-                        Global HQ • Remote First
+                <!-- Divider -->
+                <div class="divider"></div>
+
+                <!-- Right Column: Mission & Vision -->
+                <div class="right-column">
+                    <!-- Our Mission -->
+                    <div class="mission-vision-block">
+                        <h3 class="block-title">Our Mission</h3>
+                        <p class="block-description">
+                            Our mission is to craft cutting-edge digital solutions that accelerate innovation, boost business performance, and deliver lasting value through excellence and creativity.
+                        </p>
                     </div>
 
+                    <!-- Our Vision -->
+                    <div class="mission-vision-block">
+                        <h3 class="block-title">Our Vision</h3>
+                        <p class="block-description">
+                            Our vision is to be the trusted global partner for forward-thinking brands, redefining digital excellence and turning bold ambitions into impactful realities.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="tsp-live-status">
-                <div class="tsp-status-dot"></div>
-                <div class="tsp-status-text">System Operational</div>
+            <!-- CTA Button -->
+            <div class="cta-wrapper">
+                <a href="https://techspirex.com/about-us/" class="cta-button">
+                    Learn more about us
+                </a>
             </div>
         </div>
-
-        <!-- RIGHT PANEL: Clean Form -->
-        <div class="tsp-form-area">
-            <form>
-                <!-- Project Type Pills -->
-                <div style="margin-bottom:12px; font-size:13px; font-weight:600; color:#fff;">I'm interested in...</div>
-                <div class="tsp-project-types">
-                    <div class="tsp-type-btn">Web Dev</div>
-                    <div class="tsp-type-btn">App Design</div>
-                    <div class="tsp-type-btn">Marketing</div>
-                    <div class="tsp-type-btn">Cloud/AI</div>
-                </div>
-
-                <!-- Input Grid -->
-                <div class="tsp-form-grid">
-                    <div class="tsp-input-wrapper">
-                        <label class="tsp-label-line">Name</label>
-                        <input type="text" class="tsp-input-line" placeholder="John Doe">
-                        <span class="tsp-focus-border"></span>
-                    </div>
-
-                    <div class="tsp-input-wrapper">
-                        <label class="tsp-label-line">Email</label>
-                        <input type="email" class="tsp-input-line" placeholder="john@company.com">
-                        <span class="tsp-focus-border"></span>
-                    </div>
-
-                    <div class="tsp-input-wrapper tsp-full-col">
-                        <label class="tsp-label-line">Project Details</label>
-                        <textarea class="tsp-input-line" rows="2" placeholder="Tell us about your goals, timeline, and budget..."></textarea>
-                        <span class="tsp-focus-border"></span>
-                    </div>
-                </div>
-
-                <button type="submit" class="tsp-send-btn">
-                    Send Proposal
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                </button>
-            </form>
-        </div>
-
-    </div>
-</section>
+    </section>
+</body>
+</html>
