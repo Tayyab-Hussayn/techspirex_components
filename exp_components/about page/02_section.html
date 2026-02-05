@@ -1,426 +1,548 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Techspirex - Mission & Vision</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<!-- Testimonials Section: Infinite Interactive Marquee (Refactored for Uniqueness) -->
+<style>
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+    /* Scoped Variables & Unique Classes */
+    .tsp-inf-tm-section {
+        --tsp-inf-bg-dark: #0b0b0f;
+        --tsp-inf-primary: #453478;
+        --tsp-inf-accent: #00d2ff;
+        --tsp-inf-text-main: #ffffff;
+        --tsp-inf-text-muted: #a0a0a0;
+        --tsp-inf-card-bg: rgba(255, 255, 255, 0.03);
+        --tsp-inf-card-border: rgba(255, 255, 255, 0.08);
+
+        font-family: 'Inter', sans-serif;
+        background-color: var(--tsp-inf-bg-dark);
+        position: relative;
+        padding: 120px 0;
+        /* Full width flow */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    /* Ambient Background Effects */
+    .tsp-inf-tm-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.25;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .tsp-inf-tm-orb-1 {
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, var(--tsp-inf-primary) 0%, transparent 70%);
+        top: -300px;
+        left: -200px;
+        animation: tspInfPulseGlow 10s infinite alternate;
+    }
+
+    .tsp-inf-tm-orb-2 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, var(--tsp-inf-accent) 0%, transparent 70%);
+        bottom: -200px;
+        right: -100px;
+        opacity: 0.15;
+        animation: tspInfPulseGlow 8s infinite alternate-reverse;
+    }
+
+    @keyframes tspInfPulseGlow {
+        0% {
+            opacity: 0.2;
+            transform: scale(1);
         }
 
-        .mission-vision-section {
-            /*background: linear-gradient(135deg, #F8F7FC 0%, #EDE9F5 100%);*/
-            background-color: #FFFFFF;
-            padding: 80px 40px 80px 80px;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-        }
-
-        .section-container {
-            max-width: 1320px;
-            margin: 0 auto;
-        }
-
-        .pre-heading {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            color: #453478;
-            background-color: #FFFFFF;
-            border-radius: 50px;
-            padding: 8px 16px;
-            margin-bottom: 24px;
-        }
-
-        .pre-heading svg {
-            width: 16px;
-            height: 16px;
-            stroke: #453478;
-        }
-
-        .main-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 42px;
-            font-weight: 700;
-            color: #FFFFFF;
-            line-height: 1.3;
-            margin-bottom: 60px;
-            text-align: center;
-        }
-
-        .content-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1px 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .divider {
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent 0%, rgba(69, 52, 120, 0.2) 50%, transparent 100%);
-        }
-
-        /* Left Column - Core Values */
-        .left-column {
-            padding-right: 20px;
-            color: #FFFFFF;
-        }
-
-        .section-heading {
-            font-family: 'Poppins', sans-serif;
-            font-size: 32px;
-            font-weight: 600;
-            color: #FFFFFF;
-            margin-bottom: 40px;
-        }
-
-        .values-list {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .value-item {
-            display: flex;
-            gap: 20px;
-            align-items: start;
-        }
-
-        .value-icon {
-            width: 66px;
-            height: 66px;
-            min-width: 66px;
-            background: #FFFFFF;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 16px rgba(69, 52, 120, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .value-item:hover .value-icon {
+        100% {
+            opacity: 0.35;
             transform: scale(1.1);
-            box-shadow: 0 6px 24px rgba(69, 52, 120, 0.2);
+        }
+    }
+
+    /* Header */
+    .tsp-inf-tm-header {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 800px;
+        margin-bottom: 80px;
+        padding: 0 20px;
+    }
+
+    .tsp-inf-tm-badge {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--tsp-inf-accent);
+        margin-bottom: 20px;
+        padding: 8px 18px;
+        background: rgba(0, 210, 255, 0.08);
+        border-radius: 100px;
+        border: 1px solid rgba(0, 210, 255, 0.15);
+        backdrop-filter: blur(10px);
+    }
+
+    .tsp-inf-tm-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 56px;
+        font-weight: 800;
+        color: var(--tsp-inf-text-main);
+        margin: 0 0 24px 0;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+    }
+
+    .tsp-inf-tm-title span {
+        background: linear-gradient(135deg, #fff 30%, #a5a5a5 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .tsp-inf-tm-subtitle {
+        font-size: 18px;
+        color: var(--tsp-inf-text-muted);
+        line-height: 1.6;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Marquee Container */
+    .tsp-inf-marquee-wrapper {
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    /* Gradient Masks for Fade Structure */
+    .tsp-inf-marquee-wrapper::before,
+    .tsp-inf-marquee-wrapper::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 150px;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .tsp-inf-marquee-wrapper::before {
+        left: 0;
+        background: linear-gradient(to right, var(--tsp-inf-bg-dark), transparent);
+    }
+
+    .tsp-inf-marquee-wrapper::after {
+        right: 0;
+        background: linear-gradient(to left, var(--tsp-inf-bg-dark), transparent);
+    }
+
+    /* Marquee Track */
+    .tsp-inf-marquee-track {
+        display: flex;
+        gap: 32px;
+        width: max-content;
+        /* Pause on hover over the track */
+    }
+
+    .tsp-inf-marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    /* Animations */
+    .tsp-inf-scroll-left {
+        animation: tspInfScrollLeft 40s linear infinite;
+    }
+
+    .tsp-inf-scroll-right {
+        animation: tspInfScrollRight 45s linear infinite;
+    }
+
+    @keyframes tspInfScrollLeft {
+        0% {
+            transform: translateX(0);
         }
 
-        .value-icon img {
-            width: 35px;
-            height: 35px;
-            object-fit: contain;
+        100% {
+            transform: translateX(calc(-50% - 16px));
         }
 
-        .value-content h4 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: #FFFFFF;
-            margin-bottom: 8px;
+        /* -50% of content + half gap */
+    }
+
+    @keyframes tspInfScrollRight {
+        0% {
+            transform: translateX(calc(-50% - 16px));
         }
 
-        .value-content p {
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            line-height: 1.6;
-            color: #FFFFFF;
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    /* Testimonial Card */
+    .tsp-inf-card {
+        width: 500px;
+        /* Fixed width for consistent flow */
+        background: var(--tsp-inf-card-bg);
+        border: 1px solid var(--tsp-inf-card-border);
+        border-radius: 20px;
+        padding: 36px;
+        position: relative;
+        flex-shrink: 0;
+        backdrop-filter: blur(15px);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        user-select: none;
+    }
+
+    .tsp-inf-card:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        transform: scale(1.02);
+    }
+
+    .tsp-inf-quote-icon {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        font-size: 60px;
+        line-height: 1;
+        font-family: serif;
+        color: var(--tsp-inf-primary);
+        opacity: 0.2;
+        pointer-events: none;
+    }
+
+    .tsp-inf-card-text {
+        font-size: 17px;
+        line-height: 1.7;
+        color: #d1d1d1;
+        font-weight: 300;
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .tsp-inf-author-block {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 20px;
+    }
+
+    .tsp-inf-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--tsp-inf-primary), #6a4bc4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 18px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .tsp-inf-meta {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tsp-inf-name {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: white;
+    }
+
+    .tsp-inf-role {
+        font-size: 13px;
+        color: var(--tsp-inf-accent);
+        margin-top: 2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .tsp-inf-tm-title {
+            font-size: 36px;
         }
 
-        /* Right Column - Mission & Vision */
-        .right-column {
-            padding-left: 20px;
+        .tsp-inf-card {
+            width: 350px;
+            padding: 24px;
         }
 
-        .mission-vision-block {
-            margin-bottom: 48px;
+        .tsp-inf-marquee-wrapper::before,
+        .tsp-inf-marquee-wrapper::after {
+            width: 50px;
         }
+    }
+</style>
 
-        .mission-vision-block:last-of-type {
-            margin-bottom: 0;
-        }
+<section class="tsp-inf-tm-section">
+    <div class="tsp-inf-tm-orb tsp-inf-tm-orb-1"></div>
+    <div class="tsp-inf-tm-orb tsp-inf-tm-orb-2"></div>
 
-        .block-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 28px;
-            font-weight: 600;
-            color: #FFFFFF;
-            margin-bottom: 16px;
-        }
+    <div class="tsp-inf-tm-header">
+        <span class="tsp-inf-tm-badge">What Clients Say</span>
+        <h2 class="tsp-inf-tm-title">
+            <span>Stories of Success</span>
+        </h2>
+        <p class="tsp-inf-tm-subtitle">
+            Innovators, visionaries, and market leaders trust Techspirex to engineer their digital future.
+        </p>
+    </div>
 
-        .block-description {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            line-height: 1.7;
-            color: #4A4A4A;
-            margin-bottom: 0;
-        }
-
-        /* CTA Button */
-        .cta-wrapper {
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 16px;
-            color: #FFFFFF;
-            background: #453478;
-            border: none;
-            border-radius: 50px;
-            padding: 16px 40px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(69, 52, 120, 0.2);
-        }
-
-        .cta-button:hover {
-            background: #000000;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(69, 52, 120, 0.3);
-        }
-
-        /* Responsive Design */
-        @media screen and (max-width: 1024px) {
-            .main-title {
-                font-size: 36px;
-            }
-
-            .section-heading {
-                font-size: 28px;
-            }
-
-            .block-title {
-                font-size: 24px;
-            }
-
-            .content-wrapper {
-                gap: 40px;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .mission-vision-section {
-                padding: 60px 20px;
-            }
-
-            .main-title {
-                font-size: 32px;
-                margin-bottom: 48px;
-            }
-
-            .content-wrapper {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .divider {
-                display: none;
-            }
-
-            .left-column,
-            .right-column {
-                padding: 0;
-            }
-
-            .section-heading {
-                font-size: 26px;
-                margin-bottom: 32px;
-            }
-
-            .values-list {
-                gap: 28px;
-            }
-
-            .value-icon {
-                width: 52px;
-                height: 52px;
-                min-width: 52px;
-            }
-
-            .value-icon img {
-                width: 26px;
-                height: 26px;
-            }
-
-            .block-title {
-                font-size: 22px;
-            }
-
-            .block-description {
-                font-size: 15px;
-            }
-
-            .mission-vision-block {
-                margin-bottom: 40px;
-            }
-
-            .cta-wrapper {
-                margin-top: 48px;
-            }
-
-            .cta-button {
-                width: 100%;
-                justify-content: center;
-                max-width: 400px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .mission-vision-section {
-                padding: 50px 16px;
-            }
-
-            .main-title {
-                font-size: 28px;
-                margin-bottom: 40px;
-            }
-
-            .section-heading {
-                font-size: 24px;
-                margin-bottom: 28px;
-            }
-
-            .value-item {
-                gap: 16px;
-            }
-
-            .value-icon {
-                width: 48px;
-                height: 48px;
-                min-width: 48px;
-            }
-
-            .value-icon img {
-                width: 24px;
-                height: 24px;
-            }
-
-            .value-content h4 {
-                font-size: 17px;
-            }
-
-            .value-content p {
-                font-size: 14px;
-            }
-
-            .block-title {
-                font-size: 20px;
-            }
-
-            .block-description {
-                font-size: 14px;
-            }
-
-            .cta-button {
-                font-size: 15px;
-                padding: 14px 32px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <section class="mission-vision-section">
-        <div class="section-container">
-            <!-- Pre-heading -->
-            <div style="text-align: center;">
-                <span class="pre-heading">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                    We are techspirex
-                </span>
-            </div>
-
-            <!-- Main Title -->
-            <h2 class="main-title">Powering Your Digital Transformation</h2>
-
-            <!-- Content Wrapper -->
-            <div class="content-wrapper">
-                <!-- Left Column: Core Values -->
-                <div class="left-column">
-                    <h3 class="section-heading">Core values</h3>
-                    
-                    <div class="values-list">
-                        <!-- Value 1: Innovation -->
-                        <div class="value-item">
-                            <div class="value-icon">
-                                <img src="https://cdn-icons-png.flaticon.com/512/4657/4657328.png" alt="Innovation">
-                            </div>
-                            <div class="value-content">
-                                <h4>Innovation:</h4>
-                                <p>We create intelligent, future-ready digital solutions through creative thinking.</p>
-                            </div>
-                        </div>
-
-                        <!-- Value 2: Client Focus -->
-                        <div class="value-item">
-                            <div class="value-icon">
-                                <img src="https://cdn-icons-png.flaticon.com/512/18331/18331709.png" alt="Client Focus">
-                            </div>
-                            <div class="value-content">
-                                <h4>Client Focus:</h4>
-                                <p>Your success defines our path and drives every decision forward.</p>
-                            </div>
-                        </div>
-
-                        <!-- Value 3: Transparency -->
-                        <div class="value-item">
-                            <div class="value-icon">
-                                <img src="https://cdn-icons-png.flaticon.com/512/11125/11125932.png" alt="Transparency">
-                            </div>
-                            <div class="value-content">
-                                <h4>Transparency:</h4>
-                                <p>We communicate clearly and deliver honest updates at every milestone.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Divider -->
-                <div class="divider"></div>
-
-                <!-- Right Column: Mission & Vision -->
-                <div class="right-column">
-                    <!-- Our Mission -->
-                    <div class="mission-vision-block">
-                        <h3 class="block-title">Our Mission</h3>
-                        <p class="block-description">
-                            Our mission is to craft cutting-edge digital solutions that accelerate innovation, boost business performance, and deliver lasting value through excellence and creativity.
-                        </p>
-                    </div>
-
-                    <!-- Our Vision -->
-                    <div class="mission-vision-block">
-                        <h3 class="block-title">Our Vision</h3>
-                        <p class="block-description">
-                            Our vision is to be the trusted global partner for forward-thinking brands, redefining digital excellence and turning bold ambitions into impactful realities.
-                        </p>
+    <div class="tsp-inf-marquee-wrapper">
+        <!-- Row 1: Left Scroll -->
+        <div class="tsp-inf-marquee-track tsp-inf-scroll-left">
+            <!-- ORIGINAL SET (1 & 2) -->
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Techspirex's mastery of DevOps and Blockchain was the cornerstone of our
+                    secure platform launch. Their proactive strategy and deep technical acumen delivered a system that
+                    isn't just reliable—it's future-proof. Truly exceptional service."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">JD</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">James Dalton</span>
+                        <span class="tsp-inf-role">CTO, FinSafe Global</span>
                     </div>
                 </div>
             </div>
 
-            <!-- CTA Button -->
-            <div class="cta-wrapper">
-                <a href="https://techspirex.com/about-us/" class="cta-button">
-                    Learn more about us
-                </a>
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"A total game-changer for our enterprise. Techspirex didn't just build an
+                    app; they engineered a strategic asset that revolutionized our operations. Their blend of technical
+                    precision and collaborative spirit made the journey seamless."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">SL</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Sarah Lin</span>
+                        <span class="tsp-inf-role">Director of Ops, Nexus Corp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Techspirex's mastery of DevOps and Blockchain was the cornerstone of our
+                    secure platform launch. Their proactive strategy and deep technical acumen delivered a system that
+                    isn't just reliable—it's future-proof. Truly exceptional service."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">JD</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">James Dalton</span>
+                        <span class="tsp-inf-role">CTO, FinSafe Global</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"A total game-changer for our enterprise. Techspirex didn't just build an
+                    app; they engineered a strategic asset that revolutionized our operations. Their blend of technical
+                    precision and collaborative spirit made the journey seamless."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">SL</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Sarah Lin</span>
+                        <span class="tsp-inf-role">Director of Ops, Nexus Corp</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DUPLICATE SET FOR LOOPING (Seamlessness) -->
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Techspirex's mastery of DevOps and Blockchain was the cornerstone of our
+                    secure platform launch. Their proactive strategy and deep technical acumen delivered a system that
+                    isn't just reliable—it's future-proof. Truly exceptional service."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">JD</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">James Dalton</span>
+                        <span class="tsp-inf-role">CTO, FinSafe Global</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"A total game-changer for our enterprise. Techspirex didn't just build an
+                    app; they engineered a strategic asset that revolutionized our operations. Their blend of technical
+                    precision and collaborative spirit made the journey seamless."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">SL</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Sarah Lin</span>
+                        <span class="tsp-inf-role">Director of Ops, Nexus Corp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Techspirex's mastery of DevOps and Blockchain was the cornerstone of our
+                    secure platform launch. Their proactive strategy and deep technical acumen delivered a system that
+                    isn't just reliable—it's future-proof. Truly exceptional service."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">JD</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">James Dalton</span>
+                        <span class="tsp-inf-role">CTO, FinSafe Global</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"A total game-changer for our enterprise. Techspirex didn't just build an
+                    app; they engineered a strategic asset that revolutionized our operations. Their blend of technical
+                    precision and collaborative spirit made the journey seamless."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">SL</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Sarah Lin</span>
+                        <span class="tsp-inf-role">Director of Ops, Nexus Corp</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-</body>
-</html>
+
+        <!-- Row 2: Right Scroll -->
+        <div class="tsp-inf-marquee-track tsp-inf-scroll-right">
+            <!-- ORIGINAL SET (3 & 4) -->
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Since launching our new e-commerce platform, sales have surged by over
+                    60%. Their dual expertise in high-performance development and digital growth strategies created a
+                    powerhouse solution that delivered immediate, measurable ROI."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">MR</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Michael Ross</span>
+                        <span class="tsp-inf-role">Founder, UrbanEdge Retail</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"The new brand identity and website design have garnered incredible market
+                    feedback. The team possesses a rare talent for translating complex visions into beautiful, intuitive
+                    digital experiences. Their creative direction is simply unmatched."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">AK</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Elena Kova</span>
+                        <span class="tsp-inf-role">CMO, Lumina Tech</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Since launching our new e-commerce platform, sales have surged by over
+                    60%. Their dual expertise in high-performance development and digital growth strategies created a
+                    powerhouse solution that delivered immediate, measurable ROI."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">MR</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Michael Ross</span>
+                        <span class="tsp-inf-role">Founder, UrbanEdge Retail</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"The new brand identity and website design have garnered incredible market
+                    feedback. The team possesses a rare talent for translating complex visions into beautiful, intuitive
+                    digital experiences. Their creative direction is simply unmatched."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">AK</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Elena Kova</span>
+                        <span class="tsp-inf-role">CMO, Lumina Tech</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DUPLICATE SET FOR LOOPING -->
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Since launching our new e-commerce platform, sales have surged by over
+                    60%. Their dual expertise in high-performance development and digital growth strategies created a
+                    powerhouse solution that delivered immediate, measurable ROI."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">MR</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Michael Ross</span>
+                        <span class="tsp-inf-role">Founder, UrbanEdge Retail</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"The new brand identity and website design have garnered incredible market
+                    feedback. The team possesses a rare talent for translating complex visions into beautiful, intuitive
+                    digital experiences. Their creative direction is simply unmatched."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">AK</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Elena Kova</span>
+                        <span class="tsp-inf-role">CMO, Lumina Tech</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Since launching our new e-commerce platform, sales have surged by over
+                    60%. Their dual expertise in high-performance development and digital growth strategies created a
+                    powerhouse solution that delivered immediate, measurable ROI."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">MR</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Michael Ross</span>
+                        <span class="tsp-inf-role">Founder, UrbanEdge Retail</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"The new brand identity and website design have garnered incredible market
+                    feedback. The team possesses a rare talent for translating complex visions into beautiful, intuitive
+                    digital experiences. Their creative direction is simply unmatched."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">AK</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Elena Kova</span>
+                        <span class="tsp-inf-role">CMO, Lumina Tech</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

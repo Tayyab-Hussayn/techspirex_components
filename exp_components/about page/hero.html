@@ -1,0 +1,352 @@
+<!-- Techspirex Hero: Enhanced Liquid Intelligence -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+    
+    /* =========================================
+       ENHANCED VARIABLES
+       ========================================= */
+    :root {
+        --tsp-bg-dark: #0a0a0f;
+        --tsp-bg-gradient: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+        --tsp-primary: #6366f1;
+        --tsp-primary-light: #818cf8;
+        --tsp-accent: #f59e0b;
+        --tsp-text-primary: #ffffff;
+        --tsp-text-secondary: #e2e8f0;
+        --tsp-text-muted: #94a3b8;
+        --tsp-glass: rgba(255, 255, 255, 0.08);
+        --tsp-glass-border: rgba(255, 255, 255, 0.12);
+    }
+
+    /* =========================================
+       ENHANCED SECTION LAYOUT
+       ========================================= */
+    .tsp-liquid-section {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        padding-top: 120px; /* Space for header */
+        background: var(--tsp-bg-gradient);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Enhanced Canvas with Subtle Effect */
+    canvas#liquid-canvas {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100% !important; 
+        height: 100% !important;
+        z-index: 0;
+        opacity: 0.3;
+        filter: blur(1px) brightness(0.8);
+    }
+
+    /* Lighter Vignette */
+    .tsp-liquid-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: 
+            radial-gradient(circle at center, rgba(10, 10, 15, 0.1) 0%, rgba(10, 10, 15, 0.4) 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Enhanced Content Layer with Animation */
+    .tsp-hero-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 1400px;
+        padding: 0 40px;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 80px;
+        animation: fadeInUp 1.2s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(60px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tsp-hero-content * { pointer-events: auto; }
+
+    /* Enhanced Title Split Container */
+    .tsp-hero-title-split {
+        width: 100%;
+        position: relative;
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* Title with Subtitle Container */
+    .tsp-title-group {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Subtitle Styling */
+    .tsp-subtitle {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(14px, 1.2vw, 18px);
+        font-weight: 400;
+        color: var(--tsp-text-muted);
+        line-height: 1.5;
+        max-width: 280px;
+        animation: fadeIn 1s ease-out 1s both;
+    }
+
+    .tsp-subtitle-left {
+        text-align: left;
+    }
+
+    .tsp-subtitle-right {
+        text-align: right;
+        margin-left: auto;
+    }
+
+    /* Enhanced Headline with Stagger Animation */
+    .tsp-hero-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(48px, 6vw, 80px);
+        font-weight: 900;
+        color: var(--tsp-text-primary);
+        line-height: 0.95;
+        letter-spacing: -3px;
+        margin: 0;
+        text-shadow: 
+            0 4px 20px rgba(0,0,0,0.5),
+            0 8px 40px rgba(99, 102, 241, 0.2);
+        animation: titleSlide 1s ease-out forwards;
+        opacity: 0;
+    }
+
+    @keyframes titleSlide {
+        from { opacity: 0; transform: translateX(-100px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    .tsp-title-top {
+        align-self: flex-start;
+        text-align: left;
+        animation-delay: 0.2s;
+    }
+
+    .tsp-title-bottom {
+        align-self: flex-end;
+        text-align: right;
+        animation-delay: 0.4s;
+    }
+
+    /* Simplified Brand Gradient */
+    .tsp-highlight {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Enhanced Description */
+    .tsp-hero-desc {
+        font-size: 20px; 
+        line-height: 1.7; 
+        color: var(--tsp-text-secondary);
+        max-width: 700px; 
+        margin: 0 auto;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+        font-weight: 400;
+        animation: fadeIn 1s ease-out 0.6s both;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Enhanced Buttons with Glass Morphism */
+    .tsp-hero-actions {
+        display: flex; 
+        gap: 24px; 
+        justify-content: center;
+        animation: fadeIn 1s ease-out 0.8s both;
+    }
+
+    .tsp-btn-primary {
+        padding: 20px 48px;
+        background: linear-gradient(135deg, var(--tsp-primary) 0%, var(--tsp-primary-light) 100%);
+        color: white;
+        border-radius: 60px;
+        font-family: 'Outfit', sans-serif; 
+        font-weight: 700; 
+        font-size: 16px;
+        text-decoration: none; 
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex; 
+        align-items: center; 
+        gap: 12px;
+        box-shadow: 
+            0 8px 32px rgba(99, 102, 241, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tsp-btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.6s;
+    }
+
+    .tsp-btn-primary:hover::before {
+        left: 100%;
+    }
+
+    .tsp-btn-primary:hover { 
+        transform: translateY(-4px) scale(1.02); 
+        box-shadow: 
+            0 16px 48px rgba(99, 102, 241, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .tsp-btn-outline {
+        padding: 20px 48px;
+        background: var(--tsp-glass);
+        color: var(--tsp-text-primary);
+        border: 1px solid var(--tsp-glass-border);
+        border-radius: 60px;
+        font-family: 'Outfit', sans-serif; 
+        font-weight: 600; 
+        font-size: 16px;
+        text-decoration: none; 
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(20px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .tsp-btn-outline::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tsp-btn-outline:hover::before {
+        opacity: 1;
+    }
+
+    .tsp-btn-outline:hover { 
+        background: rgba(255,255,255,0.12); 
+        border-color: rgba(255,255,255,0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    /* Enhanced Responsive Design */
+    @media (max-width: 768px) {
+        .tsp-hero-content { gap: 60px; padding: 0 24px; }
+        .tsp-hero-actions { flex-direction: column; width: 100%; }
+        .tsp-btn-primary, .tsp-btn-outline { 
+            width: 100%; 
+            justify-content: center; 
+            padding: 18px 32px;
+        }
+        .tsp-hero-title { 
+            font-size: clamp(48px, 12vw, 72px); 
+            letter-spacing: -2px;
+        }
+        .tsp-hero-title-split { min-height: 300px; }
+        .tsp-hero-desc { font-size: 18px; }
+    }
+
+    @media (max-width: 480px) {
+        .tsp-hero-content { gap: 40px; }
+        .tsp-hero-title-split { min-height: 250px; }
+        .tsp-hero-actions { gap: 16px; }
+    }
+</style>
+
+<div class="tsp-liquid-section">
+    <!-- 1. The Liquid Engine -->
+    <canvas id="liquid-canvas"></canvas>
+    
+    <!-- 2. Dark Vignette -->
+    <div class="tsp-liquid-overlay"></div>
+
+    <!-- 3. Content -->
+<!-- 3. Content -->
+<div class="tsp-hero-content">
+    
+    <div class="tsp-hero-title-split">
+        <div class="tsp-title-group">
+            <h1 class="tsp-hero-title tsp-title-top">
+                Transforming Ideas
+            </h1>
+            <p class="tsp-subtitle tsp-subtitle-left">
+                Elite software engineering meets innovative design to create digital experiences that drive results.
+            </p>
+        </div>
+        
+        <div class="tsp-title-group">
+            <h1 class="tsp-hero-title tsp-title-bottom">
+                into <span class="tsp-highlight">Digital Reality.</span>
+            </h1>
+            <p class="tsp-subtitle tsp-subtitle-right">
+                From concept to deployment, we build scalable solutions that transform your vision into market-leading products.
+            </p>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<!-- Liquid Effect Logic -->
+<script type="module">
+    import LiquidBackground from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.22/build/backgrounds/liquid1.min.js';
+
+    const canvas = document.getElementById('liquid-canvas');
+
+    if (canvas) {
+        const app = LiquidBackground(canvas);
+        
+        // YOUR SPECIFIC IMAGE RESTORED
+        app.loadImage('https://techspirex.com/wp-content/uploads/2026/01/1904.i305.016_programmer-professional-illustration-scaled.jpg');
+        
+        // Physics settings optimized for an Illustration
+        // Lower metalness prevents it from looking too dark/shiny
+        app.liquidPlane.material.metalness = 0.4;
+        
+        // Higher roughness helps vector art look cleaner
+        app.liquidPlane.material.roughness = 0.5;
+        
+        // Displacement: Controls how much the liquid ripples
+        app.liquidPlane.uniforms.displacementScale.value = 3; 
+        
+        app.setRain(false);
+        
+        // Resize Handler
+        window.addEventListener('resize', () => {
+            const container = document.querySelector('.tsp-liquid-section');
+            if(container) {
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+            }
+        });
+    }
+</script>
