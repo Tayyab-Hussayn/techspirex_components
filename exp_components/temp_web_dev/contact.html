@@ -1,0 +1,476 @@
+<!-- Techspirex Contact: The Command Center Interface -->
+<style>
+    /* =========================================
+       VARIABLES
+       ========================================= */
+    :root {
+        --tsp-bg-body: #050507; /* Ultra Dark */
+        --tsp-glass-border: rgba(255, 255, 255, 0.08);
+        --tsp-primary: #453478;
+        --tsp-primary-glow: #6a4bc4;
+        --tsp-accent: #00d2ff;
+    }
+
+    /* =========================================
+       SECTION BACKGROUND (The Void)
+       ========================================= */
+    .tsp-contact-wrapper {
+        min-height: 100vh;
+        background-color: var(--tsp-bg-body);
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 120px 20px;
+        overflow: hidden;
+    }
+
+    /* Cinematic Background Glows */
+    .tsp-glow-orb-1 {
+        position: absolute;
+        top: -10%; left: 20%;
+        width: 600px; height: 600px;
+        background: radial-gradient(circle, var(--tsp-primary) 0%, transparent 70%);
+        opacity: 0.2; filter: blur(100px);
+        animation: floatOrb 10s infinite alternate;
+    }
+    .tsp-glow-orb-2 {
+        position: absolute;
+        bottom: -10%; right: 10%;
+        width: 500px; height: 500px;
+        background: radial-gradient(circle, var(--tsp-primary-glow) 0%, transparent 70%);
+        opacity: 0.15; filter: blur(80px);
+        animation: floatOrb 15s infinite alternate-reverse;
+    }
+
+    @keyframes floatOrb {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(30px, -30px); }
+    }
+
+    /* =========================================
+       THE COMMAND CENTER (Main Card)
+       ========================================= */
+    .tsp-interface-card {
+        width: 100%;
+        max-width: 1100px;
+        background: rgba(20, 20, 25, 0.6);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid var(--tsp-glass-border);
+        border-radius: 24px;
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr; /* Sidebar vs Form */
+        overflow: hidden;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+        position: relative;
+        z-index: 10;
+    }
+
+    /* --- LEFT SIDEBAR (The Dark Context) --- */
+    .tsp-sidebar {
+        background: linear-gradient(135deg, rgba(20, 20, 30, 0.95) 0%, rgba(15, 15, 20, 0.98) 100%);
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        border-right: 1px solid var(--tsp-glass-border);
+    }
+
+    /* Decorative Noise Texture */
+    .tsp-sidebar::before {
+        content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        opacity: 0.3; pointer-events: none;
+    }
+
+    .tsp-sidebar-header h2 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 36px; font-weight: 700; color: white; margin: 0 0 16px 0;
+        line-height: 1.1;
+    }
+    .tsp-sidebar-header p {
+        font-size: 15px; line-height: 1.6; color: #94a3b8; margin-bottom: 40px;
+    }
+
+    /* Contact Details List */
+    .tsp-contact-list {
+        display: flex; flex-direction: column; gap: 24px;
+    }
+    
+    .tsp-contact-item {
+        display: flex; align-items: center; gap: 16px;
+        color: white; font-size: 14px; font-weight: 500;
+        padding: 12px;
+        border-radius: 12px;
+        transition: background 0.3s ease;
+    }
+    .tsp-contact-item:hover { background: rgba(255,255,255,0.05);
+    color: white;
+        
+    }
+
+    .tsp-icon-box {
+        width:44px; height: 44px;
+        background: rgba(69, 52, 120, 0.2);
+        border: 1px solid #00d2ff;
+        border-radius:30px;
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+    }
+
+    /* --- NEW ICON STYLES --- */
+    .tsp-icon-box img {
+        width:28px;
+        height:28px;
+        object-fit: contain;
+        filter: brightness(0) invert(1); /* Pure White */
+    }
+
+    /* Bottom: Live Status */
+    .tsp-live-status {
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        display: flex; align-items: center; gap: 10px;
+    }
+    .tsp-status-dot {
+        width: 8px; height: 8px; background: #00d2ff; border-radius: 50%;
+        box-shadow: 0 0 10px #00d2ff; animation: blink 2s infinite;
+    }
+    .tsp-status-text {
+        font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    /* --- RIGHT PANEL (The Form) --- */
+    .tsp-form-area {
+        padding: 50px 60px;
+        display: flex; flex-direction: column;
+        justify-content: center;
+    }
+
+    .tsp-form-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
+        margin-bottom: 30px;
+    }
+    .tsp-full-col { grid-column: span 2;
+        border:1px soli;
+        
+    }
+
+    /* The "Line" Input Style (Ultra Modern) */
+    .tsp-input-wrapper { position: relative; }
+
+    .tsp-input-line {
+        width: 100%;
+        background: transparent;
+        border:none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 12px 0;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px; color: white;
+        border-radius: 0px;
+        transition: all 0.3s ease;
+        outline: none;
+    }
+    
+    .tsp-input-line:focus {
+        border:1px solid #00d2ff;
+        padding-left: 10px; /* Subtle slide */
+    }
+
+    .tsp-label-line {
+        font-size: 13px; color: #ffffff; font-weight: 500;
+        display: block; margin-bottom: 4px;
+    }
+
+    /* Gradient Focus Line Animation */
+    .tsp-focus-border {
+        position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+        background: linear-gradient(90deg, var(--tsp-accent), var(--tsp-primary-glow));
+        transition: width 0.4s ease;border:1px solid #00d2ff;
+    }
+    .tsp-input-line:focus ~ .tsp-focus-border { width: 100%;border:1px solid #00d2ff; }
+
+    /* Project Type Selector */
+    .tsp-project-types {
+        display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px;
+    }
+    .tsp-type-btn {
+        padding: 8px 16px;
+        font-size: 13px; color:#94a3b8;
+        border: 1px solid #00d2ff;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .tsp-type-btn:hover, .tsp-type-btn.active {
+        background: white; color:black; border-color: white;
+    }
+
+    /* Radio button styling for project types */
+    .tsp-type-radio:checked + .tsp-type-btn {
+        background: white;
+        color: black;
+        border-color: white;
+    }
+
+    /* Send Button */
+    .tsp-send-btn {
+        align-self: flex-start;
+        padding: 16px 48px;
+        background: white; color: black;
+        border: none; border-radius: 50px;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700; font-size: 16px;
+        cursor: pointer;
+        display: flex; align-items: center; gap: 10px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .tsp-send-btn:hover {
+        transform: translateY(-2px);
+        background:#453478;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .tsp-interface-card { grid-template-columns: 1fr; }
+        .tsp-sidebar { padding: 40px; border-right: none; border-bottom: 1px solid var(--tsp-glass-border); }
+        .tsp-form-area { padding: 40px 30px; }
+        .tsp-form-grid { grid-template-columns: 1fr; }
+        .tsp-full-col { grid-column: span 1; }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.tsp-contact-form');
+    const submitBtn = document.querySelector('.tsp-send-btn');
+    const successMsg = document.querySelector('.tsp-success-message');
+    const errorMsg = document.querySelector('.tsp-error-message');
+    const formMessages = document.querySelector('.tsp-form-messages');
+
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Validate form
+        if (!validateForm()) {
+            return;
+        }
+
+        // Disable submit button to prevent multiple submissions
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending...';
+
+        // Prepare form data
+        const formData = new FormData(form);
+
+        // Add WordPress-specific fields
+        formData.append('action', 'html_forms_submit');
+        formData.append('form_nonce', generateNonce());
+
+        // Send form data via AJAX
+        fetch('/wp-admin/admin-ajax.php', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Show success message
+                successMsg.textContent = data.data || 'Thank you! Your message has been sent successfully.';
+                errorMsg.textContent = '';
+                formMessages.style.display = 'block';
+                form.reset();
+
+                // Re-enable submit button
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Send Proposal <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>';
+                }, 2000);
+            } else {
+                // Show error message
+                errorMsg.textContent = data.data || 'Sorry, there was an error sending your message. Please try again.';
+                successMsg.textContent = '';
+                formMessages.style.display = 'block';
+
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Proposal <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>';
+            }
+        })
+        .catch(error => {
+            // Handle network errors
+            errorMsg.textContent = 'Network error. Please check your connection and try again.';
+            successMsg.textContent = '';
+            formMessages.style.display = 'block';
+
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Send Proposal <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>';
+        });
+    });
+
+    // Handle project type selection
+    const radioButtons = document.querySelectorAll('.tsp-type-radio');
+    const labels = document.querySelectorAll('.tsp-type-btn');
+
+    radioButtons.forEach((radio, index) => {
+        radio.addEventListener('change', function() {
+            labels.forEach(label => label.classList.remove('active'));
+            if (this.checked) {
+                labels[index].classList.add('active');
+            }
+        });
+    });
+
+    // Validation function
+    function validateForm() {
+        let isValid = true;
+        const requiredFields = form.querySelectorAll('[required]');
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.style.borderBottom = '1px solid #ff6b6b';
+            } else {
+                field.style.borderBottom = '1px solid rgba(255, 255, 255, 0.15)';
+            }
+
+            // Email validation
+            if (field.type === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(field.value)) {
+                    isValid = false;
+                    field.style.borderBottom = '1px solid #ff6b6b';
+                }
+            }
+        });
+
+        return isValid;
+    }
+
+    // Simple nonce generator for security
+    function generateNonce() {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
+});
+</script>
+
+<section class="tsp-contact-wrapper">
+    <!-- Cinematic Background -->
+    <div class="tsp-glow-orb-1"></div>
+    <div class="tsp-glow-orb-2"></div>
+
+    <!-- The Interface Card -->
+    <div class="tsp-interface-card">
+        
+        <!-- LEFT PANEL: Dark Context -->
+        <div class="tsp-sidebar">
+            <div class="tsp-content-top">
+                <div class="tsp-sidebar-header">
+                    <h2>Initiate<br>Partnership</h2>
+                    <p>Tell us about your vision. Our engineering team reviews inquiries within 2 hours.</p>
+                </div>
+
+                <div class="tsp-contact-list">
+                    <a href="mailto:hello@techspirex.com" class="tsp-contact-item" style="text-decoration:none;">
+                        <div class="tsp-icon-box">
+                            <img src="https://cdn-icons-png.flaticon.com/128/542/542638.png">
+                        </div>
+                        hello@techspirex.com
+                    </a>
+                    <div class="tsp-contact-item">
+                        <div class="tsp-icon-box">
+                            <img src="https://cdn-icons-png.flaticon.com/128/4029/4029956.png">
+                        </div>
+                        +91 9876543210
+                    </div>
+                    <div class="tsp-contact-item">
+                        <div class="tsp-icon-box">
+                            <img src="https://cdn-icons-png.flaticon.com/128/11538/11538471.png">
+                        </div>
+                        Global HQ • Remote First
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tsp-live-status">
+                <div class="tsp-status-dot"></div>
+                <div class="tsp-status-text">System Operational</div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: Clean Form -->
+        <div class="tsp-form-area">
+            <form action="#" method="post" class="tsp-contact-form">
+                <!-- Hidden fields for WordPress form plugin -->
+                <input type="hidden" name="action" value="html_forms_submit">
+
+                <!-- Project Type Pills -->
+                <div style="margin-bottom:12px; font-size:13px; font-weight:600; color:#fff;">I'm interested in...</div>
+                <div class="tsp-project-types">
+                    <input type="radio" id="web-dev" name="project_type" value="Web Dev" class="tsp-type-radio" style="display:none;">
+                    <label for="web-dev" class="tsp-type-btn">Web Dev</label>
+
+                    <input type="radio" id="app-design" name="project_type" value="App Design" class="tsp-type-radio" style="display:none;">
+                    <label for="app-design" class="tsp-type-btn">App Design</label>
+
+                    <input type="radio" id="marketing" name="project_type" value="Marketing" class="tsp-type-radio" style="display:none;">
+                    <label for="marketing" class="tsp-type-btn">Marketing</label>
+
+                    <input type="radio" id="cloud-ai" name="project_type" value="Cloud/AI" class="tsp-type-radio" style="display:none;">
+                    <label for="cloud-ai" class="tsp-type-btn">Cloud/AI</label>
+                </div>
+
+                <!-- Input Grid -->
+                <div class="tsp-form-grid">
+                    <div class="tsp-input-wrapper">
+                        <label class="tsp-label-line">Name *</label>
+                        <input type="text" name="name" class="tsp-input-line" placeholder="John Doe" required>
+                        <span class="tsp-focus-border"></span>
+                    </div>
+
+                    <div class="tsp-input-wrapper">
+                        <label class="tsp-label-line">Email *</label>
+                        <input type="email" name="email" class="tsp-input-line" placeholder="john@company.com" required>
+                        <span class="tsp-focus-border"></span>
+                    </div>
+
+                    <div class="tsp-input-wrapper tsp-full-col">
+                        <label class="tsp-label-line">Project Details *</label>
+                        <textarea name="message" class="tsp-input-line" rows="2" placeholder="Tell us about your goals, timeline, and budget..." required></textarea>
+                        <span class="tsp-focus-border"></span>
+                    </div>
+                </div>
+
+                <!-- Additional fields for better contact management -->
+                <div class="tsp-input-wrapper" style="margin-top: 20px;">
+                    <label class="tsp-label-line">Phone</label>
+                    <input type="tel" name="phone" class="tsp-input-line" placeholder="+1 (555) 123-4567">
+                    <span class="tsp-focus-border"></span>
+                </div>
+
+                <button type="submit" class="tsp-send-btn">
+                    Send Proposal
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+
+                <!-- Form submission status messages -->
+                <div class="tsp-form-messages" style="margin-top: 15px; display: none;">
+                    <div class="tsp-success-message" style="color: #00d2ff; font-size: 14px;"></div>
+                    <div class="tsp-error-message" style="color: #ff6b6b; font-size: 14px;"></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
