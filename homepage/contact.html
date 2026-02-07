@@ -24,7 +24,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        padding: 80px 20px;
+        padding: 200px 20px;
         overflow: hidden;
     }
 
@@ -114,7 +114,7 @@
     .tsp-contact-list {
         display: flex; 
         flex-direction: column; 
-        gap: 24px;
+        gap: 12px;
     }
     
     .tsp-contact-item {
@@ -124,12 +124,13 @@
         color: white; 
         font-size: 14px; 
         font-weight: 500;
-        padding: 12px;
+        padding: 9px;
         border-radius: 12px;
         transition: background 0.3s ease;
         text-decoration: none;
     }
     .tsp-contact-item:hover { 
+        color: white;
         background: rgba(255,255,255,0.05);
     }
 
@@ -214,21 +215,33 @@
     }
 
     .tsp-input-line {
-        width: 100%;
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 12px 0;
-        font-family: 'Inter', sans-serif;
-        font-size: 16px; 
-        color: white;
-        transition: all 0.3s ease;
-        outline: none;
+        width: 100% !important;
+        background: transparent !important;
+        border: none !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 8px !important;
+        padding: 12px 10px !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: 16px !important;
+        color: white !important;
+        transition: all 0.3s ease !important;
+        outline: none !important;
+        box-shadow: none !important;
     }
     
     .tsp-input-line:focus {
-        border-bottom: 1px solid var(--tsp-accent);
-        padding-left: 10px;
+        border: none !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--tsp-accent) !important;
+        border-radius: 8px !important;
+        padding-left: 10px !important;
+        box-shadow: none !important;
+        outline: none !important;
     }
 
     .tsp-input-line::placeholder {
@@ -237,9 +250,26 @@
 
     /* Textarea specific */
     textarea.tsp-input-line {
-        min-height: 100px;
-        resize: vertical;
-        padding-top: 12px;
+        min-height: 100px !important;
+        resize: vertical !important;
+        padding: 12px 10px !important;
+        border: none !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+    }
+    
+    textarea.tsp-input-line:focus {
+        border: none !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--tsp-accent) !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
     }
 
     /* Project Type Pills */
@@ -307,8 +337,9 @@
     
     .tsp-send-btn:hover {
         transform: translateY(-2px);
-        background: var(--tsp-accent);
-        box-shadow: 0 10px 30px rgba(0, 210, 255, 0.3);
+        color: white;
+        background: var(--tsp-primary);
+        box-shadow: var(--tsp-primary-glow);
     }
 
     .tsp-send-btn:active {
@@ -344,7 +375,37 @@
 
     /* Field Validation */
     .tsp-input-line.hf-invalid {
-        border-bottom-color: var(--tsp-error);
+        border-bottom-color: var(--tsp-error) !important;
+    }
+    
+    /* Force override HTML Forms plugin default styles */
+    form.tsp-contact-form input[type="text"],
+    form.tsp-contact-form input[type="email"],
+    form.tsp-contact-form input[type="tel"],
+    form.tsp-contact-form textarea {
+        border: none !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 8px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+    
+    form.tsp-contact-form input[type="text"]:focus,
+    form.tsp-contact-form input[type="email"]:focus,
+    form.tsp-contact-form input[type="tel"]:focus,
+    form.tsp-contact-form textarea:focus {
+        border: none !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--tsp-accent) !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        outline: none !important;
     }
 
     /* =========================================

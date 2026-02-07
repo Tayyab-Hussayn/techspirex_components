@@ -1,0 +1,508 @@
+<style>
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+    /* Scoped Variables & Unique Classes */
+    .tsp-inf-tm-section {
+        --tsp-inf-bg-dark: #0b0b0f;
+        --tsp-inf-primary: #453478;
+        --tsp-inf-accent: #00d2ff;
+        --tsp-inf-text-main: #ffffff;
+        --tsp-inf-text-muted: #a0a0a0;
+        --tsp-inf-card-bg: rgba(255, 255, 255, 0.03);
+        --tsp-inf-card-border: rgba(255, 255, 255, 0.08);
+
+        font-family: 'Inter', sans-serif;
+        background-color: var(--tsp-inf-bg-dark);
+        position: relative;
+        padding: 120px 0;
+        /* Full width flow */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    /* Ambient Background Effects */
+    .tsp-inf-tm-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.25;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .tsp-inf-tm-orb-1 {
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, var(--tsp-inf-primary) 0%, transparent 70%);
+        top: -300px;
+        left: -200px;
+        animation: tspInfPulseGlow 10s infinite alternate;
+    }
+
+    .tsp-inf-tm-orb-2 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, var(--tsp-inf-accent) 0%, transparent 70%);
+        bottom: -200px;
+        right: -100px;
+        opacity: 0.15;
+        animation: tspInfPulseGlow 8s infinite alternate-reverse;
+    }
+
+    @keyframes tspInfPulseGlow {
+        0% {
+            opacity: 0.2;
+            transform: scale(1);
+        }
+
+        100% {
+            opacity: 0.35;
+            transform: scale(1.1);
+        }
+    }
+
+    /* Header */
+    .tsp-inf-tm-header {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 800px;
+        margin-bottom: 80px;
+        padding: 0 20px;
+    }
+
+    .tsp-inf-tm-badge {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--tsp-inf-accent);
+        margin-bottom: 20px;
+        padding: 8px 18px;
+        background: rgba(0, 210, 255, 0.08);
+        border-radius: 100px;
+        border: 1px solid rgba(0, 210, 255, 0.15);
+        backdrop-filter: blur(10px);
+    }
+
+    .tsp-inf-tm-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 56px;
+        font-weight: 800;
+        color: var(--tsp-inf-text-main);
+        margin: 0 0 24px 0;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+    }
+
+    .tsp-inf-tm-title span {
+        background: linear-gradient(135deg, #fff 30%, #a5a5a5 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .tsp-inf-tm-subtitle {
+        font-size: 18px;
+        color: var(--tsp-inf-text-muted);
+        line-height: 1.6;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Marquee Container */
+    .tsp-inf-marquee-wrapper {
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    /* Gradient Masks for Fade Structure */
+    .tsp-inf-marquee-wrapper::before,
+    .tsp-inf-marquee-wrapper::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 200px;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .tsp-inf-marquee-wrapper::before {
+        left: 0;
+        background: linear-gradient(to right, #0b0b0f 0%, rgba(11, 11, 15, 0.8) 50%, transparent 100%);
+    }
+
+    .tsp-inf-marquee-wrapper::after {
+        right: 0;
+        background: linear-gradient(to left, #0b0b0f 0%, rgba(11, 11, 15, 0.8) 50%, transparent 100%);
+    }
+
+    /* Marquee Track */
+    .tsp-inf-marquee-track {
+        display: flex;
+        gap: 32px;
+        width: max-content;
+        /* Pause on hover over the track */
+    }
+
+    .tsp-inf-marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    /* Animations */
+    .tsp-inf-scroll-left {
+        animation: tspInfScrollLeft 40s linear infinite;
+    }
+
+    .tsp-inf-scroll-right {
+        animation: tspInfScrollRight 45s linear infinite;
+    }
+
+    @keyframes tspInfScrollLeft {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    @keyframes tspInfScrollRight {
+        0% {
+            transform: translateX(-50%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    /* Testimonial Card */
+    .tsp-inf-card {
+        width: 500px;
+        /* Fixed width for consistent flow */
+        background: var(--tsp-inf-card-bg);
+        border: 1px solid var(--tsp-inf-card-border);
+        border-radius: 20px;
+        padding: 36px;
+        position: relative;
+        flex-shrink: 0;
+        backdrop-filter: blur(15px);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        user-select: none;
+    }
+
+    .tsp-inf-card:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        transform: scale(1.02);
+    }
+
+    .tsp-inf-quote-icon {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        font-size: 60px;
+        line-height: 1;
+        font-family: serif;
+        color: var(--tsp-inf-primary);
+        opacity: 0.2;
+        pointer-events: none;
+    }
+
+    .tsp-inf-card-text {
+        font-size: 17px;
+        line-height: 1.7;
+        color: #d1d1d1;
+        font-weight: 300;
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .tsp-inf-author-block {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 20px;
+    }
+
+    .tsp-inf-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--tsp-inf-primary), #6a4bc4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 18px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+    
+    .tsp-inf-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .tsp-inf-meta {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tsp-inf-name {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: white;
+    }
+
+    .tsp-inf-role {
+        font-size: 13px;
+        color: var(--tsp-inf-accent);
+        margin-top: 2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .tsp-inf-tm-title {
+            font-size: 36px;
+        }
+
+        .tsp-inf-card {
+            width: 350px;
+            padding: 24px;
+        }
+
+        .tsp-inf-marquee-wrapper::before,
+        .tsp-inf-marquee-wrapper::after {
+            width: 50px;
+        }
+    }
+</style>
+
+<section class="tsp-inf-tm-section">
+    <div class="tsp-inf-tm-orb tsp-inf-tm-orb-1"></div>
+    <div class="tsp-inf-tm-orb tsp-inf-tm-orb-2"></div>
+
+    <div class="tsp-inf-tm-header">
+        <span class="tsp-inf-tm-badge">What Clients Say</span>
+        <h2 class="tsp-inf-tm-title">
+            <span>Stories of Success</span>
+        </h2>
+        <p class="tsp-inf-tm-subtitle">
+            Innovators, visionaries, and market leaders trust Techspirex to engineer their digital future.
+        </p>
+    </div>
+
+    <div class="tsp-inf-marquee-wrapper">
+        <!-- Row 1: Left Scroll -->
+        <div class="tsp-inf-marquee-track tsp-inf-scroll-left">
+            <!-- ORIGINAL SET (1 & 2) -->
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"We appreciated their honesty regarding limitations and risks. There was no overpromising or vague reassurance. This transparency allowed informed decisions and strengthened trust, making the collaboration feel like a true partnership rather than a transactional service."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Huzaifa Imran">
+                    </div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Huzaifa Imran</span>
+ 
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"They approached problems analytically instead of emotionally. Every technical decision was explained with reasoning and trade-offs. This thoughtful mindset helped us avoid unnecessary complexity and ensured the system performed reliably in real-world conditions."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">SA</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Sajad Ali</span>
+             
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Communication remained transparent and consistent at every stage. Progress updates were clear, realistic, and honest. We always knew where the project stood, which eliminated confusion and allowed better alignment between technical delivery and business expectations."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">JD</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Junaid Dastageer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"What impressed us most was their ability to balance speed with stability. Deadlines were met consistently, yet code quality remained clean, scalable, and well-documented. This maturity made the final product easy to maintain and confidently deploy."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">SF</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Sarah Faheem</span>
+                                        </div>
+                </div>
+            </div>
+
+            <!-- DUPLICATE SET FOR LOOPING (Seamlessness) -->
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Communication stayed clear throughout the project, even during complex phases. No overpromising, no vague language. Every update felt honest, structured, and respectful of our time, which made collaboration smooth and genuinely stress-free."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">DI</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Danish Imran</span>
+                            </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Techspirex brought rare technical clarity to our DevOps and blockchain stack. Their team anticipated risks, designed with foresight, and delivered a secure, scalable platform that feels stable today and prepared for tomorrow, giving us confidence, speed, and peace of mind."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">KJ</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Khizara Javed</span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Techspirex’s mastery of DevOps and blockchain became the foundation of our secure platform launch. Their proactive approach and deep technical insight delivered a system that feels reliable, scalable, and genuinely future-ready, giving our team confidence, stability, and long-term value growth."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">SS</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">SyedShahzaib</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"A defining milestone for our enterprise. Techspirex didn’t just build an application; they engineered a strategic asset that transformed operations. Their blend of technical precision and collaborative spirit made the entire journey smooth, enjoyable, and seamless for everyone involved overall."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">HA</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Hazeem Ali</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: Right Scroll -->
+        <div class="tsp-inf-marquee-track tsp-inf-scroll-right">
+            <!-- ORIGINAL SET (3 & 4) -->
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Publishing the updated brand and website delivered strong market validation across audiences. Their creative leadership simplified complex ideas into intuitive digital experiences that feel clear, engaging, and genuinely user-focused, helping our brand communicate confidently and connect more naturally with people."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">MS</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Muaz Shoaib</span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"The new brand identity and website design received exceptional market feedback. The team showed a rare ability to translate complex ideas into beautiful, intuitive digital experiences, delivering creative direction that feels thoughtful, refined, and consistently aligned with real user expectations."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">AK</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Ali Khan</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Since launching our new e-commerce platform, sales jumped more than sixty percent within weeks. Their blend of high-performance development and smart growth strategy produced a powerful solution that drove fast results, improved customer experience, and delivered measurable return on investment."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">MD</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Mir Dawood</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"The new brand identity and website design were received with strong appreciation across the market. Their ability to shape complex visions into intuitive, well-structured digital journeys made a noticeable difference in how our brand is perceived."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">AS</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Aziza Shahid</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DUPLICATE SET FOR LOOPING -->
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"The redesigned website and brand visuals immediately elevated our presence. Their team showed rare creative maturity by turning complicated concepts into experiences that feel effortless, user-focused, and visually refined from start to finish."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">OS</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Omar Sheikh</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"Seeing the market respond to our redesigned brand and website confirmed their expertise. The team converted complex ideas into intuitive digital experiences that feel natural, visually appealing, and strategically aligned with our goals."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">SI</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Syeda Iqra</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"After launching the updated brand and website, we saw an immediate positive response. The team’s thoughtful design process turned detailed requirements into an elegant, user-friendly experience that feels both strategic and visually compelling."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">MA</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Muhammad Ali</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tsp-inf-card">
+                <div class="tsp-inf-quote-icon">❝</div>
+                <p class="tsp-inf-card-text">"The new brand identity and website design received genuinely strong market appreciation. The team listened carefully, understood our challenges, and transformed complex ideas into a smooth, intuitive digital experience that feels modern, polished, and truly aligned with our vision."</p>
+                <div class="tsp-inf-author-block">
+                    <div class="tsp-inf-avatar">JT</div>
+                    <div class="tsp-inf-meta">
+                        <span class="tsp-inf-name">Javeria Tabassum</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
