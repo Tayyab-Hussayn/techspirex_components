@@ -282,10 +282,15 @@
     }
 
     .tsp-project-types {
-        display: flex; 
+        display: flex;
         gap: 12px; 
         flex-wrap: wrap; 
         margin-bottom: 40px;
+    }
+    
+    .tsp-project-types label {
+        flex: 0 0 auto;
+        max-width: calc(25% - 9px);
     }
 
     .tsp-type-radio {
@@ -302,6 +307,11 @@
         cursor: pointer;
         transition: all 0.3s ease;
         display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
     }
     
     .tsp-type-btn:hover {
@@ -531,6 +541,18 @@
 
                     <input type="radio" id="cloud-ai" name="PROJECT_TYPE" value="Cloud/AI" class="tsp-type-radio">
                     <label for="cloud-ai" class="tsp-type-btn">Cloud/AI</label>
+
+                    <input type="radio" id="ui-ux" name="PROJECT_TYPE" value="UI/UX" class="tsp-type-radio">
+                    <label for="ui-ux" class="tsp-type-btn">UI/UX</label>
+
+                    <input type="radio" id="seo" name="PROJECT_TYPE" value="SEO" class="tsp-type-radio">
+                    <label for="seo" class="tsp-type-btn">SEO</label>
+
+                    <input type="radio" id="graphics-design" name="PROJECT_TYPE" value="Graphics Design" class="tsp-type-radio">
+                    <label for="graphics-design" class="tsp-type-btn">Graphic Design</label>
+
+                    <input type="radio" id="other" name="PROJECT_TYPE" value="Other" class="tsp-type-radio">
+                    <label for="other" class="tsp-type-btn">Other</label>
                 </div>
 
                 <!-- Form Fields Grid -->

@@ -1,0 +1,546 @@
+<!-- Techspirex Homepage: The Kinetic Reactor (Refined) -->
+
+<style>
+
+    /* =========================================
+
+       VARIABLES
+
+       ========================================= */
+
+    :root {
+
+        --tsp-bg-dark: #0f0f12;
+
+        --tsp-card-surface: #13131a;
+
+        --tsp-primary: #453478;
+
+        --tsp-primary-light: #8b5cf6;
+
+        --tsp-accent: #00d2ff;
+
+        --tsp-border-subtle: rgba(255, 255, 255, 0.08);
+
+        --tsp-text-muted: #94a3b8;
+
+    }
+
+
+
+    /* =========================================
+
+       SECTION LAYOUT
+
+       ========================================= */
+
+    .tsp-reactor-section {
+        background-color: var(--tsp-bg-dark);
+        padding: 100px 20px 100px 20px; /* Increased top padding */
+        font-family: 'Inter', sans-serif;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Add this */
+        min-height: 100vh; /* Add this to ensure proper centering */
+        /* Vignette for focus */
+        background-image: radial-gradient(circle at center, #1a1a24 0%, #0f0f12 70%);
+    }
+
+    /* Radar Grid Background */
+    .tsp-reactor-grid {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+
+        background-image: 
+
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+
+        background-size: 80px 80px;
+
+        mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+
+        -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+
+        pointer-events: none;
+
+        z-index: 0;
+
+    }
+
+    .tsp-reactor-container {
+        max-width: 1100px;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 650px;
+        margin-top: 0; /* Remove any top margin */
+    }
+
+
+
+    /* Header (Centered Top) */
+    .tsp-reactor-header {
+        position: relative; /* Changed from absolute */
+        margin-bottom: 80px; /* Add spacing below header */
+        text-align: center;
+        z-index: 3;
+    }
+
+    .tsp-reactor-eyebrow {
+        font-family: 'Fira Code', monospace; font-size: 11px; color: var(--tsp-accent);
+
+        background: rgba(0, 210, 255, 0.05); padding: 6px 12px; border-radius: 50px;
+
+        border: 1px solid rgba(0, 210, 255, 0.15); display: inline-block; margin-bottom: 16px;
+
+    }
+
+    .tsp-reactor-title {
+        font-family: 'Outfit', sans-serif; font-size: 42px; font-weight: 800; color: white;
+        margin: 0; line-height: 1.1; letter-spacing: -1px;
+
+    }
+
+
+
+    /* =========================================
+
+       THE REACTOR CORE (CENTER)
+
+       ========================================= */
+
+    .tsp-core-wrapper {
+
+        position: relative;
+
+        width: 180px; height: 180px;
+
+        display: flex; align-items: center; justify-content: center;
+
+        z-index: 2;
+
+    }
+
+
+
+    /* The Glowing Nucleus */
+
+    .tsp-core-orb {
+
+        width: 80px; height: 80px;
+
+        background: radial-gradient(circle, #fff 0%, var(--tsp-primary) 60%, transparent 100%);
+
+        border-radius: 50%;
+
+        position: absolute;
+
+        box-shadow: 0 0 50px var(--tsp-primary), 0 0 20px var(--tsp-accent);
+
+        animation: reactorPulse 3s infinite ease-in-out;
+
+        z-index: 10;
+
+    }
+
+
+
+    /* Interface Rings */
+
+    .tsp-core-ring {
+
+        position: absolute;
+
+        border-radius: 50%;
+
+        border: 1px solid rgba(255,255,255,0.08);
+
+        transform-style: preserve-3d;
+
+    }
+
+    .tsp-cr-1 { 
+
+        width: 140px; height: 140px; 
+
+        border-color: rgba(0, 210, 255, 0.3);
+
+        border-left-color: transparent; border-right-color: transparent;
+
+        animation: spin 8s linear infinite; 
+
+    }
+
+    .tsp-cr-2 { 
+
+        width: 220px; height: 220px; 
+
+        border: 1px dashed rgba(255,255,255,0.1); 
+
+        animation: spinReverse 20s linear infinite; 
+
+    }
+
+    .tsp-cr-3 {
+
+        width: 380px; height: 380px;
+
+        border: 1px solid rgba(255,255,255,0.03);
+
+        z-index: 0;
+
+    }
+
+
+
+    /* =========================================
+
+       FLOATING MODULES (SATELLITES)
+
+       ========================================= */
+
+    .tsp-module-card {
+
+        position: absolute;
+
+        width: 280px;
+
+        background: rgba(15, 15, 20, 0.8);
+
+        backdrop-filter: blur(10px);
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-radius:30px;
+
+        padding: 24px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+
+        transition: all 0.3s ease;
+
+        animation: floatModule 6s infinite ease-in-out;
+
+    }
+
+
+
+    /* Card Tech Header (The "Panel" look) */
+
+    .tsp-mod-header {
+
+        display: flex; justify-content: space-between; align-items: center;
+
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+
+        padding-bottom: 12px; margin-bottom: 8px;
+
+    }
+
+    .tsp-mod-status { width: 6px; height: 6px; background: #00d2ff; border-radius: 50%; box-shadow: 0 0 5px #00d2ff; }
+
+    .tsp-mod-code { font-family: 'Fira Code', monospace; font-size: 10px; color: #64748b; }
+
+
+
+    /* Hover State */
+
+    .tsp-module-card:hover {
+
+        background: #1a1a24;
+
+        border-color: rgba(255, 255, 255, 0.25);
+
+        transform: scale(1.05);
+
+        z-index: 20;
+
+       
+
+    }
+
+
+
+    /* Card Positions (Tighter) */
+
+    .tsp-mod-1 { top: 8%; left: 5%; animation-delay: 1s; } 
+
+    .tsp-mod-2 { top: 10%; right: 5%; animation-delay: 1s; } 
+
+    .tsp-mod-3 { bottom: 10%; left: 5%; animation-delay: 1.5s; } 
+
+    .tsp-mod-4 { bottom: 10%; right: 5%; animation-delay: 1.5s; }
+
+
+
+    /* Icon */
+
+    .tsp-mod-icon {
+
+        width:40px; height: 40px;padding:3px 6px;
+
+        background: rgba(255,255,255,0.05);
+
+        border-radius:30px;
+
+        display: flex; align-items: center; justify-content: center;
+
+        color: white; border: 1px solid #453478;
+
+    }
+
+    .tsp-mod-icon img {
+
+        filter: invert(100%) brightness(200%); /* Makes icons white by default */
+
+    }
+
+    .tsp-module-card:hover .tsp-mod-icon { 
+
+        border-color:#00d2ff; /* Border color becomes cyan on hover */
+
+    }
+
+ 
+
+    /* Text */
+
+    .tsp-mod-title { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: white; margin: 0; }
+
+    .tsp-mod-text { font-size: 13px; color: var(--tsp-text-muted); line-height: 1.5; }
+
+
+
+    /* THE CONNECTING BEAMS */
+
+    .tsp-beam-line {
+
+        position: absolute;
+
+        height: 1px;
+
+        background: linear-gradient(90deg, transparent, var(--tsp-primary-light), transparent);
+
+        opacity: 0.4;
+
+        transform-origin: center;
+
+        z-index: 1;
+
+    }
+
+    /* Calculated angles to connect center to corners */
+
+    .tsp-bl-1 { width: 200px; top: 35%; left: 25%; transform: rotate(-35deg); }
+
+    .tsp-bl-2 { width: 200px; top: 35%; right: 25%; transform: rotate(35deg); }
+
+    .tsp-bl-3 { width: 200px; bottom: 35%; left: 25%; transform: rotate(35deg); }
+
+    .tsp-bl-4 { width: 200px; bottom: 35%; right: 25%; transform: rotate(-35deg); }
+
+
+
+    /* Animations */
+
+    @keyframes reactorPulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.2); opacity: 1; } }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    @keyframes spinReverse { 100% { transform: rotate(-360deg); } }
+
+    
+
+    @keyframes floatModule {
+
+        0% { transform: translateY(0); }
+
+        50% { transform: translateY(-10px); }
+
+        100% { transform: translateY(0); }
+
+    }
+
+
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+        .tsp-reactor-container { flex-direction: column; min-height: auto; padding-top: 120px; gap: 20px; }
+        .tsp-core-wrapper { margin-bottom: 40px; transform: scale(0.8); }
+        .tsp-module-card { position: relative; width: 100%; top: auto; left: auto; right: auto; bottom: auto; }
+        .tsp-beam-line { display: none; }
+    }
+
+</style>
+
+
+
+<section class="tsp-reactor-section">
+
+    <div class="tsp-reactor-grid"></div>
+
+
+
+    <div class="tsp-reactor-header">
+
+        <span class="tsp-reactor-eyebrow">The Techspirex Engine</span>
+
+        <h2 class="tsp-reactor-title">Core Operating Principles</h2>
+
+    </div>
+
+
+
+    <div class="tsp-reactor-container">
+
+        
+
+        <!-- The Central Core -->
+
+        <div class="tsp-core-wrapper">
+
+            <div class="tsp-core-orb"></div>
+
+            <div class="tsp-core-ring tsp-cr-1"></div>
+
+            <div class="tsp-core-ring tsp-cr-2"></div>
+
+            <div class="tsp-core-ring tsp-cr-3"></div>
+
+        </div>
+
+        
+
+        <!-- Connecting Beams -->
+
+        <div class="tsp-beam-line tsp-bl-1"></div>
+
+        <div class="tsp-beam-line tsp-bl-2"></div>
+
+        <div class="tsp-beam-line tsp-bl-3"></div>
+
+        <div class="tsp-beam-line tsp-bl-4"></div>
+
+
+
+        <!-- Module 1: Speed -->
+
+        <div class="tsp-module-card tsp-mod-1">
+
+            <div class="tsp-mod-header">
+
+                <span class="tsp-mod-status"></span>
+
+                <span class="tsp-mod-code">SYS_VELOCITY</span>
+
+            </div>
+
+            <div class="tsp-mod-icon">
+
+               <img src="https://cdn-icons-png.flaticon.com/128/3669/3669229.png">
+
+            </div>
+
+            <h3 class="tsp-mod-title">Velocity First</h3>
+
+            <p class="tsp-mod-text">Rapid prototyping and CI/CD pipelines ensure you ship faster than competitors.</p>
+
+        </div>
+
+
+
+        <!-- Module 2: Security -->
+
+        <div class="tsp-module-card tsp-mod-2">
+
+            <div class="tsp-mod-header">
+
+                <span class="tsp-mod-status"></span>
+
+                <span class="tsp-mod-code">SYS_SECURE</span>
+
+            </div>
+
+            <div class="tsp-mod-icon">
+
+               <img src="https://cdn-icons-png.flaticon.com/128/12198/12198445.png">
+
+            </div>
+
+            <h3 class="tsp-mod-title">Zero-Trust Security</h3>
+
+            <p class="tsp-mod-text">We build compliant, encrypted, and resilient architectures from Day 1.</p>
+
+        </div>
+
+
+
+        <!-- Module 3: Scale -->
+
+        <div class="tsp-module-card tsp-mod-3">
+
+            <div class="tsp-mod-header">
+
+                <span class="tsp-mod-status"></span>
+
+                <span class="tsp-mod-code">SYS_SCALE</span>
+
+            </div>
+
+            <div class="tsp-mod-icon">
+
+               <img src="https://cdn-icons-png.flaticon.com/128/18616/18616903.png">
+
+            </div>
+
+            <h3 class="tsp-mod-title">Infinite Scale</h3>
+
+            <p class="tsp-mod-text">Cloud-native foundations. Our systems auto-scale to handle millions of users.</p>
+
+        </div>
+
+
+
+        <!-- Module 4: Intelligence -->
+
+        <div class="tsp-module-card tsp-mod-4">
+
+            <div class="tsp-mod-header">
+
+                <span class="tsp-mod-status"></span>
+
+                <span class="tsp-mod-code">SYS_AI</span>
+
+            </div>
+
+            <div class="tsp-mod-icon">
+
+               <img src="https://cdn-icons-png.flaticon.com/128/17728/17728013.png">
+
+            </div>
+
+            <h3 class="tsp-mod-title">AI Integrated</h3>
+
+            <p class="tsp-mod-text">We don't just build software; we build smart systems with embedded automation.</p>
+
+        </div>
+
+
+
+    </div>
+
+</section>
