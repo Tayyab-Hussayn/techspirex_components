@@ -1,0 +1,338 @@
+<!-- Techspirex Ecommerce: Hero (Refined Visuals) -->
+<style>
+    /* =========================================
+       VARIABLES
+       ========================================= */
+    :root {
+        --tsp-bg-dark: #0f0f12;
+        --tsp-primary: #453478;
+        --tsp-accent: #00d2ff;
+        --tsp-text-muted: #94a3b8;
+        --tsp-glass-surface: rgba(30, 30, 40, 0.6);
+        --tsp-border-light: rgba(255, 255, 255, 0.1);
+    }
+
+    /* =========================================
+       SECTION LAYOUT
+       ========================================= */
+    .tsp-ecom-hero {
+        background-color: var(--tsp-bg-dark);
+        min-height: 90vh;
+        padding: 160px 20px 100px;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tsp-bg-glow {
+        position: absolute;
+        width: 1200px; height: 1200px;
+        background: radial-gradient(circle, rgba(106, 75, 196, 0.15) 0%, transparent 70%);
+        top: -20%; right: -20%;
+        filter: blur(120px);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .tsp-hero-container {
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr; /* Give visual more space */
+        gap: 60px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* =========================================
+       LEFT: CONTENT
+       ========================================= */
+    .tsp-hero-content { max-width: 580px; }
+
+    .tsp-eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 6px 14px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #00d2ff;
+        border-radius: 50px;
+        margin-bottom: 24px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 12px; font-weight: 700; color:#00d2ff;
+        text-transform: uppercase; letter-spacing: 1px;
+    }
+    .tsp-dot {
+        width: 6px; height: 6px; background: var(--tsp-accent);
+        border-radius: 50%; box-shadow: 0 0 10px var(--tsp-accent);
+        animation: blink 2s infinite;
+    }
+
+    .tsp-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(48px, 5vw, 72px);
+        font-weight: 800; color: white;
+        line-height: 1.05; margin: 0 0 24px 0;
+        letter-spacing: -1.5px;
+    }
+    
+    .tsp-highlight {
+        background: linear-gradient(90deg, #fff 0%, #a5a5a5 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .tsp-desc {
+        font-size: 18px; line-height: 1.6; color: var(--tsp-text-muted);
+        margin-bottom: 40px; max-width: 540px;
+    }
+
+    /* Buttons */
+    .tsp-btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .tsp-btn-primary {
+        padding: 16px 36px;
+        background:#453478; color:#ffffff;
+        border-radius: 50px;
+        font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px;
+        text-decoration: none; transition: transform 0.2s ease;
+        display: flex; align-items: center; gap: 8px;
+        box-shadow: 0 0 20px rgba(255,255,255,0.15);
+    }
+    .tsp-btn-primary:hover { transform: translateY(-3px); color:#000000;
+        background:#ffffff;
+    }
+
+    .tsp-btn-outline {
+        padding: 16px 36px;
+        background: transparent; color: white;
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 50px;
+        font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 15px;
+        text-decoration: none; transition: all 0.3s ease;
+    }
+    .tsp-btn-outline:hover { background: rgba(255,255,255,0.08); border-color: white;color:#ffffff; }
+
+    /* =========================================
+       RIGHT: THE PRODUCT VISUAL (UPGRADED)
+       ========================================= */
+    .tsp-product-stage {
+        position: relative;
+        height: 600px;
+        display: flex; align-items: center; justify-content: center;
+        perspective: 1500px;
+    }
+
+    /* 1. Main Card - The Store Interface */
+    .tsp-store-card {
+        width: 360px;
+        height: 520px;
+        background: rgba(20, 20, 25, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 32px;
+        backdrop-filter: blur(20px);
+        transform: rotateY(-12deg) rotateX(5deg);
+        box-shadow: 
+            20px 20px 60px rgba(0,0,0,0.5), 
+            inset 0 0 0 1px rgba(255,255,255,0.05);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.5s ease;
+        display: flex; flex-direction: column;
+    }
+    
+    .tsp-product-stage:hover .tsp-store-card {
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+
+    /* Product Image Area */
+    .tsp-store-img {
+        flex: 1;
+        position: relative;
+        background: radial-gradient(circle at 50% 30%, #2d2d3d 0%, #15151a 100%);
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+    }
+    
+    /* The Product (Shoe/Object) */
+    .tsp-prod-obj {
+        width: 90%; height: auto;
+        filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+        transform: rotate(-15deg) scale(1.1);
+        transition: transform 0.5s ease;
+    }
+    .tsp-product-stage:hover .tsp-prod-obj { transform: rotate(0deg) scale(1.15) translateY(-10px); }
+
+    /* UI Details (Bottom Panel) */
+    .tsp-store-ui {
+        padding: 24px;
+        background: #1a1a24;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .tsp-row-1 { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .tsp-p-name { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: white; }
+    .tsp-p-price { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: white; }
+    
+    .tsp-p-sub { font-size: 12px; color: #94a3b8; margin-bottom: 20px; display: block; }
+    
+    .tsp-swatch-row { display: flex; gap: 10px; margin-bottom: 24px; }
+    .tsp-swatch { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #333; cursor: pointer; }
+    .tsp-swatch.active { border-color: white; box-shadow: 0 0 0 2px #1a1a24; }
+
+    .tsp-cart-btn {
+        width: 100%; padding: 14px;
+        background: white; color: black;
+        border-radius: 12px;
+        font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px;
+        text-align: center; cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    .tsp-cart-btn:hover { transform: scale(1.02); }
+
+    /* 2. Floating Widgets (The "Magic") */
+    
+    /* Cart Toast */
+    .tsp-toast {
+        position: absolute;
+        bottom: 100px; left: -50px;
+        background: rgba(30, 30, 40, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 12px 20px; border-radius: 50px;
+        display: flex; align-items: center; gap: 12px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        transform: translateZ(80px);
+        animation: floatToast 5s infinite ease-in-out;
+    }
+    .tsp-toast-icon { 
+        width: 24px; height: 24px; background: #27c93f; 
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        color: white; font-size: 12px;
+    }
+    .tsp-toast-text { color: white; font-size: 13px; font-weight: 600; }
+
+    /* Score Badge */
+    .tsp-score-badge {
+        position: absolute;
+        top: 60px; left: -20px;
+        width: 70px; height: 70px;
+        background: #0f0f12;
+        border-radius: 50%;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        border: 2px solid #27c93f;
+        box-shadow: 0 0 30px rgba(39, 201, 63, 0.2);
+        transform: translateZ(40px);
+        animation: floatScore 6s infinite ease-in-out;
+    }
+    .tsp-score-num { color: white; font-weight: 800; font-size: 20px; line-height: 1; }
+    .tsp-score-lbl { color: #94a3b8; font-size: 9px; text-transform: uppercase; margin-top: 2px; }
+
+    /* Rating Card */
+    .tsp-rate-card {
+        position: absolute;
+        top: 100px; right: -20px;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 8px 16px; border-radius: 8px;
+        transform: translateZ(60px);
+        animation: floatRate 7s infinite ease-in-out;
+    }
+    .tsp-stars { color: #ffbd2e; letter-spacing: 2px; font-size: 12px; }
+
+    @keyframes floatToast { 0%, 100% { transform: translateZ(80px) translateY(0); } 50% { transform: translateZ(80px) translateY(-10px); } }
+    @keyframes floatScore { 0%, 100% { transform: translateZ(40px) translateY(0); } 50% { transform: translateZ(40px) translateY(-15px); } }
+    @keyframes floatRate { 0%, 100% { transform: translateZ(60px) translateY(0); } 50% { transform: translateZ(60px) translateY(8px); } }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .tsp-hero-container { grid-template-columns: 1fr; text-align: center; }
+        .tsp-hero-content { margin: 0 auto; }
+        .tsp-btn-row { justify-content: center; }
+        .tsp-product-stage { transform: scale(0.75); margin-top: -60px; }
+    }
+</style>
+
+<section class="tsp-ecom-hero">
+    <div class="tsp-bg-glow"></div>
+
+    <div class="tsp-hero-container">
+        
+        <!-- LEFT: Pitch -->
+        <div class="tsp-hero-content">
+            <div class="tsp-eyebrow">
+                <span class="tsp-dot"></span>
+                Commerce Architecture
+            </div>
+            
+            <h1 class="tsp-title">
+                Building Storefronts<br>
+                that <span class="tsp-highlight">Scale & Sell.</span>
+            </h1>
+            
+            <p class="tsp-desc">
+                We engineer high-performance ecommerce experiences. Whether headless or native, we optimize for speed, conversion, and global scale.
+            </p>
+
+            <div class="tsp-btn-row">
+                <a href="https://techspirex.com/contact-us/" class="tsp-btn-primary">
+                    Start Building
+                  
+                </a>
+                <a href="#case-studies" class="tsp-btn-outline">View Stores</a>
+            </div>
+        </div>
+
+        <!-- RIGHT: The Flagship Storefront -->
+        <div class="tsp-product-stage">
+            
+            <!-- Floating Widget: Cart -->
+            <div class="tsp-toast">
+                <div class="tsp-toast-icon">✓</div>
+                <span class="tsp-toast-text">Added to Cart</span>
+            </div>
+
+            <!-- Floating Widget: Score -->
+            <div class="tsp-score-badge">
+                <span class="tsp-score-num">99</span>
+                <span class="tsp-score-lbl">Perf.</span>
+            </div>
+
+            <!-- Floating Widget: Rating -->
+            <div class="tsp-rate-card">
+                <div class="tsp-stars">★★★★★</div>
+            </div>
+
+            <!-- The Main Product Card -->
+            <div class="tsp-store-card">
+                <div class="tsp-store-img">
+                    <!-- Using a high-quality transparent sneaker image for realism -->
+                    <img src="https://techspirex.com/wp-content/uploads/2026/02/woman-stands-display-laptop_1289061-1686.jpg"> 
+                    <!-- Note: In production, use a local transparent PNG of a shoe/product for best results -->
+                </div>
+                
+                <div class="tsp-store-ui">
+                    <div class="tsp-row-1">
+                        <span class="tsp-p-name">Ultra Boost Light</span>
+                        <span class="tsp-p-price">$190</span>
+                    </div>
+                    <span class="tsp-p-sub">Performance Running</span>
+                    
+                    <div class="tsp-swatch-row">
+                        <div class="tsp-swatch active" style="background:#641000;"></div>
+                        <div class="tsp-swatch" style="background:#490102;"></div>
+                        <div class="tsp-swatch" style="background:#000000;"></div>
+                    </div>
+                    
+                    <div class="tsp-cart-btn">ADD TO CART</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

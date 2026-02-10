@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techspirex - About & Values</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,10 +15,9 @@
         }
 
         .about-values-section {
-            background-color: #0f0f12;
+            background-color: #FFFFFF;
             padding: 80px 20px;
             font-family: 'Inter', sans-serif;
-            color: #94a3b8;
         }
 
         .container {
@@ -45,39 +41,32 @@
             display: inline-block;
             font-family: 'Inter', sans-serif;
             font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: #00d2ff;
-            background-color: rgba(0, 210, 255, 0.1);
-            border: 1px solid rgba(0, 210, 255, 0.2);
+            font-weight: 500;
+            color: #453478;
+            background-color: #F1F2F6;
             border-radius: 50px;
-            padding: 8px 18px;
+            padding: 8px 16px;
             margin-bottom: 24px;
-            text-transform: uppercase;
         }
 
         .main-heading {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 48px;
             font-weight: 700;
-            color: #FFFFFF;
+            color: #1A1A2E;
             line-height: 1.2;
             margin-bottom: 24px;
         }
 
         .main-heading .highlight {
             color: #453478;
-            background: linear-gradient(135deg, #453478 0%, #00d2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .description {
             font-family: 'Inter', sans-serif;
             font-size: 16px;
             line-height: 1.7;
-            color: #94a3b8;
+            color: #4A4A4A;
             margin-bottom: 16px;
         }
 
@@ -85,32 +74,31 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-weight: 600;
             font-size: 16px;
             color: #FFFFFF;
-            background: linear-gradient(135deg, #453478 0%, #6b4fc0 100%);
+            background: #453478;
             border: none;
             border-radius: 50px;
             padding: 14px 32px;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-top: 16px;
-            box-shadow: 0 4px 20px rgba(69, 52, 120, 0.4);
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(69, 52, 120, 0.6);
-            background: linear-gradient(135deg, #5d4598 0%, #7c60d4 100%);
+            color: #FFFFFF;
+            background: rgb(0, 0, 0);
+            box-shadow: 0 8px 20px rgba(69, 52, 120, 0.3);
         }
 
         .cta-button svg {
             width: 18px;
             height: 18px;
             transition: transform 0.3s ease;
-            stroke: #fff;
         }
 
         .cta-button:hover svg {
@@ -135,53 +123,44 @@
             font-family: 'Inter', sans-serif;
             font-size: 14px;
             font-weight: 500;
-            color: #94a3b8;
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #453478;
+            background-color: #F8F9FA;
+            border: 1px solid rgba(69, 52, 120, 0.2);
             border-radius: 50px;
             padding: 10px 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
-            backdrop-filter: blur(5px);
         }
 
         .value-chip:hover {
-            background-color: rgba(69, 52, 120, 0.2);
+            background-color: #453478;
             color: #FFFFFF;
-            border-color: #00d2ff;
+            border-color: #453478;
             transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(69, 52, 120, 0.2);
         }
 
         .value-chip.active {
             background-color: #453478;
             color: #FFFFFF;
             border-color: #453478;
-            box-shadow: 0 0 20px rgba(69, 52, 120, 0.3);
+            box-shadow: 0 4px 12px rgba(69, 52, 120, 0.2);
         }
 
         .display-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #FFFFFF;
+            border: 1px solid rgba(69, 52, 120, 0.1);
             border-radius: 30px;
             padding: 40px;
             min-height: 280px;
             transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .display-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
         }
 
         .card-content {
             opacity: 0;
-            animation: fadeIn 0.4s ease forwards;
+            animation: fadeIn 0.01s ease forwards;
         }
 
         @keyframes fadeIn {
@@ -189,7 +168,6 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -201,15 +179,13 @@
             height: 64px;
             margin-bottom: 24px;
             object-fit: contain;
-            /* Filter to ensure icon visibility on dark bg - considering white/bright icons */
-            filter: brightness(0) saturate(100%) invert(100%);
         }
 
         .card-title {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 28px;
             font-weight: 600;
-            color: #FFFFFF;
+            color: #1A1A2E;
             margin-bottom: 16px;
         }
 
@@ -217,7 +193,7 @@
             font-family: 'Inter', sans-serif;
             font-size: 16px;
             line-height: 1.7;
-            color: #cbd5e1;
+            color: #4A4A4A;
         }
 
         /* Responsive Design */
@@ -265,7 +241,6 @@
 
             .display-card {
                 padding: 32px 24px;
-                min-height: auto;
             }
 
             .card-icon {
@@ -288,7 +263,6 @@
         }
     </style>
 </head>
-
 <body>
     <section class="about-values-section">
         <div class="container">
@@ -296,29 +270,23 @@
                 <!-- Left Column: Content -->
                 <div class="content-column">
                     <span class="pre-heading">We Deliver Real Value</span>
-
+                    
                     <h2 class="main-heading">
                         About Techspirex & its <span class="highlight">Values</span>
                     </h2>
-
+                    
                     <p class="description">
-                        Since our inception, Techspirex has been helping customers across the globe to build products
-                        and transform. We specialize in transforming the fintech landscape with our tailor-made IT
-                        solutions.
+                        Since our inception, Techspirex has been helping customers across the globe to build products and transform. We specialize in transforming the fintech landscape with our tailor-made IT solutions.
                     </p>
-
+                    
                     <p class="description">
-                        Our expertise in modernization, retail banking, and digital transformation sets us apart,
-                        driving innovation and efficiency for our clients. While we excel in various industries, our
-                        primary focus is on fintech, where we leverage our deep industry knowledge to deliver IT
-                        services that empower financial institutions to thrive in the digital era.
+                        Our expertise in modernization, retail banking, and digital transformation sets us apart, driving innovation and efficiency for our clients. While we excel in various industries, our primary focus is on fintech, where we leverage our deep industry knowledge to deliver IT services that empower financial institutions to thrive in the digital era.
                     </p>
-
-                    <a href="/contact" class="cta-button">
+                    
+                    <a href="https://techspirex.com/contact-us/" class="cta-button">
                         Let's Connect
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                     </a>
                 </div>
@@ -326,22 +294,20 @@
                 <!-- Right Column: Values -->
                 <div class="values-column">
                     <div class="values-tabs">
-                        <button class="value-chip" data-value="trust">Trust</button>
+                        <button class="value-chip active" data-value="trust">Trust</button>
                         <button class="value-chip" data-value="respect">Respect</button>
                         <button class="value-chip" data-value="integrity-ethics">Integrity & Ethics</button>
                         <button class="value-chip" data-value="employee-focus">Employee Focus</button>
-                        <button class="value-chip active" data-value="customer-focus">Customer Focus</button>
+                        <button class="value-chip" data-value="customer-focus">Customer Focus</button>
                         <button class="value-chip" data-value="technical-excellence">Technical Excellence</button>
                     </div>
 
                     <div class="display-card">
                         <div class="card-content" id="card-content">
-                            <img src="https://cdn-icons-png.flaticon.com/512/4460/4460334.png" alt="Customer Focus"
-                                class="card-icon">
-                            <h3 class="card-title">Customer Focus</h3>
+                            <img src="https://cdn-icons-png.flaticon.com/512/4460/4460334.png" alt="Customer Focus" class="card-icon">
+                            <h3 class="card-title">Trust</h3>
                             <p class="card-description">
-                                We prioritize understanding and meeting our customers' needs, exceeding expectations
-                                with every interaction.
+                                We build lasting relationships based on transparency, reliability, and the consistent delivery of our promises.
                             </p>
                         </div>
                     </div>
@@ -389,16 +355,16 @@
 
         function updateCard(valueId) {
             const data = valuesData[valueId];
-
+            
             cardContent.style.opacity = '0';
-
+            
             setTimeout(() => {
                 cardContent.innerHTML = `
                     <img src="${data.icon}" alt="${data.title}" class="card-icon">
                     <h3 class="card-title">${data.title}</h3>
                     <p class="card-description">${data.description}</p>
                 `;
-
+                
                 cardContent.style.animation = 'none';
                 setTimeout(() => {
                     cardContent.style.animation = 'fadeIn 0.4s ease forwards';
@@ -408,18 +374,23 @@
 
         chips.forEach(chip => {
             // Click event
-            chip.addEventListener('click', function () {
+            chip.addEventListener('click', function() {
                 chips.forEach(c => c.classList.remove('active'));
                 this.classList.add('active');
                 updateCard(this.dataset.value);
             });
 
             // Hover event
-            chip.addEventListener('mouseenter', function () {
+            chip.addEventListener('mouseenter', function() {
                 updateCard(this.dataset.value);
+            });
+
+            // Mouse leave event - revert to active button
+            chip.addEventListener('mouseleave', function() {
+                const activeChip = document.querySelector('.value-chip.active');
+                updateCard(activeChip.dataset.value);
             });
         });
     </script>
 </body>
-
 </html>
