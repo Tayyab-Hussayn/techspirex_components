@@ -1,0 +1,326 @@
+<!-- Techspirex AI: Hero Section -->
+<style>
+    /* =========================================
+       VARIABLES
+       ========================================= */
+    :root {
+        --tsp-bg-dark: #0f0f12;
+        --tsp-primary: #453478;
+        --tsp-accent-cyan: #00d2ff;
+        --tsp-accent-violet: #8b5cf6;
+        --tsp-border-light: rgba(255, 255, 255, 0.1);
+        --tsp-text-muted: #94a3b8;
+    }
+
+    /* =========================================
+       SECTION LAYOUT
+       ========================================= */
+    .tsp-ai-hero {
+        background-color: var(--tsp-bg-dark);
+        min-height: 90vh;
+        padding: 160px 20px 100px;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Neural Glow Background */
+    .tsp-bg-glow-ai {
+        position: absolute;
+        width: 1000px; height: 1000px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 65%);
+        top: -20%; right: -10%;
+        filter: blur(100px);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .tsp-hero-container {
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 60px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* =========================================
+       LEFT: CONTENT
+       ========================================= */
+    .tsp-hero-content { max-width: 600px; }
+
+    .tsp-eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 6px 14px;
+        background: rgba(69, 52, 120, 0.2);
+        border: 1px solid #453478;
+        border-radius: 4px;
+        margin-bottom: 24px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 12px; font-weight: 600; color: #00FFFF;
+        text-transform: uppercase; letter-spacing: 1px;
+    }
+    .tsp-dot-cyan {
+        width: 6px; height: 6px; background: #00FFFF;
+        border-radius: 50%; box-shadow: 0 0 10px #00FFFF;
+        animation: blink 2s infinite;
+    }
+
+    .tsp-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(45px, 5vw, 68px);
+        font-weight: 800; color: white;
+        line-height: 1.05; margin: 0 0 24px 0;
+        letter-spacing: -1.5px;
+    }
+    
+    .tsp-highlight-ai {
+        background: linear-gradient(to right, #b298dc, #00FFFF);
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .tsp-desc {
+        font-size: 18px; line-height: 1.6; color: var(--tsp-text-muted);
+        margin-bottom: 40px; max-width: 540px;
+    }
+
+    /* Buttons */
+    .tsp-btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .tsp-btn-primary {
+        padding: 16px 36px;
+        background: linear-gradient(135deg, #453478 0%, #7b61d1 100%);
+        border: 1px solid rgba(0, 255, 255, 0.2);
+        box-shadow: 0 0 20px rgba(69, 52, 120, 0.5);
+        color: white;
+        border-radius: 50px;
+        font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px;
+        text-decoration: none; transition: all 0.3s ease;
+        display: flex; align-items: center; gap: 8px;
+    }
+    .tsp-btn-primary:hover { 
+        transform: translateY(-3px); 
+        background: linear-gradient(135deg, #5a4494 0%, #9176e8 100%);
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+        color: white;
+    }
+
+    .tsp-btn-outline {
+        padding: 16px 36px;
+        background: transparent; color: white;
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 50px;
+        font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 15px;
+        text-decoration: none; transition: all 0.3s ease;
+    }
+    .tsp-btn-outline:hover { background: rgba(255,255,255,0.08); border-color: white;  color: white;}
+
+    /* =========================================
+       RIGHT: THE AI VISUAL (The Brain Interface)
+       ========================================= */
+    .tsp-ai-stage {
+        position: relative;
+        height: 600px;
+        display: flex; align-items: center; justify-content: center;
+        perspective: 1500px;
+    }
+
+    /* The Main Interface Card */
+    .tsp-ai-card {
+        width: 380px; height: 500px;
+        background: rgba(20, 20, 20, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        backdrop-filter: blur(12px);
+        transform: rotateY(-12deg) rotateX(5deg);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.5s ease;
+        display: flex; flex-direction: column;
+    }
+    
+    .tsp-ai-stage:hover .tsp-ai-card { transform: rotateY(0deg) rotateX(0deg); }
+
+    /* Top Bar */
+    .tsp-ai-header {
+        padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .tsp-ai-model-tag {
+        font-family: 'Fira Code', monospace; font-size: 11px; color: var(--tsp-accent-cyan);
+        background: rgba(0,210,255,0.1); padding: 4px 8px; border-radius: 4px;
+    }
+
+    /* Chat Area */
+    .tsp-chat-area {
+        flex: 1; padding: 24px; display: flex; flex-direction: column; gap: 16px;
+    }
+    
+    .tsp-msg-user {
+        align-self: flex-end;
+        background: linear-gradient(to right, #453478, #6a4bc2);
+        color: white;
+        padding: 12px 16px; border-radius: 12px 12px 0 12px;
+        font-size: 13px; max-width: 80%;
+    }
+    
+    .tsp-msg-ai {
+        align-self: flex-start;
+        background: rgba(255, 255, 255, 0.03);
+        color: #ffffff;
+        padding: 12px 16px; border-radius: 12px 12px 12px 0;
+        font-size: 13px; max-width: 90%;
+        border: 1px solid rgba(0, 255, 255, 0.1);
+        position: relative;
+    }
+    /* Typing Cursor */
+    .tsp-msg-ai::after {
+        content: '|'; animation: blink 1s infinite; margin-left: 2px;
+    }
+
+    /* Bottom Input */
+    .tsp-ai-input {
+        margin: 20px; padding: 12px;
+        background: rgba(0,0,0,0.3); border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .tsp-fake-text { width: 40%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; }
+    .tsp-send-icon { 
+        width: 24px; height: 24px; 
+        background: #00FFFF; 
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    }
+
+    /* FLOATING WIDGETS */
+    
+    /* Processing Speed */
+    .tsp-float-speed {
+        position: absolute; top: 15%; left: -40px;
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(4px);
+        padding: 10px 16px; border-radius: 12px;
+        display: flex; align-items: center; gap: 10px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        transform: translateZ(50px);
+        animation: floatA 5s infinite ease-in-out;
+    }
+    .tsp-bolt { color: #FFD700; }
+    .tsp-speed-text { 
+        font-family: 'Fira Code', monospace; 
+        font-size: 12px; 
+        color: white;
+    }
+
+    /* Model Confidence */
+    .tsp-float-conf {
+        position: absolute; bottom: 20%; right: -30px;
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(4px);
+        padding: 8px 16px; border-radius: 50px;
+        transform: translateZ(60px);
+        animation: floatB 6s infinite ease-in-out;
+    }
+    .tsp-conf-val { color: #00FFFF; font-weight: 700; font-size: 14px; }
+    .tsp-conf-lbl { font-size: 10px; color: #ccc; margin-left: 4px; }
+
+    @keyframes floatA { 0%, 100% { transform: translateZ(50px) translateY(0); } 50% { transform: translateZ(50px) translateY(-10px); } }
+    @keyframes floatB { 0%, 100% { transform: translateZ(60px) translateY(0); } 50% { transform: translateZ(60px) translateY(10px); } }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .tsp-hero-container { grid-template-columns: 1fr; text-align: center; }
+        .tsp-hero-content { margin: 0 auto; }
+        .tsp-btn-row { justify-content: center; }
+        .tsp-ai-stage { transform: scale(0.8); margin-top: -50px; }
+    }
+</style>
+
+<section class="tsp-ai-hero">
+    <div class="tsp-bg-glow-ai"></div>
+
+    <div class="tsp-hero-container">
+        
+        <!-- LEFT: Pitch -->
+        <div class="tsp-hero-content">
+            <div class="tsp-eyebrow">
+                <span class="tsp-dot-cyan"></span>
+                Artificial Intelligence
+            </div>
+            
+            <h1 class="tsp-title">
+                Operationalize Your <span class="tsp-highlight-ai">Cognitive Systems.</span>
+            </h1>
+            
+            <p class="tsp-desc">
+                Move beyond the hype. We integrate custom LLMs, autonomous agents, and RAG pipelines directly into your enterprise workflow for tangible ROI.
+            </p>
+
+            <div class="tsp-btn-row">
+                <a href="https://techspirex.com/contact-us/" class="tsp-btn-primary">
+                    Deploy AI
+                </a>
+                <a href="#solutions" class="tsp-btn-outline">See Use Cases</a>
+            </div>
+        </div>
+
+        <!-- RIGHT: The AI Interface -->
+        <div class="tsp-ai-stage">
+            
+            <!-- Floating Widget 1 -->
+            <div class="tsp-float-speed">
+                <span class="tsp-bolt">⚡</span>
+                <span class="tsp-speed-text"><strong style="color: #00FFFF;">24ms</strong> Latency</span>
+            </div>
+
+            <!-- Floating Widget 2 -->
+            <div class="tsp-float-conf">
+                <span class="tsp-conf-val">99.8%</span>
+                <span class="tsp-conf-lbl">Accuracy</span>
+            </div>
+
+            <!-- Main Interface Card -->
+            <div class="tsp-ai-card">
+                <div class="tsp-ai-header">
+                    <span class="tsp-ai-model-tag">GPT-4o / Llama 3</span>
+                    <div style="display:flex; gap:4px;">
+                        <div style="width:8px; height:8px; background:#ff5f56; border-radius:50%;"></div>
+                        <div style="width:8px; height:8px; background:#ffbd2e; border-radius:50%;"></div>
+                        <div style="width:8px; height:8px; background:#27c93f; border-radius:50%;"></div>
+                    </div>
+                </div>
+
+                <div class="tsp-chat-area">
+                    <div class="tsp-msg-user">
+                        Analyze Q3 sales data and predict inventory needs for Black Friday.
+                    </div>
+                    <div class="tsp-msg-ai">
+                        Based on historical trends and current velocity, I project a 40% increase in SKU-102 demand.
+                        <br><br>
+                        <strong>Recommendation:</strong> Increase stock by 1,500 units by Nov 1st.
+                    </div>
+                </div>
+
+                <div class="tsp-ai-input">
+                    <div class="tsp-fake-text"></div>
+                    <div class="tsp-send-icon"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
