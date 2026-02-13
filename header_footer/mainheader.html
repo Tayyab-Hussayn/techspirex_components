@@ -1,0 +1,475 @@
+<!-- Techspirex Hero: The Digital Horizon -->
+
+<style>
+
+    /* =========================================
+
+       VARIABLES
+
+       ========================================= */
+
+    :root {
+
+        --tsp-bg-dark: #050507;
+
+        --tsp-primary: #453478;
+
+        --tsp-primary-light: #8b5cf6;
+
+        --tsp-accent: #00d2ff;
+
+        --tsp-grid-color: rgba(69, 52, 120, 0.3);
+
+    }
+
+
+
+    /* =========================================
+
+       SECTION LAYOUT
+
+       ========================================= */
+
+    .tsp-horizon-hero {
+
+        position: relative;
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        background-color: var(--tsp-bg-dark);
+
+        overflow: hidden;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        perspective: 1000px; /* Essential for 3D */
+
+        padding-top: 200px;
+
+        padding-bottom: 100px;
+
+    }
+
+
+
+    /* =========================================
+
+       THE 3D ENVIRONMENT
+
+       ========================================= */
+
+    
+
+    /* The Horizon Light */
+
+    .tsp-horizon-glow {
+
+        position: absolute;
+
+        top: 40%; left: 0; width: 100%; height: 60%;
+
+        background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.4) 0%, transparent 60%);
+
+        z-index: 0;
+
+        filter: blur(80px);
+
+        pointer-events: none;
+
+    }
+
+
+
+    /* The Moving Floor */
+
+    .tsp-grid-floor {
+
+        position: absolute;
+
+        bottom: -50%; left: -50%; width: 200%; height: 100%;
+
+        background-image: 
+
+            linear-gradient(90deg, var(--tsp-grid-color) 1px, transparent 1px),
+
+            linear-gradient(0deg, var(--tsp-grid-color) 1px, transparent 1px);
+
+        background-size: 60px 60px;
+
+        transform: rotateX(60deg); /* Tilt the floor */
+
+        animation: gridMove 20s linear infinite;
+
+        mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+
+        -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+
+        z-index: 0;
+
+    }
+
+
+
+    /* Floating Particles */
+
+    .tsp-particle-field {
+
+        position: absolute;
+
+        width: 100%; height: 100%;
+
+        z-index: 1;
+
+        pointer-events: none;
+
+    }
+
+    .tsp-float-dot {
+
+        position: absolute;
+
+        background: white; border-radius: 50%;
+
+        opacity: 0;
+
+        animation: floatUp 6s infinite ease-in;
+
+        box-shadow: 0 0 10px white;
+
+    }
+
+    /* Random Dots */
+
+    .tsp-fd-1 { left: 20%; bottom: -10%; width: 4px; height: 4px; animation-duration: 7s; animation-delay: 0s; }
+
+    .tsp-fd-2 { left: 80%; bottom: -10%; width: 6px; height: 6px; animation-duration: 5s; animation-delay: 2s; }
+
+    .tsp-fd-3 { left: 50%; bottom: -10%; width: 3px; height: 3px; animation-duration: 8s; animation-delay: 4s; }
+
+    .tsp-fd-4 { left: 30%; bottom: -10%; width: 5px; height: 5px; animation-duration: 6s; animation-delay: 1s; }
+
+    .tsp-fd-5 { left: 70%; bottom: -10%; width: 2px; height: 2px; animation-duration: 9s; animation-delay: 3s; }
+
+
+
+
+
+    /* =========================================
+
+       CONTENT LAYER
+
+       ========================================= */
+
+    .tsp-hero-content {
+
+        position: relative;
+
+        z-index: 10;
+
+        text-align: center;
+
+        max-width: 1000px;
+
+        padding: 0 20px;
+
+        margin-top: -50px; /* Lift text slightly above horizon */
+
+    }
+
+
+
+    /* Badge */
+
+    .tsp-status-pill {
+
+        display: inline-flex; align-items: center; gap: 10px;
+
+        padding: 8px 20px;
+
+       background:rgba(0, 210, 255, 0.05);
+
+        border:1px solid #00d2ff;
+
+        border-radius: 50px;
+
+        margin-bottom: 40px;
+
+        backdrop-filter: blur(10px);
+
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+
+    }
+
+    
+
+    /* SYNC ICON STYLE */
+
+    .tsp-sync-icon { width:15px;height:15px; animation: spin 4s linear infinite; color:#00d2ff; }
+
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+
+
+    .tsp-pill-text {
+
+        font-family: 'Fira Code', monospace;
+
+        font-size:14px; color: #00d2ff; letter-spacing: 2px; text-transform: uppercase;
+
+    }
+
+
+
+    /* Headline */
+
+    .tsp-hero-title {
+
+        font-family: 'Outfit', sans-serif;
+
+        font-size: clamp(60px, 8vw, 110px); /* Massive */
+
+        font-weight: 800;
+
+        color: white;
+
+        line-height: 1;
+
+        letter-spacing: -3px;
+
+        margin: 0 0 30px 0;
+
+        /* Subtle text shadow for lift */
+
+        text-shadow: 0 20px 50px rgba(0,0,0,0.8);
+
+    }
+
+
+
+    /* Gradient Text */
+
+    .tsp-highlight {
+
+        background: linear-gradient(180deg, #fff 20%, #a5a5a5 100%);
+
+        -webkit-background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+
+        position: relative;
+
+        display: inline-block;
+
+    }
+
+    
+
+    /* Subtext */
+
+    .tsp-hero-desc {
+
+        font-size: 18px; line-height: 1.6; color: #d1d5db;
+
+        max-width: 650px; margin: 0 auto 50px;
+
+        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+
+        font-weight: 400;
+
+    }
+
+
+
+    /* Buttons */
+
+    .tsp-hero-actions { display: flex; gap: 20px; justify-content: center; }
+
+
+
+    .tsp-btn-primary {
+
+        padding: 20px 48px;
+
+        background:#453478; color:#ffffff;
+
+        border-radius: 50px;
+
+        font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px;
+
+        text-decoration: none; transition: transform 0.2s ease;
+
+        display: flex; align-items: center; gap: 10px;
+
+    }
+
+    .tsp-btn-primary:hover { 
+
+        color:#000000;
+
+        background:#ffffff;
+
+    }
+
+
+
+    .tsp-btn-outline {
+
+        padding: 20px 48px;
+
+        background:rgba(255,255,255,0.05); color: white;
+
+        border: 1px solid rgba(255,255,255,0.2);
+
+        border-radius: 50px;
+
+        font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 16px;
+
+        text-decoration: none; transition: all 0.3s ease;
+
+        backdrop-filter: blur(10px);
+
+    }
+
+    .tsp-btn-outline:hover { background:rgba(255,255,255,0.1); border-color: white;color:#ffffff;}
+
+
+
+    /* Animations */
+
+    @keyframes gridMove {
+
+        0% { transform: rotateX(60deg) translateY(0); }
+
+        100% { transform: rotateX(60deg) translateY(60px); }
+
+    }
+
+
+
+    @keyframes floatUp {
+
+        0% { transform: translateY(0) scale(0.5); opacity: 0; }
+
+        50% { opacity: 1; }
+
+        100% { transform: translateY(-80vh) scale(1.5); opacity: 0; }
+
+    }
+
+    
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+
+
+    /* Responsive */
+
+    @media (max-width: 768px) {
+
+        .tsp-hero-title { font-size: 50px; letter-spacing: -1px; }
+
+        .tsp-hero-actions { flex-direction: column; width: 100%; }
+
+        .tsp-btn-primary, .tsp-btn-outline { width: 100%; justify-content: center; }
+
+        .tsp-grid-floor { bottom: -20%; }
+
+    }
+
+</style>
+
+
+
+<section class="tsp-horizon-hero">
+
+    
+
+    <!-- 1. The Environment (Background) -->
+
+    <div class="tsp-horizon-glow"></div>
+
+    <div class="tsp-grid-floor"></div>
+
+    
+
+    <!-- 2. The Particles (Foreground Visuals) -->
+
+    <div class="tsp-particle-field">
+
+        <div class="tsp-float-dot tsp-fd-1"></div>
+
+        <div class="tsp-float-dot tsp-fd-2"></div>
+
+        <div class="tsp-float-dot tsp-fd-3"></div>
+
+        <div class="tsp-float-dot tsp-fd-4"></div>
+
+        <div class="tsp-float-dot tsp-fd-5"></div>
+
+    </div>
+
+
+
+    <!-- 3. The Message -->
+
+    <div class="tsp-hero-content">
+
+        
+
+        <div class="tsp-status-pill">
+
+            <!-- PULSE DOT REPLACED WITH SYNC ICON -->
+
+            <svg class="tsp-sync-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
+
+            <span class="tsp-pill-text">Building Beyond Limits</span>
+
+        </div>
+
+
+
+        <h1 class="tsp-hero-title">
+
+            Your Vision.<br>
+
+            <span class="tsp-highlight">Engineered.</span>
+
+        </h1>
+
+
+
+        <p class="tsp-hero-desc">
+
+            We are the full-cycle agency for ambitious brands. From complex cloud architecture to pixel-perfect design, we build the systems that define your future.
+
+        </p>
+
+
+
+        <div class="tsp-hero-actions">
+
+            <a href="https://techspirex.com/contact-us/" class="tsp-btn-primary">
+
+                Start a Project
+
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+
+            </a>
+
+            <a href="https://techspirex.com/services/" class="tsp-btn-outline">Explore Capabilities</a>
+
+        </div>
+
+
+
+    </div>
+
+</section>
