@@ -1,475 +1,275 @@
-<!-- Techspirex Hero: The Digital Horizon -->
-
+<!-- Techspirex Hero: Refined Typography & Layout -->
 <style>
-
     /* =========================================
-
        VARIABLES
-
        ========================================= */
-
     :root {
-
         --tsp-bg-dark: #050507;
-
         --tsp-primary: #453478;
-
         --tsp-primary-light: #8b5cf6;
-
         --tsp-accent: #00d2ff;
-
         --tsp-grid-color: rgba(69, 52, 120, 0.3);
-
+        --tsp-text-muted: #94a3b8;
     }
 
-
-
     /* =========================================
-
        SECTION LAYOUT
-
        ========================================= */
-
     .tsp-horizon-hero {
-
         position: relative;
-
         width: 100%;
-
         min-height: 100vh;
-
         background-color: var(--tsp-bg-dark);
-
         overflow: hidden;
-
         display: flex;
-
-        flex-direction: column;
-
         align-items: center;
-
         justify-content: center;
-
-        perspective: 1000px; /* Essential for 3D */
-
-        padding-top: 200px;
-
-        padding-bottom: 100px;
-
+        perspective: 1000px;
+        /* Adjusted padding: More breathing room */
+        padding: 140px 40px 100px; 
     }
 
-
-
-    /* =========================================
-
-       THE 3D ENVIRONMENT
-
-       ========================================= */
-
-    
-
-    /* The Horizon Light */
-
+    /* Environment visuals (Same as before) */
     .tsp-horizon-glow {
-
-        position: absolute;
-
-        top: 40%; left: 0; width: 100%; height: 60%;
-
-        background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.4) 0%, transparent 60%);
-
-        z-index: 0;
-
-        filter: blur(80px);
-
-        pointer-events: none;
-
+        position: absolute; top: 30%; left: -20%; width: 80%; height: 80%;
+        background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+        z-index: 0; filter: blur(100px); pointer-events: none;
     }
-
-
-
-    /* The Moving Floor */
-
     .tsp-grid-floor {
-
-        position: absolute;
-
-        bottom: -50%; left: -50%; width: 200%; height: 100%;
-
-        background-image: 
-
-            linear-gradient(90deg, var(--tsp-grid-color) 1px, transparent 1px),
-
-            linear-gradient(0deg, var(--tsp-grid-color) 1px, transparent 1px);
-
-        background-size: 60px 60px;
-
-        transform: rotateX(60deg); /* Tilt the floor */
-
-        animation: gridMove 20s linear infinite;
-
-        mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
-
-        -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
-
+        position: absolute; bottom: -40%; left: -50%; width: 200%; height: 100%;
+        background-image: linear-gradient(90deg, var(--tsp-grid-color) 1px, transparent 1px), linear-gradient(0deg, var(--tsp-grid-color) 1px, transparent 1px);
+        background-size: 80px 80px; transform: rotateX(70deg); animation: gridMove 15s linear infinite;
+        mask-image: linear-gradient(to top, black 0%, transparent 60%); -webkit-mask-image: linear-gradient(to top, black 0%, transparent 60%);
         z-index: 0;
-
     }
-
-
-
-    /* Floating Particles */
-
-    .tsp-particle-field {
-
-        position: absolute;
-
-        width: 100%; height: 100%;
-
-        z-index: 1;
-
-        pointer-events: none;
-
-    }
-
-    .tsp-float-dot {
-
-        position: absolute;
-
-        background: white; border-radius: 50%;
-
-        opacity: 0;
-
-        animation: floatUp 6s infinite ease-in;
-
-        box-shadow: 0 0 10px white;
-
-    }
-
-    /* Random Dots */
-
-    .tsp-fd-1 { left: 20%; bottom: -10%; width: 4px; height: 4px; animation-duration: 7s; animation-delay: 0s; }
-
-    .tsp-fd-2 { left: 80%; bottom: -10%; width: 6px; height: 6px; animation-duration: 5s; animation-delay: 2s; }
-
-    .tsp-fd-3 { left: 50%; bottom: -10%; width: 3px; height: 3px; animation-duration: 8s; animation-delay: 4s; }
-
-    .tsp-fd-4 { left: 30%; bottom: -10%; width: 5px; height: 5px; animation-duration: 6s; animation-delay: 1s; }
-
-    .tsp-fd-5 { left: 70%; bottom: -10%; width: 2px; height: 2px; animation-duration: 9s; animation-delay: 3s; }
-
-
-
-
+    /* Particle field CSS remains same... */
+    .tsp-particle-field { position: absolute; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+    .tsp-float-dot { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: floatUp 8s infinite ease-in; box-shadow: 0 0 10px white; }
+    .tsp-fd-1 { left: 10%; bottom: -10%; width: 3px; height: 3px; animation-duration: 6s; animation-delay: 0s; }
+    .tsp-fd-2 { left: 25%; bottom: -10%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: 2s; }
+    .tsp-fd-3 { left: 40%; bottom: -10%; width: 2px; height: 2px; animation-duration: 7s; animation-delay: 1s; }
+    .tsp-fd-4 { left: 55%; bottom: -10%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: 4s; }
+    .tsp-fd-5 { left: 70%; bottom: -10%; width: 4px; height: 4px; animation-duration: 8s; animation-delay: 3s; }
 
     /* =========================================
-
-       CONTENT LAYER
-
+       MAIN GRID LAYOUT
        ========================================= */
-
-    .tsp-hero-content {
-
-        position: relative;
-
-        z-index: 10;
-
-        text-align: center;
-
-        max-width: 1000px;
-
-        padding: 0 20px;
-
-        margin-top: -50px; /* Lift text slightly above horizon */
-
+    .tsp-hero-container {
+        position: relative; z-index: 10;
+        max-width: 1280px; /* Reduced max-width for tighter layout */
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px; /* Increased gap to separate text from terminal */
+        align-items: center;
     }
 
+    /* LEFT: CONTENT (REFINED) */
+    .tsp-hero-left {
+        text-align: left;
+        max-width: 580px; /* Constrained width to prevent text stretching */
+    }
 
-
-    /* Badge */
-
+    /* Badge: Smaller & Sleeker */
     .tsp-status-pill {
-
-        display: inline-flex; align-items: center; gap: 10px;
-
-        padding: 8px 20px;
-
-       background:rgba(0, 210, 255, 0.05);
-
-        border:1px solid #00d2ff;
-
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 6px 16px; /* Reduced padding */
+        background: rgba(0, 210, 255, 0.05);
+        border: 1px solid rgba(0, 210, 255, 0.3);
         border-radius: 50px;
-
-        margin-bottom: 40px;
-
+        margin-bottom: 24px;
         backdrop-filter: blur(10px);
-
-        box-shadow: 0 0 30px rgba(0,0,0,0.5);
-
     }
-
-    
-
-    /* SYNC ICON STYLE */
-
-    .tsp-sync-icon { width:15px;height:15px; animation: spin 4s linear infinite; color:#00d2ff; }
-
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-
-
+    .tsp-sync-icon { width:12px; height:12px; animation: spin 4s linear infinite; color:#00d2ff; }
     .tsp-pill-text {
-
         font-family: 'Fira Code', monospace;
-
-        font-size:14px; color: #00d2ff; letter-spacing: 2px; text-transform: uppercase;
-
+        font-size: 11px; /* Smaller font */
+        color: #00d2ff; letter-spacing: 1.5px; text-transform: uppercase;
     }
 
-
-
-    /* Headline */
-
+    /* Headline: Scaled Down for Elegance */
     .tsp-hero-title {
-
         font-family: 'Outfit', sans-serif;
-
-        font-size: clamp(60px, 8vw, 110px); /* Massive */
-
-        font-weight: 800;
-
-        color: white;
-
-        line-height: 1;
-
-        letter-spacing: -3px;
-
-        margin: 0 0 30px 0;
-
-        /* Subtle text shadow for lift */
-
-        text-shadow: 0 20px 50px rgba(0,0,0,0.8);
-
+        /* Much more controlled sizing */
+        font-size: clamp(42px, 4.5vw, 64px); 
+        font-weight: 800; color: white;
+        line-height: 1.1; letter-spacing: -1px;
+        margin: 0 0 24px 0;
+        text-shadow: 0 20px 60px rgba(0,0,0,0.8);
     }
-
-
-
-    /* Gradient Text */
 
     .tsp-highlight {
-
         background: linear-gradient(180deg, #fff 20%, #a5a5a5 100%);
-
-        -webkit-background-clip: text;
-
-        -webkit-text-fill-color: transparent;
-
-        position: relative;
-
-        display: inline-block;
-
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        position: relative; display: inline-block;
     }
 
-    
-
-    /* Subtext */
-
+    /* Subtext: Cleaner */
     .tsp-hero-desc {
-
-        font-size: 18px; line-height: 1.6; color: #d1d5db;
-
-        max-width: 650px; margin: 0 auto 50px;
-
-        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-
+        font-size: 16px; /* Reduced from 18px */
+        line-height: 1.7; 
+        color: #b0b0b0; /* Slightly brighter grey */
+        max-width: 480px; /* Narrower reading column */
+        margin-bottom: 40px;
         font-weight: 400;
-
     }
 
-
-
-    /* Buttons */
-
-    .tsp-hero-actions { display: flex; gap: 20px; justify-content: center; }
-
-
+    /* Buttons: Compact & Sharp */
+    .tsp-hero-actions { display: flex; gap: 16px; }
 
     .tsp-btn-primary {
-
-        padding: 20px 48px;
-
-        background:#453478; color:#ffffff;
-
+        padding: 14px 32px; /* Smaller padding */
+        background: #453478; color: #ffffff;
         border-radius: 50px;
-
-        font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px;
-
+        font-family: 'Outfit', sans-serif; font-weight: 700; 
+        font-size: 15px; /* Reduced font size */
         text-decoration: none; transition: transform 0.2s ease;
-
-        display: flex; align-items: center; gap: 10px;
-
+        display: flex; align-items: center; gap: 8px;
+        box-shadow: 0 0 20px rgba(69, 52, 120, 0.3);
     }
-
     .tsp-btn-primary:hover { 
-
-        color:#000000;
-
-        background:#ffffff;
-
+        color: #000000; background: #ffffff;
+        transform: translateY(-2px);
     }
-
-
 
     .tsp-btn-outline {
-
-        padding: 20px 48px;
-
-        background:rgba(255,255,255,0.05); color: white;
-
+        padding: 14px 32px; /* Smaller padding */
+        background: rgba(255,255,255,0.02); color: white;
         border: 1px solid rgba(255,255,255,0.2);
-
         border-radius: 50px;
-
-        font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 16px;
-
+        font-family: 'Outfit', sans-serif; font-weight: 600; 
+        font-size: 15px; /* Reduced font size */
         text-decoration: none; transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+    }
+    .tsp-btn-outline:hover { background: rgba(255,255,255,0.08); border-color: white; color: #ffffff; }
 
-        backdrop-filter: blur(10px);
-
+    /* =========================================
+       RIGHT: THE TERMINAL (Refined Size)
+       ========================================= */
+    .tsp-hero-right {
+        display: flex; align-items: center; justify-content: center;
+        perspective: 1500px;
     }
 
-    .tsp-btn-outline:hover { background:rgba(255,255,255,0.1); border-color: white;color:#ffffff;}
+    .tsp-terminal-card {
+        width: 100%; max-width: 580px; /* Slightly smaller */
+        min-height: 300px;
+        background: rgba(18, 18, 24, 0.6); 
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px; /* Slightly tighter radius */
+        padding: 24px; /* Reduced padding */
+        transform: rotateY(-12deg) rotateX(5deg);
+        box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.05);
+        transition: transform 0.5s ease;
+        position: relative;
+    }
+    .tsp-hero-container:hover .tsp-terminal-card { transform: rotateY(-5deg) rotateX(2deg); }
 
-
+    /* Terminal content styles remain same... */
+    .tsp-term-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; }
+    .tsp-dots { display: flex; gap: 8px; }
+    .tsp-d { width: 10px; height: 10px; border-radius: 50%; }
+    .tsp-d-r { background: #ff5f56; } .tsp-d-y { background: #ffbd2e; } .tsp-d-g { background: #27c93f; }
+    .tsp-term-title { font-family: 'Fira Code', monospace; font-size: 11px; color: #94a3b8; }
+    .tsp-code-area { font-family: 'Fira Code', monospace; font-size: 13px; line-height: 1.7; }
+    .tsp-ln { color: #444; margin-right: 16px; user-select: none; }
+    .tsp-c-w { color: #e0e0e0; } .tsp-c-p { color: #c586c0; } .tsp-c-b { color: #4fc1ff; } .tsp-c-g { color: #4ec9b0; } .tsp-c-s { color: #ce9178; } .tsp-c-y { color: #dcdcaa; }
+    .tsp-cursor { display: inline-block; width: 8px; height: 16px; background: var(--tsp-accent); vertical-align: middle; animation: blink 1s infinite; }
 
     /* Animations */
-
-    @keyframes gridMove {
-
-        0% { transform: rotateX(60deg) translateY(0); }
-
-        100% { transform: rotateX(60deg) translateY(60px); }
-
-    }
-
-
-
-    @keyframes floatUp {
-
-        0% { transform: translateY(0) scale(0.5); opacity: 0; }
-
-        50% { opacity: 1; }
-
-        100% { transform: translateY(-80vh) scale(1.5); opacity: 0; }
-
-    }
-
-    
-
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-
+    @keyframes gridMove { 0% { transform: rotateX(70deg) translateY(0); } 100% { transform: rotateX(70deg) translateY(60px); } }
+    @keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-80vh) scale(1.5); opacity: 0; } }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
     /* Responsive */
-
-    @media (max-width: 768px) {
-
-        .tsp-hero-title { font-size: 50px; letter-spacing: -1px; }
-
-        .tsp-hero-actions { flex-direction: column; width: 100%; }
-
-        .tsp-btn-primary, .tsp-btn-outline { width: 100%; justify-content: center; }
-
-        .tsp-grid-floor { bottom: -20%; }
-
+    @media (max-width: 900px) {
+        .tsp-hero-container { grid-template-columns: 1fr; text-align: center; }
+        .tsp-hero-left { margin: 0 auto; }
+        .tsp-hero-actions { justify-content: center; }
+        .tsp-terminal-card { transform: rotateY(0) rotateX(0); margin-top: 60px; max-width: 100%; }
+        .tsp-hero-title { font-size: 42px; }
+        .tsp-horizon-hero { padding-top: 140px; height: auto; }
     }
-
 </style>
 
-
-
 <section class="tsp-horizon-hero">
-
     
-
-    <!-- 1. The Environment (Background) -->
-
+    <!-- Environment -->
     <div class="tsp-horizon-glow"></div>
-
     <div class="tsp-grid-floor"></div>
-
     
-
-    <!-- 2. The Particles (Foreground Visuals) -->
-
+    <!-- Dense Particle Field (Added More Dots) -->
     <div class="tsp-particle-field">
-
         <div class="tsp-float-dot tsp-fd-1"></div>
-
         <div class="tsp-float-dot tsp-fd-2"></div>
-
         <div class="tsp-float-dot tsp-fd-3"></div>
-
         <div class="tsp-float-dot tsp-fd-4"></div>
-
         <div class="tsp-float-dot tsp-fd-5"></div>
-
+        <div class="tsp-float-dot tsp-fd-6"></div>
+        <div class="tsp-float-dot tsp-fd-7"></div>
+        <div class="tsp-float-dot tsp-fd-8"></div>
+        <div class="tsp-float-dot tsp-fd-9"></div>
+        <div class="tsp-float-dot tsp-fd-10"></div>
     </div>
 
-
-
-    <!-- 3. The Message -->
-
-    <div class="tsp-hero-content">
-
+    <!-- Main Grid -->
+    <div class="tsp-hero-container">
         
+        <!-- LEFT: Text Content -->
+        <div class="tsp-hero-left">
+            <div class="tsp-status-pill">
+                <svg class="tsp-sync-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
+                <span class="tsp-pill-text">Building Beyond Limits</span>
+            </div>
 
-        <div class="tsp-status-pill">
+            <h1 class="tsp-hero-title">
+                Your Vision.<br>
+                <span class="tsp-highlight">Engineered.</span>
+            </h1>
 
-            <!-- PULSE DOT REPLACED WITH SYNC ICON -->
+            <p class="tsp-hero-desc">
+                We are the full-cycle agency for ambitious brands. From complex cloud architecture to pixel-perfect design, we build the systems that define your future.
+            </p>
 
-            <svg class="tsp-sync-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
-
-            <span class="tsp-pill-text">Building Beyond Limits</span>
-
+            <div class="tsp-hero-actions">
+                <a href="https://techspirex.com/contact-us/" class="tsp-btn-primary">
+                    Start a Project
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="https://techspirex.com/services/" class="tsp-btn-outline">Explore Capabilities</a>
+            </div>
         </div>
 
+        <!-- RIGHT: The Terminal -->
+        <div class="tsp-hero-right">
+            <div class="tsp-terminal-card">
+                <div class="tsp-term-head">
+                    <div class="tsp-dots">
+                        <div class="tsp-d tsp-d-r"></div>
+                        <div class="tsp-d tsp-d-y"></div>
+                        <div class="tsp-d tsp-d-g"></div>
+                    </div>
+                    <div class="tsp-term-title">techspirex_engine.ts — Active</div>
+                    <div style="width:40px;"></div>
+                </div>
 
-
-        <h1 class="tsp-hero-title">
-
-            Your Vision.<br>
-
-            <span class="tsp-highlight">Engineered.</span>
-
-        </h1>
-
-
-
-        <p class="tsp-hero-desc">
-
-            We are the full-cycle agency for ambitious brands. From complex cloud architecture to pixel-perfect design, we build the systems that define your future.
-
-        </p>
-
-
-
-        <div class="tsp-hero-actions">
-
-            <a href="https://techspirex.com/contact-us/" class="tsp-btn-primary">
-
-                Start a Project
-
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-
-            </a>
-
-            <a href="https://techspirex.com/services/" class="tsp-btn-outline">Explore Capabilities</a>
-
+                <div class="tsp-code-area">
+                    <div><span class="tsp-ln">01</span><span class="tsp-c-p">import</span> { <span class="tsp-c-y">Innovation</span> } <span class="tsp-c-p">from</span> <span class="tsp-c-s">'@techspirex/core'</span>;</div>
+                    <div><span class="tsp-ln">02</span></div>
+                    <div><span class="tsp-ln">03</span><span class="tsp-c-p">const</span> <span class="tsp-c-b">project</span> = <span class="tsp-c-p">new</span> <span class="tsp-c-g">SystemBuilder</span>({</div>
+                    <div><span class="tsp-ln">04</span>&nbsp;&nbsp;scale: <span class="tsp-c-s">'Global'</span>,</div>
+                    <div><span class="tsp-ln">05</span>&nbsp;&nbsp;quality: <span class="tsp-c-s">'Pixel-Perfect'</span>,</div>
+                    <div><span class="tsp-ln">06</span>&nbsp;&nbsp;stack: [<span class="tsp-c-s">'AI'</span>, <span class="tsp-c-s">'Cloud'</span>, <span class="tsp-c-s">'Next.js'</span>]</div>
+                    <div><span class="tsp-ln">07</span>});</div>
+                    <div><span class="tsp-ln">08</span></div>
+                    <div><span class="tsp-ln">09</span><span class="tsp-c-p">await</span> <span class="tsp-c-b">project</span>.<span class="tsp-c-y">deploy</span>();</div>
+                    <div><span class="tsp-ln">10</span><span class="tsp-c-p">// Status:</span> <span style="color:#27c93f;">✓ Ready to Scale</span><span class="tsp-cursor"></span></div>
+                </div>
+            </div>
         </div>
-
-
 
     </div>
-
 </section>
