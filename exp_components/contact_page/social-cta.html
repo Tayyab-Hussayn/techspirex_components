@@ -1,276 +1,368 @@
-<!-- Techspirex Social: The Holographic Grid -->
+<!-- Techspirex Digital Marketing: Hero -->
 <style>
     /* =========================================
        VARIABLES
        ========================================= */
     :root {
-        --tsp-bg-body: #050507; 
+        --tsp-bg-dark: #0f0f12;
         --tsp-primary: #453478;
         --tsp-accent: #00d2ff;
-        --tsp-glass-border: rgba(255, 255, 255, 0.08);
+        --tsp-text-muted: #94a3b8;
+        --tsp-glass-surface: rgba(30, 30, 40, 0.6);
+        --tsp-border-light: rgba(255, 255, 255, 0.1);
     }
 
     /* =========================================
        SECTION LAYOUT
        ========================================= */
-    .tsp-social-section {
-        background-color: var(--tsp-bg-body);
-        padding: 120px 20px;
+    .tsp-ecom-hero {
+        background-color: var(--tsp-bg-dark);
+        min-height: 90vh;
+        padding: 160px 20px 100px;
         font-family: 'Inter', sans-serif;
         position: relative;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* Background Ambient Light */
-    .tsp-social-glow {
+    .tsp-bg-glow {
         position: absolute;
-        width: 100%; height: 100%;
-        top: 0; left: 0;
-        background: radial-gradient(circle at 50% 100%, rgba(69, 52, 120, 0.15), transparent 60%);
+        width: 1200px; height: 1200px;
+        background: radial-gradient(circle, rgba(106, 75, 196, 0.15) 0%, transparent 70%);
+        top: -20%; right: -20%;
+        filter: blur(120px);
+        z-index: 0;
         pointer-events: none;
     }
 
-    .tsp-social-container {
-        max-width: 1200px;
+    .tsp-hero-container {
+        max-width: 1280px;
+        width: 100%;
         margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 60px;
+        align-items: center;
         position: relative;
         z-index: 2;
     }
 
-    /* Header */
-    .tsp-social-header {
-        margin-bottom: 60px;
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        border-bottom: 1px solid var(--tsp-glass-border);
-        padding-bottom: 30px;
-    }
-
-    .tsp-social-title {
-        font-family: 'Outfit', sans-serif;
-        font-size: 42px; font-weight: 800; color: white; margin: 0;
-        line-height: 1; letter-spacing: -1px;
-    }
-    
-    .tsp-social-tag {
-        font-family: 'Fira Code', monospace;
-        font-size: 13px; color:#00d2ff;
-        background:rgba(0, 210, 255, 0.05);
-        padding: 8px 16px; border-radius: 40px;
-        border: 1px solid  #00d2ff;
-        box-shadow:0.5px 0px 0px 0.5px #00d2ff;
-    }
-
     /* =========================================
-       THE 3D GRID
+       LEFT: CONTENT
        ========================================= */
-    .tsp-social-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        perspective: 1000px; /* Essential for 3D feel */
-    }
+    .tsp-hero-content { max-width: 580px; }
 
-    /* THE CARD */
-    .tsp-holo-card {
-        position: relative;
-        background: rgba(20, 20, 25, 0.4);
-        border: 1px solid var(--tsp-glass-border);
-        border-radius: 20px;
-        padding: 40px;
-        height: 280px; /* Tall and imposing */
-        overflow: hidden;
-        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        text-decoration: none;
-        group: all;
-    }
-
-    /* Gradient Border Top */
-    .tsp-holo-card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        opacity: 0.5;
-        transition: opacity 0.3s ease;
-    }
-
-    /* Hover State: Lift & Glow */
-    .tsp-holo-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        background: rgba(25, 25, 35, 0.8);
-        border-color:#453478;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    }
-    .tsp-holo-card:hover::before { opacity: 1; background:#453478}
-
-    /* --- THE MASSIVE WATERMARK (Fills the void) --- */
-    .tsp-watermark {
-        position: absolute;
-        right: -40px;
-        bottom: -40px;
-        width: 180px;
-        height: 180px;
-        opacity: 0.05;
-        transition: all 0.5s ease;
-        transform: rotate(-15deg);
-        filter: grayscale(100%);
-    }
-    
-    .tsp-holo-card:hover .tsp-watermark {
-        opacity: 0.15;
-        transform: rotate(0deg) scale(1.1);
-        filter: grayscale(0%); /* Restore brand color on hover */
-    }
-
-    /* Content Styling */
-    .tsp-card-top {
-        display: flex; justify-content: space-between; align-items: flex-start;
-        position: relative; z-index: 2;
-    }
-
-    .tsp-platform-icon {
-        width: 50px; height: 50px;
-        background: rgba(255,255,255,0.05);
-        border-radius: 30px;
-        display: flex; align-items: center; justify-content: center;
-        color: white;
-        transition: all 0.3s ease;
-    }
-    
-    .tsp-holo-card:hover .tsp-platform-icon {
-        background: white; color: black; border-color: white;
-    }
-
-    .tsp-link-arrow {
-        width: 30px; height: 30px;
-        border-radius: 50%;background:rgba(255,255,255,0.05);
-        display: flex; align-items: center; justify-content: center;
-        color:#ffffff;
-        transition: all 0.3s ease;
-    }
-    .tsp-holo-card:hover .tsp-link-arrow {
-        background:#453478;
-        color: white; border-color: #453478;
-        transform: rotate(-45deg);
-    }
-
-    .tsp-card-bottom {
-        position: relative; z-index: 2;
-    }
-
-    .tsp-platform-name {
+    .tsp-eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 6px 14px;
+        background:rgba(0, 210, 255, 0.05);
+        border: 1px solid #00d2ff;
+        border-radius:30px;
+        margin-bottom: 24px;
         font-family: 'Outfit', sans-serif;
-        font-size: 24px; font-weight: 700; color: white;
-        margin: 0 0 8px 0;
+        font-size: 12px; font-weight: 600; color: #00FFFF;
+        text-transform: uppercase; letter-spacing: 1px;
+    }
+    .tsp-dot {
+        width: 6px; height: 6px; background: #00FFFF;
+        border-radius: 50%; box-shadow: 0 0 10px #00FFFF;
+        animation: blink 2s infinite;
+    }
+
+    .tsp-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(48px, 5vw, 72px);
+        font-weight: 800; color: white;
+        line-height: 1.05; margin: 0 0 24px 0;
+        letter-spacing: -1.5px;
     }
     
-    .tsp-platform-desc {
-        font-size: 14px; color: #94a3b8;
+    .tsp-highlight {
+        background: linear-gradient(to right, #ffffff, #00FFFF);
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .tsp-desc {
+        font-size: 18px; line-height: 1.6; color: var(--tsp-text-muted);
+        margin-bottom: 40px; max-width: 540px;
+    }
+
+    /* Buttons */
+    .tsp-btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .tsp-btn-primary {
+        padding: 16px 36px;
+        background:linear-gradient(135deg, #453478 0%, #7b61d1 100%);
+        color: white;
+        border-radius: 50px;
+        font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px;
+        text-decoration: none; transition: all 0.3s ease;
         display: flex; align-items: center; gap: 8px;
     }
-    .tsp-live-indicator {
-        width: 6px; height: 6px; background: #27c93f; border-radius: 50%;
-        box-shadow: 0 0 8px #27c93f;
+    .tsp-btn-primary:hover { 
+        transform: translateY(-3px); 
+        background:white;
+        color:#000000;
     }
 
-    /* --- BRAND SPECIFIC COLORS --- */
-    .tsp-linkedin { --brand-color: #0077b5; }
-    .tsp-github { --brand-color: #6e5494; }
-    .tsp-twitter { --brand-color: #1da1f2; }
+    .tsp-btn-outline {
+        padding: 16px 36px;
+        background: transparent; color: white;
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 50px;
+        font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 15px;
+        text-decoration: none; transition: all 0.3s ease;
+    }
+    .tsp-btn-outline:hover { background: rgba(255,255,255,0.08); border-color: white;color:#ffffff; }
+
+    /* =========================================
+       RIGHT: MARKETING DASHBOARD VISUAL
+       ========================================= */
+    .tsp-product-stage {
+        position: relative;
+        height: 600px;
+        display: flex; align-items: center; justify-content: center;
+        perspective: 1500px;
+    }
+
+    .tsp-store-card {
+        width: 360px;
+        height: 520px;
+        background: rgba(20, 20, 25, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 32px;
+        backdrop-filter: blur(20px);
+        transform: rotateY(-12deg) rotateX(5deg);
+        box-shadow: 
+            20px 20px 60px rgba(0,0,0,0.5), 
+            inset 0 0 0 1px rgba(255,255,255,0.05);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.5s ease;
+        display: flex; flex-direction: column;
+    }
+    
+    .tsp-product-stage:hover .tsp-store-card {
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+
+    .tsp-store-img {
+        flex: 1;
+        position: relative;
+        background: radial-gradient(circle at 50% 30%, #f9f9f9 0%, #f8f8f8 100%);
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+        min-height: auto;
+    }
+    
+    .tsp-prod-obj {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+        transform: scale(1);
+        transition: transform 0.5s ease;
+        opacity: 1;
+        mask-image: linear-gradient(to bottom, black 85%, transparent 100%) !important;
+        -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block;
+    }
+    .tsp-product-stage:hover .tsp-prod-obj { transform: scale(1.05) translateY(-10px); }
+    .tsp-product-stage:hover .tsp-prod-obj { transform: scale(1.1) translateY(-10px); }
+
+    .tsp-store-ui {
+        padding: 24px;
+        background: #1a1a24;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .tsp-row-1 { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .tsp-p-name { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: white; }
+    .tsp-p-price { 
+        font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; 
+        color: #00FFFF;
+        animation: blinkGlow 2s infinite;
+    }
+    
+    @keyframes blinkGlow {
+        0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+        50% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
+    }
+    
+    .tsp-p-sub { font-size: 12px; color: #94a3b8; margin-bottom: 20px; display: block; }
+    
+    .tsp-swatch-row { display: flex; gap: 10px; margin-bottom: 24px; }
+    .tsp-metric-box { 
+        flex: 1; padding: 12px; 
+        background: rgba(255, 255, 255, 0.05); 
+        border: 1px solid rgba(0, 255, 255, 0.1);
+        border-radius: 8px; text-align: center;
+    }
+    .tsp-metric-val { color: #00FFFF; font-weight: 700; font-size: 16px; display: block; }
+    .tsp-metric-lbl { color: #94a3b8; font-size: 10px; text-transform: uppercase; }
+
+    .tsp-cart-btn {
+        width: 100%; padding: 14px;
+        background: white; color: black;
+        border-radius: 12px;
+        font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px;
+        text-align: center; cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    .tsp-cart-btn:hover { transform: scale(1.02); }
+
+    /* Floating Widgets */
+    .tsp-toast {
+        position: absolute;
+        bottom: 100px; left: -50px;
+        background: #1a1a1a;
+        backdrop-filter: blur(10px);
+        border: 1px solid #453478;
+        padding: 12px 20px; border-radius: 50px;
+        display: flex; align-items: center; gap: 12px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        transform: translateZ(80px);
+        animation: floatToast 5s infinite ease-in-out;
+    }
+    .tsp-toast-icon { 
+        width: 24px; height: 24px; background: #00FFFF; 
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        color: #000; font-size: 12px; font-weight: 700;
+    }
+    .tsp-toast-text { color: white; font-size: 13px; font-weight: 600; }
+
+    .tsp-score-badge {
+        position: absolute;
+        top: 60px; left: -20px;
+        background: #1a1a1a;
+        border: 1px solid #453478;
+        backdrop-filter: blur(10px);
+        padding: 10px 16px;
+        border-radius: 50px;
+        display: flex; align-items: center; gap: 8px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        transform: translateZ(40px);
+        animation: floatScore 6s infinite ease-in-out;
+    }
+    .tsp-score-num { color: #00FFFF; font-weight: 800; font-size: 16px; line-height: 1; }
+    .tsp-score-lbl { color: #94a3b8; font-size: 10px; text-transform: uppercase; margin-left: 4px; }
+
+    .tsp-rate-card {
+        position: absolute;
+        top: 100px; right: -20px;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 8px 16px; border-radius: 8px;
+        transform: translateZ(60px);
+        animation: floatRate 7s infinite ease-in-out;
+    }
+    .tsp-stars { color: #00d2ff; font-size: 11px; font-weight: 700; }
+
+    @keyframes floatToast { 0%, 100% { transform: translateZ(80px) translateY(0); } 50% { transform: translateZ(80px) translateY(-10px); } }
+    @keyframes floatScore { 0%, 100% { transform: translateZ(40px) translateY(0); } 50% { transform: translateZ(40px) translateY(-15px); } }
+    @keyframes floatRate { 0%, 100% { transform: translateZ(60px) translateY(0); } 50% { transform: translateZ(60px) translateY(8px); } }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
     /* Responsive */
     @media (max-width: 900px) {
-        .tsp-social-grid { grid-template-columns: 1fr; }
-        .tsp-social-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-        .tsp-holo-card { height: 220px; }
+        .tsp-hero-container { grid-template-columns: 1fr; text-align: center; }
+        .tsp-hero-content { margin: 0 auto; }
+        .tsp-btn-row { justify-content: center; }
+        .tsp-product-stage { transform: scale(0.75); margin-top: -60px; }
     }
 </style>
 
-<section class="tsp-social-section">
-    <div class="tsp-social-glow"></div>
+<section class="tsp-ecom-hero">
+    <div class="tsp-bg-glow"></div>
 
-    <div class="tsp-social-container">
+    <div class="tsp-hero-container">
         
-        <!-- Header -->
-        <div class="tsp-social-header">
-            <h2 class="tsp-social-title">Join the Ecosystem</h2>
-            <div class="tsp-social-tag">/// NETWORK_LIVE</div>
-        </div>
-
-        <!-- The 3D Grid -->
-        <div class="tsp-social-grid">
+        <!-- LEFT: Pitch -->
+        <div class="tsp-hero-content">
+            <div class="tsp-eyebrow">
+                <span class="tsp-dot"></span>
+                Growth Marketing
+            </div>
             
-            <!-- LinkedIn Card -->
-            <a href="https://www.linkedin.com/company/techspirex/" target="_blank" rel="noopener noreferrer" class="tsp-holo-card tsp-linkedin">
-                <!-- Massive Background Watermark -->
-                <svg class="tsp-watermark" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <h1 class="tsp-title">
+                Campaigns that<br>
+                <span class="tsp-highlight">Convert & Scale.</span>
+            </h1>
+            
+            <p class="tsp-desc">
+                We craft data-driven marketing strategies that amplify your brand. From SEO to paid ads, we optimize every channel for maximum ROI and sustainable growth.
+            </p>
+
+            <div class="tsp-btn-row">
+                <a href="https://techspirex.com/contact-us/" class="tsp-btn-primary">
+                    Grow Your Brand
+                </a>
+                <a href="#case-studies" class="tsp-btn-outline">View Results</a>
+            </div>
+        </div>
+
+        <!-- RIGHT: Marketing Dashboard -->
+        <div class="tsp-product-stage">
+            
+            <!-- Floating Widget: Campaign Status -->
+            <div class="tsp-toast">
+                <div class="tsp-toast-icon">↑</div>
+                <span class="tsp-toast-text">ROI <span style="color: #00FFFF;">+340%</span></span>
+            </div>
+
+            <!-- Floating Widget: Reach -->
+            <div class="tsp-score-badge">
+                <span class="tsp-score-num">2.4M</span>
+                <span class="tsp-score-lbl">Reach</span>
+            </div>
+
+            <!-- Floating Widget: Engagement -->
+            <div class="tsp-rate-card">
+                <div class="tsp-stars">ENGAGEMENT: 8.2%</div>
+            </div>
+
+            <!-- The Main Dashboard Card -->
+            <div class="tsp-store-card">
+                <div class="tsp-store-img">
+                    <img src="https://techspirex.com/wp-content/uploads/2026/02/10780386_19199013.svg" class="tsp-prod-obj"> 
+                </div>
                 
-                <div class="tsp-card-top">
-                    <div class="tsp-platform-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <div class="tsp-store-ui">
+                    <div class="tsp-row-1">
+                        <span class="tsp-p-name">Campaign Analytics</span>
+                        <span class="tsp-p-price">Live</span>
                     </div>
-                    <div class="tsp-link-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    <span class="tsp-p-sub">Real-time Performance</span>
+                    
+                    <div class="tsp-swatch-row">
+                        <div class="tsp-metric-box">
+                            <span class="tsp-metric-val">12.4K</span>
+                            <span class="tsp-metric-lbl">Clicks</span>
+                        </div>
+                        <div class="tsp-metric-box">
+                            <span class="tsp-metric-val">4.8%</span>
+                            <span class="tsp-metric-lbl">CTR</span>
+                        </div>
+                        <div class="tsp-metric-box">
+                            <span class="tsp-metric-val">$2.1K</span>
+                            <span class="tsp-metric-lbl">Revenue</span>
+                        </div>
                     </div>
+                    
+                    <div class="tsp-cart-btn">VIEW FULL REPORT</div>
                 </div>
-
-                <div class="tsp-card-bottom">
-                    <h3 class="tsp-platform-name">LinkedIn</h3>
-                    <div class="tsp-platform-desc">
-                        Corporate News & Trends
-                    </div>
-                </div>
-            </a>
-
-            <!-- GitHub Card -->
-            <a href="#" class="tsp-holo-card tsp-github">
-                <!-- Massive Background Watermark -->
-                <svg class="tsp-watermark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-
-                <div class="tsp-card-top">
-                    <div class="tsp-platform-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    </div>
-                    <div class="tsp-link-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                </div>
-
-                <div class="tsp-card-bottom">
-                    <h3 class="tsp-platform-name">GitHub</h3>
-                    <div class="tsp-platform-desc">
-                        Open Source & Repos
-                    </div>
-                </div>
-            </a>
-
-            <!-- Twitter / X Card -->
-            <a href="#" class="tsp-holo-card tsp-twitter">
-                <!-- Massive Background Watermark -->
-                <svg class="tsp-watermark" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-
-                <div class="tsp-card-top">
-                    <div class="tsp-platform-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                    </div>
-                    <div class="tsp-link-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                </div>
-
-                <div class="tsp-card-bottom">
-                    <h3 class="tsp-platform-name">Twitter</h3>
-                    <div class="tsp-platform-desc">
-                        <span class="tsp-live-indicator"></span> Live Updates
-                    </div>
-                </div>
-            </a>
+            </div>
 
         </div>
+
     </div>
 </section>
+
