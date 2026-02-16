@@ -1,0 +1,650 @@
+<!-- Techspirex Team: The Kinetic Deck (Elastic Interaction) -->
+
+<style>
+
+    /* =========================================
+
+       VARIABLES
+
+       ========================================= */
+
+    :root {
+
+        --tsp-bg-dark: #0f0f12;
+
+        --tsp-primary: #453478;
+
+        --tsp-primary-glow: #8e78ff; 
+
+        --tsp-accent: #00d2ff;
+
+        --tsp-deck-height: 550px; 
+
+    }
+
+
+
+    /* =========================================
+
+       SECTION LAYOUT
+
+       ========================================= */
+
+    .tsp-team-section {
+
+        background-color: var(--tsp-bg-dark);
+
+        padding: 120px 20px;
+
+        font-family: 'Inter', sans-serif;
+
+        position: relative;
+
+        overflow: hidden;
+
+    }
+
+
+
+    /* Branding: The Gradient Text */
+
+    .tsp-proto-gradient {
+
+        background: linear-gradient(90deg, #ffffff 0%, var(--tsp-primary-glow) 100%);
+
+        -webkit-background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+
+        opacity: 0.9; /* Slightly increased for better visibility */
+
+        display: inline-block;
+
+    }
+
+
+
+    .tsp-team-container {
+
+        max-width: 1200px;
+
+        margin: 0 auto;
+
+    }
+
+
+
+    /* Header */
+
+    .tsp-team-header {
+
+        text-align: left; 
+
+        margin-bottom: 50px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: flex-end;
+
+    }
+
+    
+
+    .tsp-team-title {
+
+        font-family: 'Outfit', sans-serif;
+
+        font-size: 56px; font-weight: 800; color: white; margin: 0;
+
+        line-height: 1.1; letter-spacing: -1.5px;
+
+    }
+
+    
+
+    .tsp-team-subtitle {
+
+        color: #94a3b8; max-width: 400px; font-size: 15px; line-height: 1.6;
+
+        text-align: right;
+
+        padding-bottom: 5px;
+
+    }
+
+
+
+    /* =========================================
+
+       ELASTIC DECK (THE RICH UI COMPONENT)
+
+       ========================================= */
+
+    .tsp-deck {
+
+        display: flex;
+
+        width: 100%;
+
+        height: var(--tsp-deck-height);
+
+        gap: 10px; 
+
+    }
+
+
+
+    .tsp-card {
+
+        position: relative;
+
+        flex: 1; 
+
+        border-radius: 30px;
+
+        overflow: hidden;
+
+        cursor: pointer;
+
+        transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+        isolation: isolate;
+
+        border: 1px solid rgba(255, 255, 255, 0.05);
+
+    }
+
+
+
+    /* --- BACKGROUND IMAGE --- */
+
+    .tsp-bg-img {
+
+        position: absolute;
+
+        top: 0; left: 0; width: 100%; height: 100%;
+
+        object-fit: cover;
+        object-position: center center;
+
+        filter: grayscale(100%) brightness(0.5);
+
+        transform: scale(1.0);
+
+        transition: all 0.6s ease;
+
+        z-index: 0;
+
+    }
+
+
+
+    /* --- HOVER STATE --- */
+
+    .tsp-deck:hover .tsp-card { 
+
+        filter: brightness(0.6); 
+
+    }
+
+    
+
+    .tsp-card:hover {
+
+        flex: 3.5; 
+
+        filter: brightness(1) !important; 
+
+        border-color: rgba(255,255,255,0.3);
+
+        box-shadow: 0 0 50px rgba(0,0,0,0.5);
+
+        z-index: 10;
+
+    }
+
+
+
+    .tsp-card:hover .tsp-bg-img {
+
+        filter: grayscale(0%) brightness(1.1); 
+
+        transform: scale(1.1); 
+
+    }
+
+
+
+    /* --- CONTENT OVERLAYS --- */
+
+    .tsp-collapsed-label {
+
+        position: absolute;
+
+        bottom: 30px; left: 50%;
+
+        transform: translateX(-50%);
+
+        writing-mode: vertical-rl; 
+
+        text-orientation: mixed;
+
+        font-family: 'Outfit', sans-serif;
+
+        font-size: 20px; font-weight: 700; color: rgba(255,255,255,0.6);
+
+        letter-spacing: 2px;
+
+        text-transform: uppercase;
+
+        transition: opacity 0.3s ease;
+
+        z-index: 2;
+
+        white-space: nowrap ;
+
+    }
+
+    
+
+    .tsp-card:hover .tsp-collapsed-label {
+
+        opacity: 0; 
+
+    }
+
+
+
+    .tsp-expanded-info {
+
+        position: absolute;
+
+        bottom: 0; left: 0; width: 100%;
+
+        padding: 40px;
+
+        background: linear-gradient(to top, #0f0f12 10%, rgba(15, 15, 18, 0.8) 50%, transparent 100%);
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: flex-end;
+
+        align-items: flex-start;
+
+        opacity: 0;
+
+        transform: translateY(50px);
+
+        transition: all 0.5s ease 0.1s; 
+
+        z-index: 3;
+
+    }
+
+
+
+    .tsp-card:hover .tsp-expanded-info {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+
+
+    .tsp-role-badge {
+        padding: 6px 14px;
+        background: #453478;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 50px;
+        margin-bottom: 16px;
+    }
+
+
+
+    .tsp-name {
+
+        font-family: 'Outfit', sans-serif;
+
+        font-size: 42px; font-weight: 800; color: white;
+
+        margin: 0 0 10px 0;
+
+        line-height: 1;
+
+    }
+
+
+
+    .tsp-bio {
+
+        font-size: 15px; color: #d1d5db; line-height: 1.5;
+
+        max-width: 400px; margin-bottom: 20px;
+
+    }
+
+
+
+    .tsp-skills-row {
+
+        display: flex; gap: 20px;
+
+    }
+
+    .tsp-skill-dot {
+
+        padding: 6px 12px;
+
+        border: 1px solid #00d2ff;background:rgba(0, 210, 255, 0.05);
+
+        border-radius:30px;
+
+        color: #00d2ff; font-size: 12px;
+
+        backdrop-filter: blur(5px);
+
+    }
+
+
+
+    .tsp-social-btn {
+
+        position: absolute;
+
+        top: 30px; right: 30px;
+
+        width: 50px; height: 50px;
+
+        border-radius: 50%;
+
+        background:#453478;
+
+        backdrop-filter: blur(10px);
+
+        display: flex; align-items: center; justify-content: center;
+
+        color:#ffffff;
+
+        border: 1px solid #453478;
+
+        opacity: 0; transform: rotate(-45deg);
+
+        transition: all 0.5s ease 0.2s;
+
+    }
+
+    .tsp-card:hover .tsp-social-btn {
+
+        opacity: 1; transform: rotate(0deg);
+
+    }
+
+    .tsp-social-btn:hover { background: white; color: black; }
+
+
+
+    /* =========================================
+
+       RESPONSIVE
+
+       ========================================= */
+
+    @media (max-width: 1024px) {
+
+        .tsp-team-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+
+        .tsp-team-subtitle { text-align: left; }
+
+        
+
+        .tsp-deck { flex-direction: column; height: auto; gap: 20px; }
+
+        .tsp-card { 
+
+            height: 120px; 
+
+            flex: none; width: 100%; 
+
+        }
+
+        .tsp-bg-img { object-position: 50% 20%; filter: grayscale(0%) brightness(0.6); }
+
+        .tsp-collapsed-label { 
+
+            writing-mode: horizontal-tb; 
+
+            transform: translateX(0); left: 30px; bottom: auto; top: 50%; transform: translateY(-50%);
+
+            font-size: 24px; color: white;
+
+        }
+
+        
+
+        .tsp-card:hover, .tsp-card:active {
+
+            height: 400px; 
+
+            flex: none;
+
+        }
+
+    }
+
+</style>
+
+
+
+<section class="tsp-team-section">
+
+    <div class="tsp-team-container">
+
+        
+
+        <!-- Modern Header -->
+
+        <div class="tsp-team-header">
+
+            <h2 class="tsp-team-title">
+
+                The <span class="tsp-proto-gradient">Minds.</span><br>
+
+                Behind the Code.
+
+            </h2>
+
+            <p class="tsp-team-subtitle">
+
+                We are a collective of outliers. Engineers, artists, and strategists working in unison to build the impossible.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- The Kinetic Deck -->
+
+        <div class="tsp-deck">
+
+            
+
+            <!-- Member 1 -->
+
+            <div class="tsp-card">
+
+                <img src="https://techspirex.com/wp-content/uploads/2026/02/2569-1.jpg" class="tsp-bg-img" alt="Azeem Ahmad - System Design & Leadership Expert">
+
+                <div class="tsp-collapsed-label">Azeem Ahmad</div>
+
+                <a href="https://linkedin.com/in/team-member" target="_blank" rel="noopener noreferrer" class="tsp-social-btn" aria-label="LinkedIn Profile">
+
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+
+                </a>
+
+                <div class="tsp-expanded-info">
+
+        
+
+                    <h3 class="tsp-name">Azeem Ahmad</h3>
+
+                    <p class="tsp-bio">Designing scalable systems while leading teams with clarity, trust, and purpose to deliver resilient, future ready solutions.</p>
+
+                    <div class="tsp-skills-row">
+
+                        <div class="tsp-skill-dot">System Design</div>
+
+                        <div class="tsp-skill-dot">Leadership</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Member 2 -->
+
+            <div class="tsp-card">
+
+                <img src="https://techspirex.com/wp-content/uploads/2026/02/2889.jpg" class="tsp-bg-img" alt="Usman Tahir - Cybersecurity & Cloud Architecture Specialist">
+
+                <div class="tsp-collapsed-label">Usman Tahir</div>
+
+                <a href="https://linkedin.com/in/team-member" target="_blank" rel="noopener noreferrer" class="tsp-social-btn" aria-label="LinkedIn Profile">
+
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+
+                </a>
+
+                <div class="tsp-expanded-info">
+
+           
+
+                    <h3 class="tsp-name">Khizara Ali</h3>
+
+                    <p class="tsp-bio">Architect of secure cloud systems. Specializes in cybersecurity architecture, mitigation, and infrastructure resilience.</p>
+
+                    <div class="tsp-skills-row">
+
+                        <div class="tsp-skill-dot">Cybersecurity</div>
+
+                        <div class="tsp-skill-dot">Cloud Arch</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Member 3 -->
+
+            <div class="tsp-card">
+
+                <img src="https://techspirex.com/wp-content/uploads/2026/02/79352.jpg" class="tsp-bg-img" alt="Javaid Fazeel - SEO & Analytics Strategist">
+
+                <div class="tsp-collapsed-label">Javaid Fazeel</div>
+
+                <a href="https://linkedin.com/in/team-member" target="_blank" rel="noopener noreferrer" class="tsp-social-btn" aria-label="LinkedIn Profile">
+
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+
+                </a>
+
+                <div class="tsp-expanded-info">
+
+          
+
+                    <h3 class="tsp-name">Javaid Fazeel</h3>
+
+                    <p class="tsp-bio">Data-focused strategist who trusts analytics over guesses. Expert in SEO, analytics, and performance optimization growth.</p>
+
+                    <div class="tsp-skills-row">
+
+                        <div class="tsp-skill-dot">SEO</div>
+
+                        <div class="tsp-skill-dot">Analytics</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Member 4 -->
+
+            <div class="tsp-card">
+
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop" class="tsp-bg-img" alt="Musfira Shehroz - UI/UX & Motion Design Expert">
+
+                <div class="tsp-collapsed-label">Musfira Shehroz</div>
+
+                <a href="https://linkedin.com/in/team-member" target="_blank" rel="noopener noreferrer" class="tsp-social-btn" aria-label="LinkedIn Profile">
+
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+
+                </a>
+
+                <div class="tsp-expanded-info">
+
+     
+
+                    <h3 class="tsp-name">Musfira Shehroz</h3>
+
+                    <p class="tsp-bio">Design-focused creator who trusts motion over noise. Expert in UI/UX, motion design, and interaction flow systems.</p>
+
+                    <div class="tsp-skills-row">
+
+                        <div class="tsp-skill-dot">UI/UX</div>
+
+                        <div class="tsp-skill-dot">Motion</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+// Mobile touch interaction for team cards
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.tsp-card');
+    
+    // Only apply on mobile/tablet
+    if (window.innerWidth <= 1024) {
+        cards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove active class from all cards
+                cards.forEach(c => c.classList.remove('active'));
+                // Add active class to clicked card
+                this.classList.add('active');
+            });
+        });
+    }
+});
+</script>
