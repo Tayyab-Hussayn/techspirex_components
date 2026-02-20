@@ -282,18 +282,89 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+        .tsp-inf-tm-section {
+            padding: 80px 0;
+        }
+
+        .tsp-inf-tm-header {
+            margin-bottom: 60px;
+        }
+
         .tsp-inf-tm-title {
             font-size: 36px;
         }
 
+        .tsp-inf-tm-subtitle {
+            font-size: 16px;
+        }
+
         .tsp-inf-card {
-            width: 350px;
-            padding: 24px;
+            width: 280px;
+            padding: 20px;
+        }
+
+        .tsp-inf-card-text {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tsp-inf-quote-icon {
+            font-size: 40px;
+            top: 16px;
+            right: 16px;
+        }
+
+        .tsp-inf-author-block {
+            padding-top: 16px;
+            gap: 12px;
+        }
+
+        .tsp-inf-avatar {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+        }
+
+        .tsp-inf-name {
+            font-size: 14px;
+        }
+
+        .tsp-inf-role {
+            font-size: 12px;
+        }
+
+        .tsp-inf-marquee-wrapper {
+            gap: 24px;
+        }
+
+        .tsp-inf-marquee-track {
+            gap: 20px;
         }
 
         .tsp-inf-marquee-wrapper::before,
         .tsp-inf-marquee-wrapper::after {
-            width: 50px;
+            width: 40px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .tsp-inf-tm-title {
+            font-size: 32px;
+        }
+
+        .tsp-inf-card {
+            width: 260px;
+            padding: 18px;
+        }
+
+        .tsp-inf-card-text {
+            font-size: 13px;
+        }
+
+        .tsp-inf-marquee-wrapper::before,
+        .tsp-inf-marquee-wrapper::after {
+            width: 30px;
         }
     }
 </style>
@@ -362,7 +433,7 @@
                 <p class="tsp-inf-card-text">"What impressed us most was their ability to balance speed with stability. Deadlines were met consistently, yet code quality remained clean, scalable, and well-documented. This maturity made the final product easy to maintain and deploy."</p>
                 <div class="tsp-inf-author-block">
                     <div class="tsp-inf-avatar">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Faheem">
+                        <img src="https://plus.unsplash.com/premium_photo-1732196163366-d855fd3ceadd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2Zlc3Npb25hbCUyMHBha2lzdGFuaSUyMHdvbWVufGVufDB8fDB8fHww" alt="Sarah Faheem">
                     </div>
                     <div class="tsp-inf-meta">
                         <span class="tsp-inf-name">Sarah Faheem</span>
@@ -389,10 +460,10 @@
                 <p class="tsp-inf-card-text">"Techspirex brought rare technical clarity to our DevOps and blockchain stack. Their team anticipated risks, designed with foresight, and delivered a secure, scalable platform that feels stable today and prepared for tomorrow, giving us confidence, speed, and peace of mind."</p>
                 <div class="tsp-inf-author-block">
                     <div class="tsp-inf-avatar">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Khizara Javed">
+                        <img src="https://plus.unsplash.com/premium_photo-1681493927889-2a40a4a353c1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTN8fHByb2Zlc3Npb25hbCUyMGhpamFiJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D" alt="Aleena Javed">
                     </div>
                     <div class="tsp-inf-meta">
-                        <span class="tsp-inf-name">Khizara Javed</span>
+                        <span class="tsp-inf-name">Aleena Javed</span>
 
                     </div>
                 </div>
@@ -433,7 +504,7 @@
                 <p class="tsp-inf-card-text">"Publishing the updated brand and website delivered market validation across audiences. Their creative leadership simplified complex ideas into intuitive digital experiences that feel clear, engaging, and genuinely user-focused, helping our brand communicate confidently and connect more naturally with people."</p>
                 <div class="tsp-inf-author-block">
                     <div class="tsp-inf-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/91.jpg" alt="Muaz Shoaib">
+                        <img src="https://images.unsplash.com/photo-1707742453461-6855f0b8238c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmVzc2lvbmFsJTIwcGVvcGxlJTIwcGFraXN0YW5pfGVufDB8fDB8fHww" alt="Muaz Shoaib">
                     </div>
                     <div class="tsp-inf-meta">
                         <span class="tsp-inf-name">Muaz Shoaib</span>
@@ -460,7 +531,7 @@
                 <p class="tsp-inf-card-text">"Since launching our new e-commerce platform, sales jumped more than sixty percent within weeks. Their blend of high-performance development and growth strategy produced a powerful solution that drove fast results, improved customer experience, and delivered measurable return on investment."</p>
                 <div class="tsp-inf-author-block">
                     <div class="tsp-inf-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="Mir Dawood">
+                        <img src="https://images.unsplash.com/photo-1735724722492-85cf1e46987a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmVzc2lvbmFsJTIwcGVvcGxlJTIwcGFraXN0YW5pfGVufDB8fDB8fHww" alt="Mir Dawood">
                     </div>
                     <div class="tsp-inf-meta">
                         <span class="tsp-inf-name">Mir Dawood</span>
@@ -473,7 +544,7 @@
                 <p class="tsp-inf-card-text">"The new brand identity and website design were received with appreciation across the market. Their ability to shape complex visions into intuitive, well-structured digital journeys made a noticeable difference in how our brand is perceived"</p>
                 <div class="tsp-inf-author-block">
                     <div class="tsp-inf-avatar">
-                        <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="Aziza Shahid">
+                        <img src="https://images.unsplash.com/photo-1723831005305-7046e0e9d34b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fHByb2Zlc3Npb25hbCUyMHBha2lzdGFuaSUyMHdvbWVufGVufDB8fDB8fHww" alt="Aziza Shahid">
                     </div>
                     <div class="tsp-inf-meta">
                         <span class="tsp-inf-name">Aziza Shahid</span>
@@ -500,7 +571,7 @@
                 <p class="tsp-inf-card-text">"Seeing the market respond to our redesigned brand and website confirmed their expertise. The team converted complex ideas into intuitive digital experiences that feel natural, visually appealing, and strategically aligned with our goals."</p>
                 <div class="tsp-inf-author-block">
                     <div class="tsp-inf-avatar">
-                        <img src="https://randomuser.me/api/portraits/women/89.jpg" alt="Syeda Iqra">
+                        <img src="https://images.unsplash.com/photo-1761765241312-a9e7c3d4ca9c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2Zlc3Npb25hbCUyMGhpamFiJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D" alt="Syeda Iqra">
                     </div>
                     <div class="tsp-inf-meta">
                         <span class="tsp-inf-name">Syeda Iqra</span>
@@ -536,3 +607,4 @@
         </div>
     </div>
 </section>
+
